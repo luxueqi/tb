@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{37B15C7A-3FD4-4B0D-89AE-22C6B10C94A3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tieba</RootNamespace>
+    <AssemblyName>Tieba</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accention.cs" />
+    <Compile Include="Bduss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bduss.Designer.cs">
+      <DependentUpon>Bduss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Black.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="content.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="content.Designer.cs">
+      <DependentUpon>content.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContentType.cs" />
+    <Compile Include="frBlock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frBlock.Designer.cs">
+      <DependentUpon>frBlock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ID.cs" />
+    <Compile Include="imghash.cs" />
+    <Compile Include="Imgtest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Imgtest.Designer.cs">
+      <DependentUpon>Imgtest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="imgweb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="imgweb.Designer.cs">
+      <DependentUpon>imgweb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lcid.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskForm.Designer.cs">
+      <DependentUpon>TaskForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HttpArry.cs" />
+    <Compile Include="Mode.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TbInfo.cs" />
+    <Compile Include="Title.cs" />
+    <Compile Include="Transformation.cs" />
+    <Compile Include="User.cs" />
+    <EmbeddedResource Include="Bduss.resx">
+      <DependentUpon>Bduss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="content.resx">
+      <DependentUpon>content.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frBlock.resx">
+      <DependentUpon>frBlock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Imgtest.resx">
+      <DependentUpon>Imgtest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imgweb.resx">
+      <DependentUpon>imgweb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TaskForm.resx">
+      <DependentUpon>TaskForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

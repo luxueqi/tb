@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tieba", "Tieba.csproj", "{37B15C7A-3FD4-4B0D-89AE-22C6B10C94A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37B15C7A-3FD4-4B0D-89AE-22C6B10C94A3}.Debug|x86.ActiveCfg = Debug|x86
+		{37B15C7A-3FD4-4B0D-89AE-22C6B10C94A3}.Debug|x86.Build.0 = Debug|x86
+		{37B15C7A-3FD4-4B0D-89AE-22C6B10C94A3}.Release|x86.ActiveCfg = Release|x86
+		{37B15C7A-3FD4-4B0D-89AE-22C6B10C94A3}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
