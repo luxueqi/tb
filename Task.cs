@@ -805,13 +805,14 @@ namespace Tieba
 
         private void Complex(string tidComplex)
         {
-            Title restit;
+            //Title restit;
+            ClientTit restit;
             int maxpn = mode.pn;
            // tidComplex = "5626300517";
             List<string> templistpid = new List<string>();
             for (int j = 1; j <=maxpn; j++)
             {
-                restit = new Title(tidComplex, j);
+                restit = new ClientTit(tidComplex, j);
                 //if (tidComplex == "4564696916")
                 //{
                 //    int s = 0;

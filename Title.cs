@@ -111,8 +111,8 @@ namespace Tieba
                    {
                        Himgs.Add(mc[i].Groups[1].Value);
                    }
-
-                   if (!((Content.Count == Authors.Count) && (Pids.Count == Authors.Count) && (Pids.Count == Himgs.Count) && (Uids.Count == Himgs.Count)))
+                //https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/6465e58dabe7bb83e7949fe4b880e5a086e592af22d3?t=1531718435
+                if (!((Content.Count == Authors.Count) && (Pids.Count == Authors.Count) && (Pids.Count == Himgs.Count) && (Uids.Count == Himgs.Count)))
                    {
                        //int ssss = 0;
                        throw new Exception(this.tid + "title获取出现问题"); 

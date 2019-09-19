@@ -130,11 +130,11 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(273, 12);
+            this.radioButton3.Location = new System.Drawing.Point(278, 12);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(89, 16);
+            this.radioButton3.Size = new System.Drawing.Size(83, 16);
             this.radioButton3.TabIndex = 8;
-            this.radioButton3.Text = "指定tid/url";
+            this.radioButton3.Text = "指定tid:pn";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 

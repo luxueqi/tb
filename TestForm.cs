@@ -92,7 +92,15 @@ namespace Tieba
                     {
                         try
                         {
-                            Title title = new Title(textBox5.Text.Trim());
+                            //Title title = new Title(textBox5.Text.Trim());
+                            string[] tidpn = textBox5.Text.Trim().Split(':');
+                            int pn = 1;
+                            if (tidpn.Length==2)
+                            {
+                               
+                                pn = int.Parse(tidpn[1]);
+                            }
+                            ClientTit title = new ClientTit(tidpn[0],pn);
                             textBox4.Clear();
                             textBox4.AppendText("匹配情况如下：\r\n\r\n");
                             int i = 0;

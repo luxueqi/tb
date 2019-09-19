@@ -91,6 +91,7 @@ namespace Tieba
      
         private void Bduss_Load(object sender, EventArgs e)
         {
+           //ClientTit ct = new ClientTit("5057461848",2);
             try
             {
                 User us1 = Common.readXml<User>("User\\user");

@@ -48,13 +48,13 @@ namespace Tieba
                 html=html.Replace("\\/", "/");
                 html = Regex.Replace(html, @"\\u56de\\u590d <a.*?href=[^>]+?>[^<]+?</a>  :", "", RegexOptions.IgnoreCase);
                 html = Regex.Replace(html, "<a.*?href=[^>]+?>([^<]+?)</a>", "$1", RegexOptions.IgnoreCase);
-               // html = Regex.Replace(html, @"<img.*?src=\\""?(.*?)\\""?[^>]+?>", "$1", RegexOptions.IgnoreCase);
+                // html = Regex.Replace(html, @"<img.*?src=\\""?(.*?)\\""?[^>]+?>", "$1", RegexOptions.IgnoreCase);
 
-                Regex rg = new Regex(@"post_id"":""(\d{1,12})"",""comment_id"":""(\d{1,12})"",""username"":""([^""]+)"",""user_id"":""([^""]+)"",""now_time"":[^,]+,""content"":""([^,]+)""");
+                Regex rg = new Regex(@"post_id"":""(\d{1,12})"",""comment_id"":""(\d{1,12})"",""username"":""([^""]+)"",""user_id"":([^,]+),""now_time"":[^,]+,""content"":""(.*?)"",");
                 //http://tb.himg.baidu.com/sys/portrait/item/
 
-               // lhimg.AddRange(HttpHelper.P_jq(html, "\"portrait\":\"", "\""));
-               // int ss = 0;
+                // lhimg.AddRange(HttpHelper.P_jq(html, "\"portrait\":\"", "\""));
+                // int ss = 0;
                 MatchCollection mcs=rg.Matches(html);
 
               
