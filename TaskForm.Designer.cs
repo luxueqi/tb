@@ -40,7 +40,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.ckhimg = new System.Windows.Forms.CheckBox();
             this.ckdct = new System.Windows.Forms.CheckBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
@@ -312,7 +311,6 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.ckhimg);
             this.groupBox8.Controls.Add(this.ckdct);
             this.groupBox8.Controls.Add(this.numericUpDown2);
             this.groupBox8.Controls.Add(this.label11);
@@ -327,20 +325,10 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "附加设置";
             // 
-            // ckhimg
-            // 
-            this.ckhimg.AutoSize = true;
-            this.ckhimg.Location = new System.Drawing.Point(235, 16);
-            this.ckhimg.Name = "ckhimg";
-            this.ckhimg.Size = new System.Drawing.Size(48, 16);
-            this.ckhimg.TabIndex = 12;
-            this.ckhimg.Text = "头像";
-            this.ckhimg.UseVisualStyleBackColor = true;
-            // 
             // ckdct
             // 
             this.ckdct.AutoSize = true;
-            this.ckdct.Location = new System.Drawing.Point(187, 15);
+            this.ckdct.Location = new System.Drawing.Point(227, 14);
             this.ckdct.Name = "ckdct";
             this.ckdct.Size = new System.Drawing.Size(42, 16);
             this.ckdct.TabIndex = 11;
@@ -377,7 +365,7 @@
             // ckimg
             // 
             this.ckimg.AutoSize = true;
-            this.ckimg.Location = new System.Drawing.Point(118, 16);
+            this.ckimg.Location = new System.Drawing.Point(138, 14);
             this.ckimg.Name = "ckimg";
             this.ckimg.Size = new System.Drawing.Size(72, 16);
             this.ckimg.TabIndex = 0;
@@ -1814,7 +1802,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox ckhimg;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.CheckBox cklz;
         private System.Windows.Forms.CheckBox ckintro;

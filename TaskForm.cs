@@ -203,7 +203,7 @@ namespace Tieba
             ckimg.Checked = mode.isimghash;
             ckblackname.Checked = mode.isblackname;
             ckdct.Checked = mode.isimgdct;
-            ckhimg.Checked = mode.ishimg;
+            //ckhimg.Checked = mode.ishimg;
             cklz.Checked = mode.islz;
             ckintro.Checked = mode.isintro;
         }
@@ -321,9 +321,9 @@ namespace Tieba
            // mode.setValue("keys", txtkeys.Text);
             mode.setValue("mangertb", mangertb.Text);
             mode.setValue("reason", txtReason.Text);
-            mode.setValue("ishimg", ckhimg.Checked);
+            //mode.setValue("ishimg", ckhimg.Checked);
            
-            if ((mode.isimghash||mode.ishimg) && File.Exists("pz\\hash.txt"))
+            if (mode.isimghash && File.Exists("pz\\hash.txt"))
             {
                 mode.setValue("localimghash", File.ReadAllLines("pz\\hash.txt"));
                

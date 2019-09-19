@@ -147,7 +147,7 @@ namespace Tieba
                            Pids.AddRange(lcid.lcid);
                            //Times.AddRange(lcid.ltime);
                            Level.AddRange(lcid.llevel);
-                           Himgs.AddRange(lcid.lhimg);
+                          // Himgs.AddRange(lcid.lhimg);
                            Uids.AddRange(lcid.luid);
                        }
                    }

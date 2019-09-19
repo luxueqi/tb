@@ -118,7 +118,7 @@ namespace BaiduHelper
             {
                 req = (HttpWebRequest)WebRequest.Create(url);
                req.Proxy = null;
-                req.Timeout =4000;
+                req.Timeout =5000;
                 req.Headers["Cookie"] = cookie;
 
                 if (blgzip)

@@ -443,12 +443,12 @@ namespace Tieba
         }
 
 
-        private bool hashmethod(string content,out int dd,out string imgname,string himg="")
+        private bool hashmethod(string content,out int dd,out string imgname)
         {
             dd = 100;
 
             imgname = "";
-            string urlhash = "", hhash = "";
+            string urlhash = "";
             Regex rg = new Regex(@"http://imgsrc\.baidu\.com/forum/.*?\.jpg");
             if (rg.IsMatch(content))
             {
@@ -458,10 +458,10 @@ namespace Tieba
                
                 urlhash = ihash.GetHash(); 
             }
-            if (mode.ishimg)
-            {
-               hhash= new imghash(himg, mode.isimgdct).GetHash();
-            }
+            //if (mode.ishimg)
+            //{
+              // hhash= new imghash(himg, mode.isimgdct).GetHash();
+            //}
 
             for (int h = 0; h < mode.localimghash.Length; h++)
             {
@@ -479,7 +479,7 @@ namespace Tieba
                     }
                 }
 
-                if (mode.ishimg)
+               /* if (mode.ishimg)
                 {
                     dd = imghash.CalcSimilarDegree(hhash, result[1]);
 
@@ -489,7 +489,7 @@ namespace Tieba
                         return true;
                     
                     }
-                }
+                }*/
             }
 
 
@@ -882,7 +882,7 @@ namespace Tieba
                         log.author = restit.Authors[i];
                         log.fid = Common.Fid;
                         log.tbname = Common.Kw;
-                        log.title = restit.title + "--->" + tconten+"<img src=\""+restit.Himgs[i]+"\"/>";
+                        log.title = restit.title + "--->" + tconten;
 
                         //if (mode.isblack)
                         //{
@@ -922,12 +922,12 @@ namespace Tieba
                                 continue;
                             }
 
-                            if (mode.isimghash||mode.ishimg)
+                            if (mode.isimghash)
                             {
                                 int dd;
                                 string imgname;
-                                string himgtt = restit.Himgs[i];
-                                if (hashmethod( mode.isimghash? tconten:"", out dd, out imgname,himgtt))
+                                //string himgtt = restit.Himgs[i];
+                                if (hashmethod( mode.isimghash? tconten:"", out dd, out imgname))
                                 {
                                     imgFlag = true;
                                     pid = restit.Pids[i];

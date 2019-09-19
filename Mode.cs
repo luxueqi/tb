@@ -32,7 +32,7 @@ namespace Tieba
 
         public bool isimgdct { set; get; }
 
-        public bool ishimg;
+       // public bool ishimg;
         
         public int blockday = 1;
 
@@ -151,7 +151,7 @@ namespace Tieba
                 case "islevel": islevel = (bool)setv; break;
               //  case "isftday": isftday = (bool)setv; break;
                 case "isimghash": isimghash = (bool)setv; break;
-                case "ishimg": ishimg = (bool)setv; break;
+               // case "ishimg": ishimg = (bool)setv; break;
                 case "isimgdct": isimgdct = (bool)setv; break;
                 case "blockday": blockday = (int)setv; break;
                 case "level": level = (int)setv; break;
