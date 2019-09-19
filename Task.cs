@@ -732,8 +732,8 @@ namespace Tieba
 
             #endregion
             // string html1 = HttpHelper.HttpGet("http://wapp.baidu.com/f?ie=utf-8&kw="+mode.mangertb , Encoding.UTF8,"USER_RS="+Common.user.uid+"_50_30_1; "+Common.user.cookie, false, true);
-           string html1= Common.scantidcount("陆雪琪");
-            MatchCollection mcs = new Regex(@"thread_id"":""([^""]+).+?last_time_int"":""([^""]+)""").Matches(html1);
+           string html1= Common.scantidcount(mode.mangertb);
+            MatchCollection mcs = new Regex(@"thread_id"":""([^""]+)"",""original_tid"":""0"".+?last_time_int"":""([^""]+)""").Matches(html1);
             //string[] tds =HttpHelper.P_jq( html,"m?kz=","&amp;");
            //new Regex(@"kz=(\d{1,10}).+?(\d{1,2}[:-]\d{1,2})</p>", RegexOptions.Singleline)
             //string[] replytimes = HttpHelper.P_jq(html, "&#160;", "</p>");
