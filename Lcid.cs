@@ -63,7 +63,7 @@ namespace Tieba
                     string un = item.Groups[3].Value;
                     if (un == "")
                     {
-                       un= new Regex(item.Groups[4].Value + ",\"user_nickname\":\"([^ \"]+)\"").Match(html).Groups[1].Value;
+                       un= "昵称:"+new Regex(item.Groups[4].Value + ",\"user_nickname\":\"([^ \"]+)\"").Match(html).Groups[1].Value;
 
                     }
                     lun.Add(Regex.Unescape( un));

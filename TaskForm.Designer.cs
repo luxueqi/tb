@@ -161,6 +161,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1068,7 +1069,8 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7,
-            this.columnHeader8});
+            this.columnHeader8,
+            this.columnHeader18});
             this.listView1.ContextMenuStrip = this.contextMenuStrip2;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
@@ -1083,7 +1085,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "序号";
-            this.columnHeader1.Width = 40;
+            this.columnHeader1.Width = 36;
             // 
             // columnHeader2
             // 
@@ -1098,25 +1100,27 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "tid";
-            this.columnHeader4.Width = 80;
+            this.columnHeader4.Width = 75;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "类型";
-            this.columnHeader5.Width = 100;
+            this.columnHeader5.Width = 90;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "结果";
-            this.columnHeader6.Width = 145;
+            this.columnHeader6.Width = 130;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "贴吧";
+            this.columnHeader7.Width = 55;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Fid";
+            this.columnHeader8.Width = 40;
             // 
             // contextMenuStrip2
             // 
@@ -1616,6 +1620,11 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "uid";
+            this.columnHeader18.Width = 62;
+            // 
             // TaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1805,5 +1814,6 @@
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.CheckBox cklz;
         private System.Windows.Forms.CheckBox ckintro;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
     }
 }

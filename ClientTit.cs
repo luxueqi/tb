@@ -64,7 +64,7 @@ namespace Tieba
                 Pids.Add(mcs[i].Groups[1].Value);
                 Content.Add(Regex.Unescape(mcs[i].Groups[2].Value));
                 Uids.Add(mcs[i].Groups[3].Value);
-                Authors.Add(Regex.Unescape(mcs[i].Groups[4].Value==""? mcs[i].Groups[5].Value: mcs[i].Groups[4].Value));
+                Authors.Add(Regex.Unescape(mcs[i].Groups[4].Value==""? "昵称:"+mcs[i].Groups[5].Value: mcs[i].Groups[4].Value));
                // Himgs.Add("https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + mcs[i].Groups[5].Value);
                 Level.Add(mcs[i].Groups[6].Value);
 

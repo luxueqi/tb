@@ -128,7 +128,7 @@ namespace Tieba
        
        //}
 
-       private string  namemethod(string namew)
+       private string  namemethod(string namew,string portrait)
        {
            string res = "";
 
@@ -140,7 +140,7 @@ namespace Tieba
 
            if (this.boolblock)
            {
-               res += "-" + Common.Block(namew, 10, "lahei",kw,fid);
+              res += "-" + Common.Block("",portrait, 10, "lahei",kw,fid);
            }
 
            return res;
@@ -248,7 +248,7 @@ namespace Tieba
                                    continue;
                                }
                            }
-                           txtCallback(count + "-" + i + "-" + tempname + "-" + namemethod(tempname), Color.Red);
+                           txtCallback(count + "-" + i + "-" + tempname + "-" + namemethod(tempname,list[j].portait), Color.Red);
                           
                        }
                        catch (Exception ee)
@@ -297,11 +297,15 @@ namespace Tieba
 
        public int levle;
 
-       public Pluser(string un, int level)
+        public string portait;
+
+       public Pluser(string un, int level,string portait)
        {
            this.un = un;
 
            this.levle = level;
+
+            this.portait = portait;
        
        }
    

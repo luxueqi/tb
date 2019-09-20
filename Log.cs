@@ -22,9 +22,11 @@ namespace Tieba
         public string tbname;
 
         public string fid;
+
+        public string uid;
         public Log() { }
 
-        public Log(string index, string author, string title, string tid, string type, string result,string tbname,string fid)
+        public Log(string index, string author, string title, string tid, string type, string result,string tbname,string fid,string uid)
         {
 
 
@@ -36,6 +38,7 @@ namespace Tieba
             this.result = result;
             this.tbname = tbname;
             this.fid = fid;
+            this.uid = uid;
         
         
         }

@@ -78,15 +78,31 @@ namespace Tieba
             return default(T);
         }
 
-        public static string Block(string blockname, int day, string reason, string kw = "", string fid = "")
+        public static string Block(string blockname,string uid_portrait, int day, string reason, string kw = "", string fid = "")
         {
             if (kw == "" && fid == "")
             {
                 kw = Kw;
                 fid = Fid;
             }
-
-            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&day=" + day + "&fid=" + fid + "&ntn=banid&reason=" + reason + "&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=1";
+            string portrait = "";
+            if(string.IsNullOrEmpty(blockname))
+            {
+                if (new Regex(@"^\d{1,}$").IsMatch(uid_portrait))
+                {
+                    portrait = uid2portrait(uid_portrait);
+                }
+                else if (new Regex(@"^p:[0-9a-f]{8,}$").IsMatch(uid_portrait))
+                {
+                    portrait = uid_portrait.Substring(2);
+                   
+                }else
+                {
+                    throw new Exception("请输入一个合法的uid or portrait");
+                }
+               
+            }
+            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&day=" + day + "&fid=" + fid + "&ntn=banid&portrait="+portrait+"post_id=1&reason=" + reason + "&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=1";
 
             postdata = postdata + "&sign=" + HttpHelper.GetMD5HashFromFile(postdata.Replace("&", "") + "tiebaclient!!!");
 
@@ -97,6 +113,18 @@ namespace Tieba
                 return "封禁成功";
             }
             return HttpHelper.Jq(res, "error_msg\":\"", "\"");
+        }
+
+        public static string uid2portrait(string uid)
+        {
+            string portra = "";
+            string uidi = int.Parse(uid).ToString("x").PadLeft(8, '0');
+            for (int i = 6; i >= 0; i -= 2)
+            {
+                portra += uidi.Substring(i, 2);
+            }
+
+            return portra;
         }
 
         public static T readXml<T>(string xml)
@@ -251,14 +279,14 @@ namespace Tieba
 
             string res = HttpHelper.HttpGet(url, Encoding.GetEncoding("GBK"), null, false, true);
 
-            Regex rg = new Regex(@"title=""([^""]+?)"">\1</a><span class=""forum-level-bawu bawu-info-lv([1]?[0-8])", RegexOptions.Singleline);
+            Regex rg = new Regex(@"&id=([^""]+).+?title=""([^""]*)"".+?forum-level-bawu bawu-info-lv[1]?[0-9]");
 
             MatchCollection mcs = rg.Matches(res);
 
             List<Pluser> list = new List<Pluser>();
             for (int i = 0; i < mcs.Count; i++)
             {
-                list.Add(new Pluser(mcs[i].Groups[1].Value, int.Parse(mcs[i].Groups[2].Value)));
+                list.Add(new Pluser(mcs[i].Groups[2].Value, int.Parse(mcs[i].Groups[3].Value), mcs[i].Groups[1].Value));
 
             }
 

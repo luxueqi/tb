@@ -48,7 +48,7 @@ namespace Tieba
 
       // private string tidComplex;
 
-       private string lasthtmlcahe;
+      // private string lasthtmlcahe;
 
        private volatile bool boolstop;
 
@@ -223,180 +223,141 @@ namespace Tieba
         }
         private void EaseMode()
         {
-          
-              List<string> templisttid = new List<string>();    
-                try
+
+            List<string> templisttid = new List<string>();
+            try
+            {
+                TbInfo info = new TbInfo(mode.mangertb);
+
+                // lasthtmlcahe = info.html;
+                Log log = new Log();
+                for (int i = 0, len = info.Authors.Count; i < len; i++)
                 {
-                    TbInfo info = new TbInfo(mode.mangertb);
-                    if (lasthtmlcahe==info.html)
+                    manua.WaitOne();
+                    string tid = "", pikey;
+                    bool blackFlag = false, valuesFlag = false;
+                    try
                     {
-                        txtCallback("没有新贴", Color.Green);
-                          
-                    }
-                    else
-                    {
-                        lasthtmlcahe = info.html;
-                        Log  log = new Log();
-                        for (int i = 0, len = info.Authors.Length; i < len; i++)
+                        if (listpid.Contains(info.Tids[i]))
                         {
-                            manua.WaitOne();
-                            string tid = "", pikey;
-                            // bool isbool = false;
-                            bool blackFlag = false, valuesFlag = false;
-                            try
+                            txtCallback("跳过扫描:" + (i + 1).ToString() + "." + info.Titles[i] + "--->" + info.Authors[i], Color.Green);
+                            continue;
+                        }
+
+                        if (whiteblackMethod(info.Authors[i], 'w', out pikey)) { txtCallback("跳过-->白名单-" + info.Authors[i], Color.Blue); templisttid.Add(info.Tids[i]); continue; }
+
+                        txtCallback((i + 1).ToString() + "." + info.Titles[i] + "--->" + info.Authors[i], Color.Black);
+                        //if (mode.isblack)
+                        //{
+                        blackFlag = whiteblackMethod(info.Authors[i], 'b', out pikey);
+
+                        if (blackFlag)
+                        {
+                            tid = info.Tids[i];
+                            log.type = "黑名单：" + info.Authors[i];
+                        }
+
+                        //}
+                        if (!blackFlag)
+                        {
+                            if (whiteblackMethod(info.Titles[i].Trim(), 'c', out pikey) || whiteblackMethod(info.Replay[i], 'c', out pikey)) { txtCallback("跳过-->信任内容-" + pikey, Color.Blue); templisttid.Add(info.Tids[i]); continue; }
+
+                            valuesFlag = whiteblackMethod(info.Titles[i].Trim(), 't', out pikey) || whiteblackMethod(info.Replay[i], 'r', out pikey);
+
+                            if (valuesFlag)
+                            {
+                                tid = info.Tids[i];
+                                log.type = "匹配到关键词：" + pikey;
+                            }
+                        }
+
+
+                        if (tid != "")
+                        {
+
+                            txtCallback(log.type, Color.Red);
+                            string ncikname = info.Authors[i].StartsWith("昵称:")?"": info.Authors[i];
+                            if (blackFlag)
                             {
 
-                                //处理话题
-                                if (info.Titles[i].Contains("<span class=\"topic-tag\" data-name=\""))
-                                {
-                                    info.Titles[i] = info.Titles[i].Substring(info.Titles[i].IndexOf(">") + 1).Replace("</span>", "");
-                                }
+                                log.result = Common.Delete(tid) + "-->" + Common.Block(ncikname,info.Uids[i], 10, mode.reason);
 
+                            }
+                            else
+                            {
+                                if (ageNumMethod(info.Authors[i])) { templisttid.Add(info.Tids[i]); continue; }
 
-                                if (listpid.Contains(info.Tids[i]))
-                                {
-                                    txtCallback("跳过扫描:" + (i + 1).ToString() + "." + info.Titles[i] + "--->" + info.Authors[i], Color.Green);
-                                    continue;
-                                }
-
-                                if (whiteblackMethod(info.Authors[i],'w', out pikey)) { txtCallback("跳过-->白名单-" + info.Authors[i], Color.Blue); templisttid.Add(info.Tids[i]); continue; }
-
-                                txtCallback((i + 1).ToString() + "." + info.Titles[i] + "--->" + info.Authors[i], Color.Black);
-                                //if (mode.isblack)
-                                //{
-                                blackFlag = whiteblackMethod(info.Authors[i], 'b', out pikey);
-
-                                if (blackFlag)
-                                {
-                                    tid = info.Tids[i];
-                                    log.type = "黑名单：" + info.Authors[i];
-                                }
-
-                                //}
-                                if (!blackFlag)
-                                {
-                                    if (whiteblackMethod(info.Titles[i].Trim(), 'c', out pikey) || whiteblackMethod(info.Replay[i], 'c', out pikey)) { txtCallback("跳过-->信任内容-" + pikey, Color.Blue); templisttid.Add(info.Tids[i]); continue; }
-
-                                    bool imgFlag = false;
-                                    //http://imgsrc.baidu.com/forum/pic/item/c13aa344ad345982ebbb652b05f431adcaef84b9.jpg
-                                    if (mode.isimghash)
-                                    {
-                                        int dd;
-                                        string imgname;
-                                        if (hashmethod(info.Replay[i], out dd, out imgname))
-                                        {
-                                            imgFlag = true;
-                                            tid = info.Tids[i];
-                                            log.type = "匹配到图片：" + imgname + "/" + dd;
-
-                                        }
-                                    }
-
-                                    if (!imgFlag)
-                                    {
-                                        valuesFlag = whiteblackMethod(info.Titles[i].Trim(), 't',out pikey) || whiteblackMethod(info.Replay[i],'r', out pikey);
-
-                                        if (valuesFlag)
-                                        {
-                                            tid = info.Tids[i];
-                                            log.type = "匹配到关键词：" + pikey;
-                                        }
-
-                                    }
-
-
-
-
-
-                                }
-
-
-                                if (tid != "")
-                                {
-
-                                    txtCallback(log.type, Color.Red);
-                                    if (blackFlag)
-                                    {
-
-                                        log.result = Common.Delete(tid) + "-->" + Common.Block(info.Authors[i], 10, mode.reason);
-
-                                    }
-                                    else
-                                    {
-                                        if (ageNumMethod(info.Authors[i])) { templisttid.Add(info.Tids[i]); continue; }
-
-                                        bool zxbool = false;
-                                        //if (log.type.Contains("复杂模式"))
-                                        //{
-                                        if (pikey.StartsWith("[k:1]"))
-                                        {
-                                            templisttid.Add(info.Tids[i]);
-                                            log.result = "需要手动确认";
-                                            zxbool = true;
-                                        }
-                                        else if (pikey.StartsWith("[k:0]"))
-                                        {
-                                            zxbool = false;
-                                        }
-                                        //}
-
-                                        if (mode.isdel && !zxbool)
-                                        {
-
-                                            log.result = Common.Delete(tid);
-
-                                        }
-
-                                        if (mode.isblackname && !zxbool)
-                                        {
-
-                                            log.result = log.result + "-->" + Common.Black(info.Authors[i]);
-
-                                        }
-
-                                        if (mode.isblock && !zxbool)
-                                        {
-                                            log.result = log.result + "-->" + Common.Block(info.Authors[i], mode.blockday, mode.reason);
-
-                                        }
-                                    }
-
-
-
-                                }
-                                else
+                                bool zxbool = false;
+                                
+                                if (pikey.StartsWith("[k:1]"))
                                 {
                                     templisttid.Add(info.Tids[i]);
+                                    log.result = "需要手动确认";
+                                    zxbool = true;
+                                }
+                                else if (pikey.StartsWith("[k:0]"))
+                                {
+                                    zxbool = false;
+                                }
+                                //}
+
+                                if (mode.isdel && !zxbool)
+                                {
+
+                                    log.result = Common.Delete(tid);
+
                                 }
 
-                            }
-                            catch (Exception er)
-                            {
+                                if (mode.isblackname && !zxbool)
+                                {
 
-                                log.result = er.Message;
-                            }
-                            if (tid != "")
-                            {
-                                log.author = info.Authors[i];
-                                log.title = info.Titles[i]+"-->"+info.Replay[i];
-                                log.tid = tid;
-                                log.tbname = Common.Kw;
-                                log.fid = Common.Fid;
-                                listCallback(log);
-                                txtCallback(log.result, Color.Red);
+                                    log.result = log.result + "-->" + Common.Black(info.Authors[i]);
+
+                                }
+
+                                if (mode.isblock && !zxbool)
+                                {
+                                    log.result = log.result + "-->" + Common.Block(ncikname,info.Uids[i], mode.blockday, mode.reason);
+
+                                }
                             }
 
+
+
+                        }
+                        else
+                        {
+                            templisttid.Add(info.Tids[i]);
                         }
 
                     }
-                   
+                    catch (Exception er)
+                    {
+
+                        log.result = er.Message;
+                    }
+                    if (tid != "")
+                    {
+                        log.author = info.Authors[i];
+                        log.title = info.Titles[i] + "-->" + info.Replay[i];
+                        log.tid = tid;
+                        log.tbname = Common.Kw;
+                        log.fid = Common.Fid;
+                        listCallback(log);
+                        txtCallback(log.result, Color.Red);
+                    }
+
                 }
-                catch (Exception ee)
-                {
-                    txtCallback("简单模式:" + ee.Message, Color.Red);
-                    
-                }
-            if (templisttid.Count!=0)
+
+
+
+            }
+            catch (Exception ee)
+            {
+                txtCallback("简单模式:" + ee.Message, Color.Red);
+
+            }
+            if (templisttid.Count != 0)
             {
                 lock (object1)
                 {
@@ -407,8 +368,7 @@ namespace Tieba
                     listpid.AddRange(templisttid);
                 }
             }
-            //    Thread.Sleep(mode.sctime * 1000);
-            //}
+
         }
 
 
@@ -878,11 +838,7 @@ namespace Tieba
 
                         if (whiteblackMethod(restit.Authors[i], 'w' ,out outpikey)) { txtCallback("跳过-->白名单-" + restit.Authors[i], Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
                               
-                      
-                        log.author = restit.Authors[i];
-                        log.fid = Common.Fid;
-                        log.tbname = Common.Kw;
-                        log.title = restit.title + "--->" + tconten;
+            
 
                         //if (mode.isblack)
                         //{
@@ -966,11 +922,17 @@ namespace Tieba
                         if (pid != "")
                         {
                             txtCallback(log.type, Color.Red);
+                            log.author = restit.Authors[i];
+                            log.fid = Common.Fid;
+                            log.tbname = Common.Kw;
+                            log.title = restit.title + "--->" + tconten;
                             log.tid = tidComplex + "&" + pid;
+                            log.uid = restit.Uids[i];
+                            string nickname = restit.Authors[i].StartsWith("昵称:") ? "" : restit.Authors[i];
                             if (flagB)
                             {
 
-                                log.result = Common.Del(tidComplex, pid) +"-->" + Common.Block(restit.Authors[i], 10, mode.reason);
+                                log.result = Common.Del(tidComplex, pid) +"-->" + Common.Block(nickname, restit.Uids[i],10, mode.reason);
 
                             }
                             else
@@ -993,7 +955,7 @@ namespace Tieba
                                 }
                                 if (mode.isblock && !zxbool)
                                 {
-                                    log.result = Common.Block(restit.Authors[i], mode.blockday, mode.reason);
+                                    log.result = Common.Block(nickname,restit.Uids[i], mode.blockday, mode.reason);
                                 }
                                 if (mode.isblackname && !zxbool)
                                 {

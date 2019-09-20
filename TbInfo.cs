@@ -8,29 +8,40 @@ namespace Tieba
     class TbInfo
     {
 
-        public string TbName { get; set; }
 
-        public string[] Titles { get; set; }
+        public List<string> Titles = new List<string>(); 
 
-        public string[] Authors { get; set; }
+        public List<string> Authors = new List<string>();
 
-        public string[] Replay { get; set; }
+        public List<string> Replay = new List<string>();
 
-        public string[] Tids { get; set; }
+        public List<string> Tids = new List<string>();
 
-       // public string[] Himgs { get; set; }
+        public List<string> Uids = new List<string>();
 
-        public string html;
+        // public string[] Himgs { get; set; }
+
+        // public string html;
 
         public TbInfo(string tbname) 
         {
-            TbName = tbname;
+          
+           string res= Common.scantidcount(tbname);
 
-            GetHtml();
-        
+           MatchCollection mcs= new Regex(@"""thread_id"":""([^""]+)"",""original_tid"":""0"",""title"":""([^""]+)"".+?author"":\{""id"":""([^""]+)"",""name"":""([^""]*)"",""sex"":""[^""]+"",""name_show"":""([^""]+)"".+?abstract"":\[\{""type"":""0"",""text"":""([^""]*)").Matches(res);
+            if (mcs.Count == 0) throw new Exception("页面获取错误");
+            for (int i = 0,count=mcs.Count; i < count; i++)
+            {
+                Tids.Add(mcs[i].Groups[1].Value);
+                Titles.Add(Regex.Unescape(mcs[i].Groups[2].Value));
+                Uids.Add(mcs[i].Groups[3].Value);
+                Authors.Add(Regex.Unescape(mcs[i].Groups[4].Value==""? "昵称:" + mcs[i].Groups[5].Value:mcs[i].Groups[4].Value));
+                Replay.Add(Regex.Unescape(mcs[i].Groups[6].Value));
+            }
+
         }
 
-        public void GetHtml()
+       /* public void GetHtml()
         {
            // TbName = "诛仙";
             string url = "http://tieba.baidu.com/f?ie=utf-8&kw="+TbName;
@@ -62,9 +73,9 @@ namespace Tieba
                
             //}
         
-        }
+        }*/
 
-        private void Filter()
+      /*  private void Filter()
         {
             html = "";
 
@@ -93,6 +104,6 @@ namespace Tieba
                 html += Replay[i] + "\r\n";
             }
 
-        }
+        }*/
     }
 }

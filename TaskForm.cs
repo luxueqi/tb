@@ -421,6 +421,7 @@ namespace Tieba
                             lv.SubItems.Add(log.result);
                             lv.SubItems.Add(log.tbname);
                             lv.SubItems.Add(log.fid);
+                            lv.SubItems.Add(log.uid);
                             listView1.Items.Add(lv);
                             //repeatLog.Add(log.tid);
                         }
@@ -455,7 +456,8 @@ namespace Tieba
                     item.SubItems[4].Text,
                     item.SubItems[5].Text,
                     item.SubItems[6].Text,
-                item.SubItems[7].Text));
+                    item.SubItems[7].Text,
+                    item.SubItems[8].Text));
             }
             Common.Serialize<List<Log>>(list, Application.StartupPath + "\\pz\\log.xml");
             //string log = "";
@@ -606,7 +608,7 @@ namespace Tieba
                                         string res = "";
                                         if (bt.Text=="封删选中")
                                         {
-                                            res = Common.Block(item.SubItems[1].Text, int.Parse(txtblockday.Text.Trim()), txtReason.Text);
+                                            res = Common.Block(item.SubItems[1].Text.StartsWith("昵称: ") ?"": item.SubItems[1].Text, item.SubItems[8].Text,int.Parse(txtblockday.Text.Trim()), txtReason.Text);
                                            // ShowInfo("执行删封禁选中:" + res, Color.Red);
                                         }
                                         string tidpid = item.SubItems[3].Text;

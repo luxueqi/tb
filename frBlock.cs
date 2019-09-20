@@ -44,7 +44,16 @@ namespace Tieba
                             {
                                 string name = names[i];
 
-                                string res = Common.Block(name, day, breson, tbname, fid);
+                                string portrait = "";
+
+                                if (name.StartsWith("p:"))
+                                {
+                                   
+                                    portrait = name.Trim();
+                                    name = "";
+                                }
+
+                                string res = Common.Block(name,portrait, day, breson, tbname, fid);
 
                                 label1.Text = (i + 1).ToString() + "/" + names.Length + "-->" + res;
                                
