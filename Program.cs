@@ -31,7 +31,7 @@ namespace Tieba
                     Directory.CreateDirectory("img");
                 }
                 string res = HttpHelper.HttpGet("http://luxueqi.sinaapp.com/tb.php", System.Text.Encoding.UTF8);
-                if (res != "20190922")
+                if (res != "201909221")
                 {
                     new System.Net.WebClient().DownloadFile("http://luxueqi.sinaapp.com/tieba.zip", "tieba.zip");
                     MessageBox.Show("下载更新完成tieba.zip");

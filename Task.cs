@@ -277,7 +277,7 @@ namespace Tieba
 
                             txtCallback(log.type, Color.Red);
                             string ncikname = info.Authors[i].StartsWith("昵称:")?"": info.Authors[i];
-                            if (blackFlag)
+                            /*if (blackFlag)
                             {
 
                                 log.result = Common.Delete(tid) + "-->" + Common.Block(ncikname,info.Uids[i], 10, mode.reason);
@@ -285,41 +285,42 @@ namespace Tieba
                             }
                             else
                             {
-                                if (ageNumMethod(info.Authors[i])) { templisttid.Add(info.Tids[i]); continue; }
-
-                                bool zxbool = false;
                                 
-                                if (pikey.StartsWith("[k:1]"))
-                                {
-                                    templisttid.Add(info.Tids[i]);
-                                    log.result = "需要手动确认";
-                                    zxbool = true;
-                                }
-                                else if (pikey.StartsWith("[k:0]"))
-                                {
-                                    zxbool = false;
-                                }
-                                //}
+                            }*/
+                            if (ageNumMethod(info.Authors[i])) { templisttid.Add(info.Tids[i]); continue; }
 
-                                if (mode.isdel && !zxbool)
-                                {
+                            bool zxbool = false;
 
-                                    log.result = Common.Delete(tid);
+                            if (pikey.StartsWith("[k:1]"))
+                            {
+                                templisttid.Add(info.Tids[i]);
+                                log.result = "需要手动确认";
+                                zxbool = true;
+                            }
+                            else if (pikey.StartsWith("[k:0]"))
+                            {
+                                zxbool = false;
+                            }
+                            //}
 
-                                }
+                            if (mode.isdel && !zxbool)
+                            {
 
-                                if (mode.isblackname && !zxbool)
-                                {
+                                log.result = Common.Delete(tid);
 
-                                    log.result = log.result + "-->" + Common.Black(info.Authors[i]);
+                            }
 
-                                }
+                            if (mode.isblackname && !zxbool)
+                            {
 
-                                if (mode.isblock && !zxbool)
-                                {
-                                    log.result = log.result + "-->" + Common.Block(ncikname,info.Uids[i], mode.blockday, mode.reason);
+                                log.result = log.result + "-->" + Common.Black(info.Authors[i]);
 
-                                }
+                            }
+
+                            if (mode.isblock && !zxbool)
+                            {
+                                log.result = log.result + "-->" + Common.Block(ncikname, info.Uids[i], mode.blockday, mode.reason);
+
                             }
 
 
@@ -929,7 +930,7 @@ namespace Tieba
                             log.tid = tidComplex + "&" + pid;
                             log.uid = restit.Uids[i];
                             string nickname = restit.Authors[i].StartsWith("昵称:") ? "" : restit.Authors[i];
-                            if (flagB)
+                            /*if (flagB)
                             {
 
                                 log.result = Common.Del(tidComplex, pid) +"-->" + Common.Block(nickname, restit.Uids[i],10, mode.reason);
@@ -937,50 +938,50 @@ namespace Tieba
                             }
                             else
                             {
-                                if (ageNumMethod(restit.Authors[i])) { templistpid.Add(restit.Pids[i]); continue; }
-                                log.result = "未执行删除封禁";
-                                bool zxbool = false;
-                                if (log.type.Contains("复杂模式"))
+                               
+                            }*/
+                            // flagB = true;
+                            if (ageNumMethod(restit.Authors[i])) { templistpid.Add(restit.Pids[i]); continue; }
+                            log.result = "未执行删除封禁";
+                            bool zxbool = false;
+                            if (log.type.Contains("复杂模式"))
+                            {
+                                if (outpikey.StartsWith("[k:1]"))
                                 {
-                                    if (outpikey.StartsWith("[k:1]"))
-                                    {
-                                        templistpid.Add(restit.Pids[i]);
-                                        log.result = "需要手动确认";
-                                        zxbool = true;
-                                    }
-                                    else if (outpikey.StartsWith("[k:0]"))
-                                    {
-                                        zxbool = false;
-                                    }
+                                    templistpid.Add(restit.Pids[i]);
+                                    log.result = "需要手动确认";
+                                    zxbool = true;
                                 }
-                                if (mode.isblock && !zxbool)
+                                else if (outpikey.StartsWith("[k:0]"))
                                 {
-                                    log.result = Common.Block(nickname,restit.Uids[i], mode.blockday, mode.reason);
-                                }
-                                if (mode.isblackname && !zxbool)
-                                {
-
-                                    log.result = log.result + "-->" + Common.Black(restit.Authors[i]);
-
-                                }
-                                if (mode.isdel && !zxbool)
-                                {
-                                    log.result = log.result.Replace("未执行删除封禁", "");
-                                    if ((mode.islz&&restit.Authors[i]==restit.Authors[0])||i==0)
-                                    {
-                                       
-                                      log.result += Common.Delete(tidComplex);
-                                       
-                                    }
-                                    else
-                                    {
-                                        log.result += Common.Del(tidComplex, pid);
-                                    }
-                                   
+                                    zxbool = false;
                                 }
                             }
-                           // flagB = true;
-                           
+                            if (mode.isblock && !zxbool)
+                            {
+                                log.result = Common.Block(nickname, restit.Uids[i], mode.blockday, mode.reason);
+                            }
+                            if (mode.isblackname && !zxbool)
+                            {
+
+                                log.result = log.result + "-->" + Common.Black(restit.Authors[i]);
+
+                            }
+                            if (mode.isdel && !zxbool)
+                            {
+                                log.result = log.result.Replace("未执行删除封禁", "");
+                                if ((mode.islz && restit.Authors[i] == restit.Authors[0]) || i == 0)
+                                {
+
+                                    log.result += Common.Delete(tidComplex);
+
+                                }
+                                else
+                                {
+                                    log.result += Common.Del(tidComplex, pid);
+                                }
+
+                            }
                             listCallback(log);
                             txtCallback(log.result, Color.Red);
 
