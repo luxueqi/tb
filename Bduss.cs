@@ -93,7 +93,7 @@ namespace Tieba
         {
             //ClientTit ct = new ClientTit("5057461848",2);
             // MessageBox.Show(Common.uid2portrait("1042496"));
-           // new TbInfo("陆雪琪");
+           // new TbInfo("凡雪");
             try
             {
                 User us1 = Common.readXml<User>("User\\user");

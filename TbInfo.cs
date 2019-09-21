@@ -28,7 +28,7 @@ namespace Tieba
           
            string res= Common.scantidcount(tbname);
 
-           MatchCollection mcs= new Regex(@"""thread_id"":""([^""]+)"",""original_tid"":""0"",""title"":""([^""]+)"".+?author"":\{""id"":""([^""]+)"",""name"":""([^""]*)"",""sex"":""[^""]+"",""name_show"":""([^""]+)"".+?abstract"":\[\{""type"":""0"",""text"":""([^""]*)").Matches(res);
+           MatchCollection mcs= new Regex(@"""thread_id"":""([^""]+)"",""original_tid"":""0"",""title"":""([^""]+)"".+?author"":\{""id"":""([^""]+)"",""name"":""([^""]*)"",""sex"":""[^""]*"",""name_show"":""([^""]+)"".+?abstract"":\[\{""type"":""0"",""text"":""([^""]*)").Matches(res);
             if (mcs.Count == 0) throw new Exception("页面获取错误");
             for (int i = 0,count=mcs.Count; i < count; i++)
             {

@@ -287,7 +287,12 @@ namespace Tieba
                             {
                                 
                             }*/
-                            if (ageNumMethod(info.Authors[i])) { templisttid.Add(info.Tids[i]); continue; }
+                            if (ncikname!=""&& ageNumMethod(info.Authors[i]))
+                            {
+                                templisttid.Add(info.Tids[i]);
+                                txtCallback(log.type + "--跳过,吧龄或发贴数不符合", Color.Red);
+                                continue;
+                            }
 
                             bool zxbool = false;
 
@@ -941,7 +946,13 @@ namespace Tieba
                                
                             }*/
                             // flagB = true;
-                            if (ageNumMethod(restit.Authors[i])) { templistpid.Add(restit.Pids[i]); continue; }
+                            if (nickname!=""&&ageNumMethod(nickname))
+                            {
+                                templistpid.Add(restit.Pids[i]);
+                                txtCallback(log.type+"--跳过,吧龄或发贴数不符合", Color.Red);
+                                continue;
+
+                            }
                             log.result = "未执行删除封禁";
                             bool zxbool = false;
                             if (log.type.Contains("复杂模式"))
