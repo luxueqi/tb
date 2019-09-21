@@ -244,12 +244,12 @@ namespace Tieba
                             continue;
                         }
 
-                        if (whiteblackMethod(info.Authors[i], 'w', out pikey)) { txtCallback("跳过-->白名单-" + info.Authors[i], Color.Blue); templisttid.Add(info.Tids[i]); continue; }
+                        if (whiteblackMethod(info.Authors[i].Replace("昵称:", ""), 'w', out pikey)) { txtCallback("跳过-->白名单-" + info.Authors[i], Color.Blue); templisttid.Add(info.Tids[i]); continue; }
 
                         txtCallback((i + 1).ToString() + "." + info.Titles[i] + "--->" + info.Authors[i], Color.Black);
                         //if (mode.isblack)
                         //{
-                        blackFlag = whiteblackMethod(info.Authors[i], 'b', out pikey);
+                        blackFlag = whiteblackMethod(info.Authors[i].Replace("昵称:", ""), 'b', out pikey);
 
                         if (blackFlag)
                         {
@@ -836,13 +836,13 @@ namespace Tieba
                         txtCallback(Thread.CurrentThread.Name + "--" + iflagCount + "-->正在扫描pid:" + restit.Pids[i] + "-->" + "作者:" + restit.Authors[i] + "-->内容:" + (tconten.Length > 27 ? tconten.Substring(0, 27) + "......" : tconten), Color.Black);
 
 
-                        if (whiteblackMethod(restit.Authors[i], 'w' ,out outpikey)) { txtCallback("跳过-->白名单-" + restit.Authors[i], Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
+                        if (whiteblackMethod(restit.Authors[i].Replace("昵称:", ""), 'w' ,out outpikey)) { txtCallback("跳过-->白名单-" + restit.Authors[i], Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
                               
             
 
                         //if (mode.isblack)
                         //{
-                        flagB = whiteblackMethod(restit.Authors[i], 'b',out outpikey);
+                        flagB = whiteblackMethod(restit.Authors[i].Replace("昵称:",""), 'b',out outpikey);
 
                             if (flagB)
                             {
