@@ -276,6 +276,7 @@ namespace Tieba
                         {
 
                             txtCallback(log.type, Color.Red);
+                            log.uid = info.Uids[i];
                             string ncikname = info.Authors[i].StartsWith("昵称:")?"": info.Authors[i];
                             /*if (blackFlag)
                             {
