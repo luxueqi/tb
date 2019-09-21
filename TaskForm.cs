@@ -17,36 +17,36 @@ namespace Tieba
         {
             InitializeComponent();
 
-            
+
             Control.CheckForIllegalCrossThreadCalls = false;
-           // ServicePointManager.Expect100Continue = true;
+            // ServicePointManager.Expect100Continue = true;
         }
-        
-       public User user;
-       
-      
+
+        public User user;
+
+
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
-       {
-             writeList();
-             saveContentType();
+        {
+            writeList();
+            saveContentType();
             Application.ExitThread();
         }
         Task task;
         bool stopflag;
         private void button1_Click(object sender, EventArgs e)
         {
-          
-            
-            if (button1.Text=="启动")
+
+
+            if (button1.Text == "启动")
             {
-                
+
                 Mode mode = setMode();
 
-               
-                if (mode.ctrkeys.Count == 0&&mode.cttkeys.Count==0&& mode.cttxtblacks.Count == 0 && mode.cttxtwhites.Count == 0 && mode.cttxtconwhites.Count == 0)
+
+                if (mode.ctrkeys.Count == 0 && mode.cttkeys.Count == 0 && mode.cttxtblacks.Count == 0 && mode.cttxtwhites.Count == 0 && mode.cttxtconwhites.Count == 0)
                 {
                     MessageBox.Show("请设置扫描内容", "提示");
-                    
+
                     return;
                 }
 
@@ -55,10 +55,10 @@ namespace Tieba
                 Common.Fid = HttpHelper.Fid(Common.Kw);
                 ServicePointManager.DefaultConnectionLimit = 128;
 
-                task = new Task(new ListCallback(ShowList),new TxtCallback( ShowInfo), mode, (int)numericUpDown1.Value);
+                task = new Task(new ListCallback(ShowList), new TxtCallback(ShowInfo), mode, (int)numericUpDown1.Value);
 
                 task.startThread();
-                
+
                 button1.Text = "停止";
                 richTextBox1.Focus();
                 button2.Enabled = true;
@@ -85,24 +85,24 @@ namespace Tieba
                         ShowInfo("已停止", Color.Red);
                     });
                 }
-               
-                
+
+
                 //FreeConsole();
                 //groupBox1.Enabled = true ;
                 //groupBox2.Enabled = true;
                 //groupBox3.Enabled = true;
                 //groupBox8.Enabled = true;
             }
-            
 
-           
+
+
         }
 
-     
+
 
         private void Form2_Load(object sender, EventArgs e)
         {
-           // user = new User();
+            // user = new User();
             loaduser();
             Init();
 
@@ -118,7 +118,7 @@ namespace Tieba
 
         private void loaduser()
         {
-           
+
             if (Directory.Exists("User"))
             {
                 comboBox4.Items.Clear();
@@ -126,15 +126,15 @@ namespace Tieba
                 comboBox4.Items.AddRange(Directory.GetFiles("User"));
                 comboBox4.Items.Remove("User\\user.xml");
             }
-        
+
         }
 
 
         private void Init()
         {
-           
+
             Common.user = user;
-           
+
             try
             {
                 string[] tb = Common.MangerTb();
@@ -145,10 +145,10 @@ namespace Tieba
                     this.Close();
                     return;
                 }
-               this.Text= "当前登陆账号:" + user.un;
+                this.Text = "当前登陆账号:" + user.un;
 
                 mangertb.Items.Clear();
-               
+
                 mangertb.Items.AddRange(tb);
 
                 mangertb.SelectedIndex = 0;
@@ -166,7 +166,7 @@ namespace Tieba
 
                 MessageBox.Show(ee.Message, "初始化失败");
             }
-           
+
 
 
         }
@@ -177,13 +177,13 @@ namespace Tieba
             Mode mode = new Mode();
             if (File.Exists(Application.StartupPath + "\\pz\\peizhi.xml"))
             {
-              mode=  Common.DeSerialize<Mode>(Application.StartupPath + "\\pz\\peizhi.xml");
+                mode = Common.DeSerialize<Mode>(Application.StartupPath + "\\pz\\peizhi.xml");
             }
             //txtblack.Text = mode.blacks.Replace("\n", "\r\n");
             ckdel.Checked = mode.isdel;
             ckblock.Checked = mode.isblock;
             //ckshou.Checked = mode.isshou;
-           // ckzz.Checked = mode.iszz;
+            // ckzz.Checked = mode.iszz;
             //ckblack.Checked = mode.isblack;
             txtblockday.Text = mode.blockday.ToString();
             cklevel.Checked = mode.islevel;
@@ -226,11 +226,11 @@ namespace Tieba
         {
             int lev = int.Parse(txtlevel.Text.Trim());
 
-            if (lev<1||lev>18)
+            if (lev < 1 || lev > 18)
             {
                 txtlevel.Text = "1";
             }
-           
+
         }
 
         //private void checkBox4_CheckedChanged(object sender, EventArgs e)
@@ -286,26 +286,26 @@ namespace Tieba
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Mode mode = setMode();
-           
+
             saveContentType();
 
-           Common.Serialize<Mode>(mode, Application.StartupPath + "\\pz\\peizhi.xml");
-         
-           MessageBox.Show("保存成功", "提示");
+            Common.Serialize<Mode>(mode, Application.StartupPath + "\\pz\\peizhi.xml");
+
+            MessageBox.Show("保存成功", "提示");
         }
 
         private Mode setMode()
         {
             Mode mode = new Mode();
-            mode.setValue("isdel",ckdel.Checked);
+            mode.setValue("isdel", ckdel.Checked);
             mode.setValue("isintro", ckintro.Checked);
             mode.setValue("isblock", ckblock.Checked);
             mode.setValue("isblackname", ckblackname.Checked);
-            mode.setValue("istbage",istbage.Checked);
+            mode.setValue("istbage", istbage.Checked);
             mode.setValue("ispostnum", ispostnum.Checked);
             mode.setValue("islz", cklz.Checked);
-           // mode.setValue("isblack", ckblack.Checked);
-            mode.setValue("islevel",cklevel.Checked);
+            // mode.setValue("isblack", ckblack.Checked);
+            mode.setValue("islevel", cklevel.Checked);
             //mode.setValue("islevel", cklevel.Checked);
             mode.setValue("isimghash", ckimg.Checked);
             mode.setValue("isimgdct", ckdct.Checked);
@@ -317,22 +317,22 @@ namespace Tieba
             mode.setValue("pn", int.Parse(txtPn.Text));
             mode.setValue("tbage", double.Parse(txtage.Text));
             mode.setValue("mode", ckmode.Text);
-           // mode.setValue("blacks", txtblack.Text);
-           // mode.setValue("keys", txtkeys.Text);
+            // mode.setValue("blacks", txtblack.Text);
+            // mode.setValue("keys", txtkeys.Text);
             mode.setValue("mangertb", mangertb.Text);
             mode.setValue("reason", txtReason.Text);
             //mode.setValue("ishimg", ckhimg.Checked);
-           
+
             if (mode.isimghash && File.Exists("pz\\hash.txt"))
             {
                 mode.setValue("localimghash", File.ReadAllLines("pz\\hash.txt"));
-               
+
             }
             mode.setValue("hashdistance", (int)numericUpDown2.Value);
 
             getContentType(out mode.cttxtwhites, out mode.cttxtblacks, out mode.ctrkeys, out mode.cttkeys, out mode.cttxtconwhites);
 
-          //  mode.setValue("white", txtwhite.Text);
+            //  mode.setValue("white", txtwhite.Text);
             //object[] obj = new object[] 
 
             //{ mangertb.Text,
@@ -374,11 +374,11 @@ namespace Tieba
 
 
         //    Console.WriteLine(DateTime.Now.ToString("[HH:mm:ss]  ") + str, Console.ForegroundColor = color);
-        
-        
+
+
         //}
-       // object obtxt = new object();
-        private void ShowInfo(string str,Color color)
+        // object obtxt = new object();
+        private void ShowInfo(string str, Color color)
         {
 
 
@@ -392,52 +392,52 @@ namespace Tieba
                 }
                 richTextBox1.SelectionColor = color;
                 richTextBox1.AppendText(DateTime.Now.ToString("H:m:s") + "->" + str + "\n");
-               // this.Update();
+                // this.Update();
             }
 
 
             //};
             ////this.BeginInvoke(ac, str);
             //Invoke(ac, str);
-        
+
         }
         object oblist = new object();
         private void ShowList(Log log)
         {
 
-           
-                //Action<int> ac=(x)=>{
-                //    //
-                    //if (!repeatLog.Contains(log.tid))
-                    //{
-                        lock (oblist)
-                        {
-                            ListViewItem lv = new ListViewItem();
-                            lv.Text = (listView1.Items.Count + 1).ToString();
-                            lv.SubItems.Add(log.author);
-                            lv.SubItems.Add(log.title);
-                            lv.SubItems.Add(log.tid);
-                            lv.SubItems.Add(log.type);
-                            lv.SubItems.Add(log.result);
-                            lv.SubItems.Add(log.tbname);
-                            lv.SubItems.Add(log.fid);
-                            lv.SubItems.Add(log.uid);
-                            listView1.Items.Add(lv);
-                            //repeatLog.Add(log.tid);
-                        }
-                    //}
-                    //else
-                    //{
-                    //    ShowInfo(log.tid + "-->已经包含", Color.Green);
-                    //}
-                   
-                
-                //};
+
+            //Action<int> ac=(x)=>{
+            //    //
+            //if (!repeatLog.Contains(log.tid))
+            //{
+            lock (oblist)
+            {
+                ListViewItem lv = new ListViewItem();
+                lv.Text = (listView1.Items.Count + 1).ToString();
+                lv.SubItems.Add(log.author);
+                lv.SubItems.Add(log.title);
+                lv.SubItems.Add(log.tid);
+                lv.SubItems.Add(log.type);
+                lv.SubItems.Add(log.result);
+                lv.SubItems.Add(log.tbname);
+                lv.SubItems.Add(log.fid);
+                lv.SubItems.Add(log.uid);
+                listView1.Items.Add(lv);
+                //repeatLog.Add(log.tid);
+            }
+            //}
+            //else
+            //{
+            //    ShowInfo(log.tid + "-->已经包含", Color.Green);
+            //}
+
+
+            //};
 
             //    //Invoke(ac,0);
             //}
-        
-        
+
+
         }
 
         private void writeList()
@@ -492,7 +492,7 @@ namespace Tieba
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (button2.Text=="暂停")
+            if (button2.Text == "暂停")
             {
                 task.reSet();
                 button2.Text = "继续";
@@ -507,7 +507,7 @@ namespace Tieba
         //private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         //{
         //    //LoginForm lf = new LoginForm();
-            
+
         //    //lf.Show();
 
         //    //this.Dispose();
@@ -546,7 +546,7 @@ namespace Tieba
 
         //                (x) => {
 
-                      
+
 
         //                    button3.Enabled = false;
         //                    button4.Enabled = false;
@@ -568,7 +568,7 @@ namespace Tieba
 
         //                            ShowInfo("执行删除选中:"+ee.Message, Color.Red);
         //                        }
-                                
+
         //                    }
         //                    button3.Enabled = true;
         //                    button4.Enabled = true;
@@ -583,7 +583,7 @@ namespace Tieba
         private void SelectClick(object sender, EventArgs e)
         {
             Button bt = sender as Button;
-            if (MessageBox.Show("你确定要"+bt.Text, "警告",MessageBoxButtons.OKCancel,MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show("你确定要" + bt.Text, "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 //tabControl1.SelectedIndex = 0;
                 //richTextBox1.Focus();
@@ -591,14 +591,14 @@ namespace Tieba
 
                         (x) =>
                         {
-                            
+
                             button3.Enabled = false;
                             button4.Enabled = false;
                             button5.Enabled = false;
                             button6.Enabled = false;
-                           
+
                             foreach (ListViewItem item in listView1.Items)
-                            {   
+                            {
                                 try
                                 {
                                     if (item.Checked)
@@ -606,22 +606,22 @@ namespace Tieba
                                         Common.Kw = item.SubItems[6].Text;
                                         Common.Fid = item.SubItems[7].Text;
                                         string res = "";
-                                        if (bt.Text=="封删选中")
+                                        if (bt.Text == "封删选中")
                                         {
-                                            res = Common.Block(item.SubItems[1].Text.StartsWith("昵称: ") ?"": item.SubItems[1].Text, item.SubItems[8].Text,int.Parse(txtblockday.Text.Trim()), txtReason.Text);
-                                           // ShowInfo("执行删封禁选中:" + res, Color.Red);
+                                            res = Common.Block(item.SubItems[1].Text.StartsWith("昵称:") ? "" : item.SubItems[1].Text, item.SubItems[8].Text, int.Parse(txtblockday.Text.Trim()), txtReason.Text);
+                                            // ShowInfo("执行删封禁选中:" + res, Color.Red);
                                         }
                                         string tidpid = item.SubItems[3].Text;
                                         if (tidpid.Contains("&"))
                                         {
                                             string[] tps = tidpid.Split('&');
-                                            res+= Common.Del(tps[0], tps[1]);
+                                            res += Common.Del(tps[0], tps[1]);
                                         }
                                         else
                                         {
-                                            res+= Common.Delete(tidpid);
+                                            res += Common.Delete(tidpid);
                                         }
-                                        item.SubItems[5].Text=res;
+                                        item.SubItems[5].Text = res;
                                         //ShowInfo("执行删封禁选中:" + res, Color.Red);
                                         //if (res == "删除成功") { listView1.Items.Remove(item); }
                                     }
@@ -647,7 +647,7 @@ namespace Tieba
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("是否清空全部", "警告",MessageBoxButtons.OKCancel) == DialogResult.OK)
+            if (MessageBox.Show("是否清空全部", "警告", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 listView1.Items.Clear();
             }
@@ -664,57 +664,58 @@ namespace Tieba
                     if (tidpid.Contains("&"))
                     {
                         string[] tps = tidpid.Split('&');
-                        Process.Start("http://tieba.baidu.com/p/"+tps[0]+"?pid="+tps[1]);
+                        Process.Start("http://tieba.baidu.com/p/" + tps[0] + "?pid=" + tps[1]);
                     }
                     else
                     {
                         Process.Start("http://tieba.baidu.com/p/" + tidpid);
                     }
-                   
+
                 }
-            
+
             }
         }
 
         private void txtPn_TextChanged(object sender, EventArgs e)
-        {  
-            int pn=int.Parse(txtPn.Text.Trim());
-             pn = pn <= 1 ? 1 : pn;
-             txtPn.Text = pn.ToString();
+        {
+            int pn = int.Parse(txtPn.Text.Trim());
+            pn = pn <= 1 ? 1 : pn;
+            txtPn.Text = pn.ToString();
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://tieba.baidu.com/f?ie=utf-8&kw="+mangertb.Text);
+            Process.Start("http://tieba.baidu.com/f?ie=utf-8&kw=" + mangertb.Text);
         }
         ID idInfo;
         private void button8_Click(object sender, EventArgs e)
         {
-            ThreadPool.QueueUserWorkItem(o => {
-               
+            ThreadPool.QueueUserWorkItem(o =>
+            {
+
 
                 string un = textBox1.Text.Trim();
 
-                if (un=="")
+                if (un == "")
                 {
-                    MessageBox.Show("请输入用户名","提示");
+                    MessageBox.Show("请输入用户名", "提示");
 
                     return;
                 }
                 button8.Enabled = false;
                 idInfo = new ID(un);
 
-                if (idInfo.error!=string.Empty)
+                if (idInfo.error != string.Empty)
                 {
-                      MessageBox.Show("获取错误:"+idInfo.error,"提示");
-                      button8.Enabled = true;
-                       return;
+                    MessageBox.Show("获取错误:" + idInfo.error, "提示");
+                    button8.Enabled = true;
+                    return;
                 }
 
                 listView2.Items.Clear();
                 pictureBox1.ImageLocation = idInfo.image;
 
-                labAge.Text = "吧龄:"+idInfo.age;
+                labAge.Text = "吧龄:" + idInfo.age;
 
                 //labEmail.Text = "邮箱:" + idInfo.email;
 
@@ -735,7 +736,7 @@ namespace Tieba
                 labManger.Text = "吧主:" + idInfo.manger;
 
                 button8.Enabled = true;
-            
+
             });
         }
 
@@ -745,15 +746,16 @@ namespace Tieba
             if (textBox1.Text.Trim() == "") return;
             linkLabel5.LinkVisited = true;
 
-            ThreadPool.QueueUserWorkItem(o => {
+            ThreadPool.QueueUserWorkItem(o =>
+            {
 
-                if (idInfo==null)
+                if (idInfo == null)
                 {
                     idInfo = new ID(textBox1.Text.Trim());
                 }
                 linkLabel5.Enabled = false;
                 List<Accention> lisAcc = idInfo.GetLikeTb();
-                if (idInfo.error!="")
+                if (idInfo.error != "")
                 {
                     MessageBox.Show("获取错误:" + idInfo.error, "提示");
                     linkLabel5.Enabled = true;
@@ -771,57 +773,58 @@ namespace Tieba
 
         private void ShowListLike(Accention acc)
         {
-            
-                Action<int> ac = (x) =>
-                {
 
-                    ListViewItem lv = new ListViewItem();
-                    lv.Text = (listView2.Items.Count + 1).ToString();
-                    lv.SubItems.Add(acc.tbname);
-                    lv.SubItems.Add(acc.level);
-                    lv.SubItems.Add(acc.black);
-                    lv.SubItems.Add(acc.intime);
-                   // lock (this)
+            Action<int> ac = (x) =>
+            {
+
+                ListViewItem lv = new ListViewItem();
+                lv.Text = (listView2.Items.Count + 1).ToString();
+                lv.SubItems.Add(acc.tbname);
+                lv.SubItems.Add(acc.level);
+                lv.SubItems.Add(acc.black);
+                lv.SubItems.Add(acc.intime);
+                    // lock (this)
                     //{
-                        listView2.Items.Add(lv);
-                 //   }
-                   
+                    listView2.Items.Add(lv);
+                    //   }
+
 
                 };
-                Invoke(ac, 0);
-            
-          
+            Invoke(ac, 0);
+
+
         }
 
         private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
             {
-                Process.Start("http://tieba.baidu.com/f?kw="+listView2.SelectedItems[0].SubItems[1].Text);
+                Process.Start("http://tieba.baidu.com/f?kw=" + listView2.SelectedItems[0].SubItems[1].Text);
             }
             catch (Exception)
             {
-                
-                
+
+
             }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
-            {   if(textBox1.Text.Trim()=="")return;
-                 Process.Start("http://tieba.baidu.com/home/main?ie=utf-8&un=" + textBox1.Text.Trim());
+            {
+                if (textBox1.Text.Trim() == "") return;
+                Process.Start("http://tieba.baidu.com/home/main?ie=utf-8&un=" + textBox1.Text.Trim());
             }
             catch (Exception)
             {
-                
-               
+
+
             }
         }
 
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (listView1.SelectedItems.Count>0)
+            if (listView1.SelectedItems.Count > 0)
             {
                 textBox1.Text = listView1.SelectedItems[0].SubItems[1].Text;
             }
@@ -829,7 +832,7 @@ namespace Tieba
 
         private void ckmode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ckmode.Text=="简单模式")
+            if (ckmode.Text == "简单模式")
             {
                 txtPn.Enabled = false;
 
@@ -860,7 +863,7 @@ namespace Tieba
                 //ckftday.Enabled = true;
 
                 // ckimg.Enabled = true
-                    ;
+                ;
             }
         }
 
@@ -909,8 +912,8 @@ namespace Tieba
 
         private void txtage_TextChanged(object sender, EventArgs e)
         {
-            double res=0;
-            if (!double.TryParse(txtage.Text.Trim(),out res))
+            double res = 0;
+            if (!double.TryParse(txtage.Text.Trim(), out res))
             {
 
                 txtage.Text = "1";
@@ -920,48 +923,48 @@ namespace Tieba
         //private void button10_Click(object sender, EventArgs e)
         //{
 
-            
+
         //}
 
-       
+
 
         //private void ckimg_CheckedChanged(object sender, EventArgs e)
         //{
-            
+
         //}
 
         private void button10_Click(object sender, EventArgs e)
         {
-           
-                if (Directory.Exists("img"))
+
+            if (Directory.Exists("img"))
+            {
+                string[] paths = Directory.GetFiles("img");
+                imghash ih;
+                string strhash = "";
+                //btimg.Enabled = false;
+                button10.Enabled = false;
+                for (int i = 0; i < paths.Length; i++)
                 {
-                    string[] paths = Directory.GetFiles("img");
-                    imghash ih;
-                    string strhash = "";
-                    //btimg.Enabled = false;
-                    button10.Enabled = false;
-                    for (int i = 0; i < paths.Length; i++)
-                    {
-                        
-                        ih = new imghash(paths[i],ckdct.Checked);
-                        string name = Path.GetFileName(paths[i]);
-                        strhash += name + ":" + ih.GetHash()+"\r\n";
-                    }
 
-                    File.WriteAllText("pz\\hash.txt", strhash);
-                    //btimg.Enabled = true;
-                    button10.Enabled = true;
-
-                    MessageBox.Show("更新完成！");
-
+                    ih = new imghash(paths[i], ckdct.Checked);
+                    string name = Path.GetFileName(paths[i]);
+                    strhash += name + ":" + ih.GetHash() + "\r\n";
                 }
-                else
-                {
-                    MessageBox.Show("img文件夹不存在！");
 
-                    ckimg.Checked=false;
-                }
-          
+                File.WriteAllText("pz\\hash.txt", strhash);
+                //btimg.Enabled = true;
+                button10.Enabled = true;
+
+                MessageBox.Show("更新完成！");
+
+            }
+            else
+            {
+                MessageBox.Show("img文件夹不存在！");
+
+                ckimg.Checked = false;
+            }
+
         }
 
         //private void ckimg_CheckedChanged(object sender, EventArgs e)
@@ -971,7 +974,7 @@ namespace Tieba
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            if (numericUpDown2.Value>10||numericUpDown2.Value<0)
+            if (numericUpDown2.Value > 10 || numericUpDown2.Value < 0)
             {
                 numericUpDown2.Value = 5;
             }
@@ -987,13 +990,13 @@ namespace Tieba
 
         //private void richTextBox1_TextChanged(object sender, EventArgs e)
         //{
-            
+
         //}
         Thread blackThread;
         Black bl;
         private void button11_Click(object sender, EventArgs e)
         {
-           
+
 
             try
             {
@@ -1006,8 +1009,8 @@ namespace Tieba
                     MessageBox.Show("吧名不能为空");
                     return;
                 }
-              
-               
+
+
 
                 if (button11.Text == "开始")
                 {
@@ -1016,14 +1019,14 @@ namespace Tieba
                     //    MessageBox.Show("请先终止其他任务");
                     //    return;
                     //}
-                    if (DialogResult.No== MessageBox.Show("你确定要这么做？","提示",MessageBoxButtons.YesNo))
+                    if (DialogResult.No == MessageBox.Show("你确定要这么做？", "提示", MessageBoxButtons.YesNo))
                     {
                         return;
                     }
                     //booltaskFlag = true;
                     //if (name != "")
                     //{
-                       
+
                     //    button11.Enabled = false;
                     //    bl = new Black(kw, name, checkBox1.Checked, checkBox2.Checked);
 
@@ -1034,7 +1037,7 @@ namespace Tieba
                     //    booltaskFlag = false;
                     //    return;
                     //}
-                    bl = new Black(kw, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, (int)numericUpDown3.Value, (int)numericUpDown4.Value,(int)numericUpDown5.Value,(int)numericUpDown6.Value,checkBox4.Checked,double.Parse(textBox3.Text.Trim()),checkBox5.Checked,textBox4.Text.Trim());
+                    bl = new Black(kw, checkBox1.Checked, checkBox2.Checked, checkBox3.Checked, (int)numericUpDown3.Value, (int)numericUpDown4.Value, (int)numericUpDown5.Value, (int)numericUpDown6.Value, checkBox4.Checked, double.Parse(textBox3.Text.Trim()), checkBox5.Checked, textBox4.Text.Trim());
 
                     if (bl.error == "")
                     {
@@ -1065,7 +1068,7 @@ namespace Tieba
 
                 ShowInfo(ee.Message, Color.Red);
             }
-            
+
         }
 
         private void mangertb_SelectedIndexChanged(object sender, EventArgs e)
@@ -1085,7 +1088,7 @@ namespace Tieba
             listcon = new List<ContentType>();
             foreach (ListViewItem item in listView3.Items)
             {
-                bool iszztemp=item.SubItems[2].Text=="是"?true:false;
+                bool iszztemp = item.SubItems[2].Text == "是" ? true : false;
 
                 bool isshoutemp = item.SubItems[3].Text == "是" ? true : false;
                 switch (item.SubItems[1].Text)
@@ -1108,29 +1111,29 @@ namespace Tieba
                 }
             }
 
-            
+
         }
 
         private void saveContentType()
         {
 
-                 List<ContentType> list = new List<ContentType>();
-                foreach (ListViewItem item in listView3.Items)
-                {
-                    bool iszztemp = item.SubItems[2].Text == "是" ? true : false;
+            List<ContentType> list = new List<ContentType>();
+            foreach (ListViewItem item in listView3.Items)
+            {
+                bool iszztemp = item.SubItems[2].Text == "是" ? true : false;
 
-                    bool isshoutemp = item.SubItems[3].Text == "是" ? true : false;
-                    list.Add(new ContentType(
-                        item.SubItems[0].Text,
-                        iszztemp,
-                        isshoutemp,
-                        item.SubItems[1].Text
-                        ));
-                }
-                Common.Serialize<List<ContentType>>(list, Application.StartupPath + "\\pz\\typelog.xml");
-                
+                bool isshoutemp = item.SubItems[3].Text == "是" ? true : false;
+                list.Add(new ContentType(
+                    item.SubItems[0].Text,
+                    iszztemp,
+                    isshoutemp,
+                    item.SubItems[1].Text
+                    ));
+            }
+            Common.Serialize<List<ContentType>>(list, Application.StartupPath + "\\pz\\typelog.xml");
 
-        
+
+
         }
         private void readContentType()
         {
@@ -1146,7 +1149,7 @@ namespace Tieba
 
                     lv.SubItems.Add(item.type);
 
-                    lv.SubItems.Add(item.iszz==true?"是":"否");
+                    lv.SubItems.Add(item.iszz == true ? "是" : "否");
 
                     lv.SubItems.Add(item.isshou == true ? "是" : "否");
 
@@ -1174,7 +1177,7 @@ namespace Tieba
                     MessageBox.Show("该项目已存在");
 
                     return;
-                
+
                 }
             }
             lv.SubItems.Add(comboBox1.Text);
@@ -1222,7 +1225,7 @@ namespace Tieba
 
         private void 删除选中ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             button13_Click(null, null);
         }
 
@@ -1234,9 +1237,9 @@ namespace Tieba
 
             bool iszz = listView3.SelectedItems[0].SubItems[2].Text == "是" ? true : false;
 
-            bool isshou= listView3.SelectedItems[0].SubItems[3].Text == "是" ? true : false;
+            bool isshou = listView3.SelectedItems[0].SubItems[3].Text == "是" ? true : false;
 
-            cf.content=new ContentType(listView3.SelectedItems[0].SubItems[0].Text,iszz,isshou,listView3.SelectedItems[0].SubItems[1].Text);
+            cf.content = new ContentType(listView3.SelectedItems[0].SubItems[0].Text, iszz, isshou, listView3.SelectedItems[0].SubItems[1].Text);
 
             cf.ShowDialog(this);
         }
@@ -1250,7 +1253,7 @@ namespace Tieba
 
         private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (DialogResult.No == MessageBox.Show("确认要添加"+mangertb.Text+"吧吧务团队？", "提示", MessageBoxButtons.YesNo))
+            if (DialogResult.No == MessageBox.Show("确认要添加" + mangertb.Text + "吧吧务团队？", "提示", MessageBoxButtons.YesNo))
             {
                 return;
             }
@@ -1261,7 +1264,7 @@ namespace Tieba
 
                 string[] bawu = HttpHelper.P_jq(res, "class=\"user_name\" title=\"", "\"");
 
-                string cftemp = "",partemp="";
+                string cftemp = "", partemp = "";
                 for (int i = 0; i < bawu.Length; i++)
                 {
                     if (!cftemp.Contains(bawu[i]))
@@ -1289,10 +1292,10 @@ namespace Tieba
             catch (Exception ee)
             {
 
-                MessageBox.Show("添加失败:"+ee.Message);
+                MessageBox.Show("添加失败:" + ee.Message);
             }
             linkLabel8.Enabled = true;
-        
+
         }
 
 
@@ -1300,14 +1303,14 @@ namespace Tieba
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            if (fr==null||fr.IsDisposed)
+            if (fr == null || fr.IsDisposed)
             {
                 fr = new frBlock();
             }
             fr.tbname = textBox2.Text.Trim();
             fr.day = int.Parse(txtblockday.Text.Trim());
             fr.breson = txtReason.Text.Trim();
-            if (fr.tbname=="")
+            if (fr.tbname == "")
             {
                 MessageBox.Show("吧名不能为空");
                 return;
@@ -1328,12 +1331,12 @@ namespace Tieba
             }
             catch (Exception)
             {
-                
-               
+
+
             }
         }
 
-       
+
 
         private void comboBox4_DropDownClosed(object sender, EventArgs e)
         {
@@ -1343,28 +1346,28 @@ namespace Tieba
             }
             else if (comboBox4.Text != "切换用户")
             {
-                if (DialogResult.Yes==MessageBox.Show("是否切换用户？","提示",MessageBoxButtons.YesNo))
+                if (DialogResult.Yes == MessageBox.Show("是否切换用户？", "提示", MessageBoxButtons.YesNo))
                 {
                     user = Common.DeSerialize<User>(comboBox4.Text);
                     Form2_Load(null, null);
                 }
-                
+
             }
             comboBox4.SelectedIndex = 0;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.Text!="关键词")
+            if (comboBox1.Text != "关键词")
             {
                 comboBox2.SelectedIndex = 1;
             }
         }
 
-      
-        
-      
-       
+
+
+
+
 
         //private void button14_Click(object sender, EventArgs e)
         //{
@@ -1395,11 +1398,11 @@ namespace Tieba
         //    //MessageBox.Show(  s.ToString());
         //}
 
-        
 
-    
 
-      
+
+
+
         //private void button8_Click(object sender, EventArgs e)
         //{
         //    ThreadPool.QueueUserWorkItem(o =>

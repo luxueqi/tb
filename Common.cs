@@ -112,13 +112,13 @@ namespace Tieba
             {
                 return "封禁成功";
             }
-            return HttpHelper.Jq(res, "error_msg\":\"", "\"");
+            return "失败: "+HttpHelper.Jq(res, "error_msg\":\"", "\"");
         }
 
         public static string uid2portrait(string uid)
         {
             string portra = "";
-            string uidi = int.Parse(uid).ToString("x").PadLeft(8, '0');
+            string uidi =long.Parse(uid).ToString("x").PadLeft(8, '0');
             for (int i = 6; i >= 0; i -= 2)
             {
                 portra += uidi.Substring(i, 2);
