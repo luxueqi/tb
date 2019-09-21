@@ -114,7 +114,7 @@ namespace Tieba
 
 
 
-        public  LoginForm lf;
+       /* public  LoginForm lf;
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (lf==null)
@@ -129,7 +129,7 @@ namespace Tieba
             lf.Show();
 
            
-        }
+        }*/
 
         //private void button2_Click(object sender, EventArgs e)
         //{
