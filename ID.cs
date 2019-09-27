@@ -53,7 +53,7 @@ namespace Tieba
 
            try
            {
-               string url = "http://tieba.baidu.com/home/get/panel?ie=utf-8&un=" + un;
+               string url =Conf.HTTP_URL+ "/home/get/panel?ie=utf-8&un=" + un;
 
                string res =HttpHelper.HttpGet(url, Encoding.UTF8);
 
@@ -103,7 +103,7 @@ namespace Tieba
        {
            try
            {
-               string res2 = HttpHelper.HttpGet("http://tieba.baidu.com/home/main/?ie=utf-8&un=" + un, Encoding.GetEncoding("GBK"));
+               string res2 = HttpHelper.HttpGet(Conf.HTTP_URL+"/home/main/?ie=utf-8&un=" + un, Encoding.GetEncoding("GBK"));
 
                MatchCollection mcs = new Regex(@"forum_name"":""([^""]+)"",""is_black"":(\d),""is_top"":\d,""in_time"":([^,]+),""level_id"":(\d{1,2}),").Matches(res2);
 
@@ -125,7 +125,7 @@ namespace Tieba
        private void GetManger(string partten,int i=0)
        {
            error = "";
-           string re3 = Regex.Unescape(HttpHelper.HttpGet("http://tieba.baidu.com/pmc/tousu/getRole?manager_uname=" + HttpUtility.UrlEncode(HttpUtility.UrlEncode(un)), Encoding.UTF8, Common.user.cookie));
+           string re3 = Regex.Unescape(HttpHelper.HttpGet(Conf.HTTP_URL+"/pmc/tousu/getRole?manager_uname=" + HttpUtility.UrlEncode(HttpUtility.UrlEncode(un)), Encoding.UTF8, Common.user.cookie));
 
            MatchCollection mcs = new Regex(partten).Matches(re3);
 

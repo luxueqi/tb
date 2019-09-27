@@ -6,6 +6,8 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Web;
 using System.Text.RegularExpressions;
+using Tieba;
+
 namespace BaiduHelper
 {    
    
@@ -268,13 +270,13 @@ namespace BaiduHelper
         public static string Fid(string kw)
         {
 
-            return Jq(HttpGet("http://tieba.baidu.com/f/commit/share/fnameShareApi?ie=utf-8&fname=" + kw, Encoding.UTF8), "\"fid\":", ",");
+            return Jq(HttpGet(Conf.HTTP_URL+"/f/commit/share/fnameShareApi?ie=utf-8&fname=" + kw, Encoding.UTF8), "\"fid\":", ",");
         }
 
         public static string Tbs(string cookie)
         {
 
-            string res = HttpGet("http://tieba.baidu.com/dc/common/tbs",Encoding.UTF8,cookie);
+            string res = HttpGet(Conf.HTTP_URL+"/dc/common/tbs",Encoding.UTF8,cookie);
               if (res.Contains("is_login\":1"))
              {
                  return  Jq(res, "tbs\":\"", "\"");

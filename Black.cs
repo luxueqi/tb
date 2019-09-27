@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using BaiduHelper;
 using System.Drawing;
 using System.Threading;
@@ -9,7 +8,7 @@ namespace Tieba
 {
     //public delegate void TxtCallback(string str, Color color);
 
-   public  class Black
+    public  class Black
     {
 
         private bool boolblack;

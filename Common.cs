@@ -42,7 +42,7 @@ namespace Tieba
         public static string[] MangerTb()
         {
 
-            string res = HttpHelper.HttpGet("http://tieba.baidu.com/pmc/tousu/getRole?manager_uname=" + user.un, Encoding.UTF8, user.cookie);
+            string res = HttpHelper.HttpGet(Conf.HTTP_URL+"/pmc/tousu/getRole?manager_uname=" + user.un, Encoding.UTF8, user.cookie);
 
             return HttpHelper.P_jq(Regex.Unescape(res), "forum_name\":\"", "\"");
 
@@ -102,11 +102,11 @@ namespace Tieba
                 }
                
             }
-            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&day=" + day + "&fid=" + fid + "&ntn=banid&portrait="+portrait+"post_id=1&reason=" + reason + "&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=1";
+            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&day=" + day + "&fid=" + fid + "&ntn=banid&portrait="+portrait+"&post_id=1&reason=" + reason + "&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=1";
 
             postdata = postdata + "&sign=" + HttpHelper.GetMD5HashFromFile(postdata.Replace("&", "") + "tiebaclient!!!");
 
-            string res = Regex.Unescape(HttpHelper.HttpPost("http://c.tieba.baidu.com/c/c/bawu/commitprison", postdata, user.cookie, null));
+            string res = Regex.Unescape(HttpHelper.HttpPost(Conf.APP_URL+"/c/c/bawu/commitprison", postdata, user.cookie, null));
 
             if (res.Contains("error_code\":\"0\"") && res.Contains("\"un\":\""))
             {
@@ -149,7 +149,7 @@ namespace Tieba
             }
             string postdata = "ie=utf-8&fid=" + fid + "&tbs=" + user.tbs + "&tid=" + tids + "&kw=" + kw + "&isBan=0";
 
-            string res = HttpHelper.HttpPost("http://tieba.baidu.com/f/commit/thread/batchDelete", postdata, user.cookie, null);
+            string res = HttpHelper.HttpPost(Conf.HTTP_URL+"/f/commit/thread/batchDelete", postdata, user.cookie, null);
             res = HttpHelper.Jq(res, "err_code\":", ",");
             if (res == "0")
             {
@@ -176,7 +176,7 @@ namespace Tieba
             }
             string postdata = "fid=" + fid + "&tbs=" + user.tbs + "&ie=utf-8&is_finf=false&is_vipdel=0&kw=" + kw + "&pid=" + pid + "&tid=" + tid + "&commit_fr=pb";
 
-            string res = HttpHelper.HttpPost("http://tieba.baidu.com/f/commit/post/delete", postdata, user.cookie, null);
+            string res = HttpHelper.HttpPost(Conf.HTTP_URL+"/f/commit/post/delete", postdata, user.cookie, null);
             res = HttpHelper.Jq(res, "err_code\":", ",");
             if (res == "0")
             {
@@ -244,7 +244,7 @@ namespace Tieba
 
             string postData = "tbs=" + user.tbs + "&usn=" + name + "&ie=gbk&fid=" + fid + "&fname=" + kw;
 
-            string result = HttpHelper.HttpPost("http://tieba.baidu.com/f/like/commit/black/add", postData, user.cookie, null);
+            string result = HttpHelper.HttpPost(Conf.HTTP_URL+"/f/like/commit/black/add", postData, user.cookie, null);
             if (result.Length > 4)
             {
                 result = HttpHelper.Jq(result, "\"no\":", ",");
@@ -267,7 +267,7 @@ namespace Tieba
 
             data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");
 
-            string res = HttpHelper.HttpPost("http://c.tieba.baidu.com/c/u/user/profile", data, null, null);
+            string res = HttpHelper.HttpPost(Conf.APP_URL+"/c/u/user/profile", data, null, null);
 
             return Regex.Unescape(HttpHelper.Jq(res, "\"intro\":\"", "\""));
         }
@@ -275,7 +275,7 @@ namespace Tieba
         public static List<Pluser> members(int page, string kw)
         {
             //http://tieba.baidu.com/bawu2/platform/listMemberInfo?word=%E9%99%86%E9%9B%AA%E7%90%AA&ie=utf-8
-            string url = "http://tieba.baidu.com/bawu2/platform/listMemberInfo?ie=utf-8&word=" + kw + "&pn=" + page;
+            string url =Conf.HTTP_URL+ "/bawu2/platform/listMemberInfo?ie=utf-8&word=" + kw + "&pn=" + page;
 
             string res = HttpHelper.HttpGet(url, Encoding.GetEncoding("GBK"), null, false, true);
 
@@ -304,7 +304,7 @@ namespace Tieba
 
             data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");
 
-            string res = HttpHelper.HttpPost("http://c.tieba.baidu.com/c/f/frs/page", data, null, null);
+            string res = HttpHelper.HttpPost(Conf.APP_URL+"/c/f/frs/page", data, null, null);
 
             return res;
         }

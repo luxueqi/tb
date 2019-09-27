@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using BaiduHelper;
 using System.Text.RegularExpressions;
 
@@ -43,7 +41,7 @@ namespace Tieba
 
             data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");
 
-            string res = HttpHelper.HttpPost("http://c.tieba.baidu.com/c/f/pb/page", data, null, null);
+            string res = HttpHelper.HttpPost(Conf.APP_URL+"/c/f/pb/page", data, null, null);
 
             //Pids.AddRange(HttpHelper.Jq(res, "\"pids\":\"", ",\"").Split(','));
             title = HttpHelper.Jq(res, "collect_mark_pid\":\"0\",\"title\":\"", "\"");

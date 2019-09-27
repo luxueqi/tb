@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using BaiduHelper;
 using System.IO;
+using Tieba;
 namespace Tieba
 {
     static class Program
@@ -30,10 +31,10 @@ namespace Tieba
                 {
                     Directory.CreateDirectory("img");
                 }
-                string res = HttpHelper.HttpGet("http://luxueqi.sinaapp.com/tb.php", System.Text.Encoding.UTF8);
-                if (res != "201909224")
+                string res = HttpHelper.HttpGet(Conf.UPDATE_URL+"/tb.php", System.Text.Encoding.UTF8);
+                if (res != Conf.strtime)
                 {
-                    new System.Net.WebClient().DownloadFile("http://luxueqi.sinaapp.com/tieba.zip", "tieba.zip");
+                    new System.Net.WebClient().DownloadFile(Conf.UPDATE_URL +"/tieba.zip", "tieba.zip");
                     MessageBox.Show("下载更新完成tieba.zip");
 
                 }

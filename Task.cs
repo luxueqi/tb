@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Text.RegularExpressions;
 using System.Drawing;
-using BaiduHelper;
 using System.Net;
 namespace Tieba
 {

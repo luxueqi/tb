@@ -664,11 +664,11 @@ namespace Tieba
                     if (tidpid.Contains("&"))
                     {
                         string[] tps = tidpid.Split('&');
-                        Process.Start("http://tieba.baidu.com/p/" + tps[0] + "?pid=" + tps[1]);
+                        Process.Start(Conf.HTTP_URL+"/p/" + tps[0] + "?pid=" + tps[1]);
                     }
                     else
                     {
-                        Process.Start("http://tieba.baidu.com/p/" + tidpid);
+                        Process.Start(Conf.HTTP_URL+"/p/" + tidpid);
                     }
 
                 }
@@ -685,7 +685,7 @@ namespace Tieba
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://tieba.baidu.com/f?ie=utf-8&kw=" + mangertb.Text);
+            Process.Start(Conf.HTTP_URL+"/f?ie=utf-8&kw=" + mangertb.Text);
         }
         ID idInfo;
         private void button8_Click(object sender, EventArgs e)
@@ -799,7 +799,7 @@ namespace Tieba
         {
             try
             {
-                Process.Start("http://tieba.baidu.com/f?kw=" + listView2.SelectedItems[0].SubItems[1].Text);
+                Process.Start(Conf.HTTP_URL +"/f?kw=" + listView2.SelectedItems[0].SubItems[1].Text);
             }
             catch (Exception)
             {
@@ -813,7 +813,7 @@ namespace Tieba
             try
             {
                 if (textBox1.Text.Trim() == "") return;
-                Process.Start("http://tieba.baidu.com/home/main?ie=utf-8&un=" + textBox1.Text.Trim());
+                Process.Start(Conf.HTTP_URL+"/home/main?ie=utf-8&un=" + textBox1.Text.Trim());
             }
             catch (Exception)
             {
@@ -1260,7 +1260,7 @@ namespace Tieba
             try
             {
                 linkLabel8.Enabled = false;
-                string res = HttpHelper.HttpGet("http://tieba.baidu.com/bawu2/platform/listBawuTeamInfo?ie=utf-8&word=" + mangertb.Text, Encoding.GetEncoding("GBK"));
+                string res = HttpHelper.HttpGet(Conf.HTTP_URL+"/bawu2/platform/listBawuTeamInfo?ie=utf-8&word=" + mangertb.Text, Encoding.GetEncoding("GBK"));
 
                 string[] bawu = HttpHelper.P_jq(res, "class=\"user_name\" title=\"", "\"");
 
