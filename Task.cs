@@ -945,7 +945,7 @@ namespace Tieba
                                
                             }*/
                             // flagB = true;
-                            if (nickname!=""&&ageNumMethod(nickname))
+                            if (!flagB&&nickname!=""&&ageNumMethod(nickname))
                             {
                                 templistpid.Add(restit.Pids[i]);
                                 txtCallback(log.type+"--跳过,吧龄或发贴数不符合", Color.Red);
