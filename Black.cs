@@ -139,7 +139,8 @@ namespace Tieba
 
            if (this.boolblock)
            {
-              res += "-" + Common.Block("",portrait, 10, "lahei",kw,fid);
+                //页面改版 portrait封禁方式暂时失效，改为用户名
+              res += "-" + Common.Block(namew,"", 10, "lahei",kw,fid);
            }
 
            return res;
