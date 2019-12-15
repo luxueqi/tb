@@ -42,18 +42,26 @@ namespace Tieba
                         {
                             try
                             {
-                                string name = names[i];
+                                string name = names[i].Trim();
 
-                                string portrait = "";
+                                string res="";
 
                                 if (name.StartsWith("p:"))
                                 {
-                                   
-                                    portrait = name.Trim();
-                                    name = "";
+
+
+                                    res = Common.wyblock(name.Replace("p:",""),day,breson,fid);
+                                }else if(name.StartsWith("u:"))
+                                {
+                                    res = Common.Block("", name.Replace("u:", ""), day, breson, tbname, fid);
+                                }
+                                else
+                                {
+                                     res = Common.Block(name, "", day, breson, tbname, fid);
+
+
                                 }
 
-                                string res = Common.Block(name,portrait, day, breson, tbname, fid);
 
                                 label1.Text = (i + 1).ToString() + "/" + names.Length + "-->" + res;
                                

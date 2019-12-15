@@ -139,8 +139,9 @@ namespace Tieba
 
            if (this.boolblock)
            {
-                //页面改版 portrait封禁方式暂时失效，改为用户名
-              res += "-" + Common.Block(namew,"", 10, "lahei",kw,fid);
+                //页面改版 portrait封禁方式暂时改为用户名
+                // res += "-" + Common.Block(namew,"", 10, "lahei",kw,fid);
+                res += "-" + Common.wyblock(portrait, 10, "laihei", this.fid);
            }
 
            return res;
@@ -216,7 +217,7 @@ namespace Tieba
                                continue;
                            }
 
-                           if (this.boolpostnum)
+                           if (this.boolpostnum&&tempname!="")
                            {
                                ID id = new ID(tempname);
 

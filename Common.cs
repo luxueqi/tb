@@ -115,6 +115,25 @@ namespace Tieba
             return "失败: "+HttpHelper.Jq(res, "error_msg\":\"", "\"");
         }
 
+        public static string wyblock(string portrait, int day, string reason, string fid = "")
+        {
+            if ( fid == "")
+            {
+                fid = Fid;
+            }
+            string postdata = "day="+day+"&fid="+fid+"&tbs="+user.tbs+"&ie=gbk&user_name[]=&nick_name[]=&pid[]=1&portrait[]="+portrait+"&reason="+reason;
+
+            string res = Regex.Unescape(HttpHelper.HttpPost(Conf.HTTP_URL + "/pmc/blockid", postdata, user.cookie, null));
+
+            if(res.Contains("errno\":0,"))
+            {
+                return "封禁成功";
+            }
+           
+
+            return "失败: " + HttpHelper.Jq(res, "errmsg\":\"", "\"");
+        }
+
         public static string uid2portrait(string uid)
         {
             string portra = "";
@@ -279,7 +298,7 @@ namespace Tieba
 
             string res = HttpHelper.HttpGet(url, Encoding.GetEncoding("GBK"), null, false, true);
 
-            Regex rg = new Regex(@"&id=([^""]+).+?title=""([^""]*)"".+?forum-level-bawu bawu-info-lv[1]?[0-9]");
+            Regex rg = new Regex(@"&id=([^""]+).+?title=""([^""]*)"".+?forum-level-bawu bawu-info-lv([1]?[0-9])");
 
             MatchCollection mcs = rg.Matches(res);
 
