@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using BaiduHelper;
 using System.IO;
+using Tieba.Core.Forms;
+
 namespace Tieba
 {
     public partial class Bduss : Form
@@ -111,25 +113,31 @@ namespace Tieba
             
         }
 
-
-
-
-       /* public  LoginForm lf;
-        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (lf==null)
-            {
-                lf = new LoginForm();
-            }
-           
+            getBDUSS bd = new getBDUSS();
+            bd.ShowDialog();
+        }
 
-            lf.bdussbool = true;
-            this.Hide();
 
-            lf.Show();
 
-           
-        }*/
+
+        /* public  LoginForm lf;
+         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+         {
+             if (lf==null)
+             {
+                 lf = new LoginForm();
+             }
+
+
+             lf.bdussbool = true;
+             this.Hide();
+
+             lf.Show();
+
+
+         }*/
 
         //private void button2_Click(object sender, EventArgs e)
         //{

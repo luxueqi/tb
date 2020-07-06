@@ -105,10 +105,10 @@ namespace Tieba
                             ClientTit title = new ClientTit(tidpn[0],pn);
                             textBox4.Clear();
                             textBox4.AppendText("匹配情况如下：\r\n\r\n");
-                            string tmp = "",tmpcon="";
+                            string tmpcon ="";
                             for (int i = 0,leng=title.Uids.Count; i < leng; i++)
                             {
-                                tmp = "{0}-未匹配-{1}-{2}";
+                               // tmp = "{0}-未匹配-{1}-{2}";
                                
                                 if (boolck)
                                 {
@@ -118,13 +118,14 @@ namespace Tieba
                                 {
                                     tmpcon = title.Content[i];
                                 }
-                                if (par!=""&&rg.IsMatch(tmpcon))
+
+                                if (par==""|| rg.IsMatch(tmpcon))
                                 {
-                                    tmp = "{0}-匹配-{1}-{2}";
-                                   
+                                   // tmpcon = ;
+                                    textBox4.AppendText(String.Format("{0}-{1}-{2}", i + 1, title.Authors[i], title.Content[i]) + "\r\n\r\n");
+                              
                                 }
-                                
-                                textBox4.AppendText(String.Format(tmp, i + 1, title.Authors[i], title.Content[i])+"\r\n\r\n");
+
                                 //else
                                 //{
                                 //    textBox4.AppendText((i+1) + "->->" + title.Content[i] + "\r\n\r\n");

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using BaiduHelper;
 using System.IO;
-using Tieba;
 namespace Tieba
 {
     static class Program

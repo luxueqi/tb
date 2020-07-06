@@ -13,6 +13,21 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -38,6 +53,11 @@
   <PropertyGroup>
     <StartupObject>Tieba.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -54,6 +74,12 @@
     </Compile>
     <Compile Include="Core\Forms\Bduss.Designer.cs">
       <DependentUpon>Bduss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Forms\getBDUSS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\Forms\getBDUSS.Designer.cs">
+      <DependentUpon>getBDUSS.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Tieba\Black.cs" />
     <Compile Include="Core\Tieba\ClientTit.cs" />
@@ -118,6 +144,9 @@
     <EmbeddedResource Include="Core\Forms\frBlock.resx">
       <DependentUpon>frBlock.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Core\Forms\getBDUSS.resx">
+      <DependentUpon>getBDUSS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Core\Forms\Imgtest.resx">
       <DependentUpon>Imgtest.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,7 +180,23 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
