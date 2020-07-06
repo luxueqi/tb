@@ -48,86 +48,86 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accention.cs" />
-    <Compile Include="Bduss.cs">
+    <Compile Include="Core\Class\Accention.cs" />
+    <Compile Include="Core\Forms\Bduss.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bduss.Designer.cs">
+    <Compile Include="Core\Forms\Bduss.Designer.cs">
       <DependentUpon>Bduss.cs</DependentUpon>
     </Compile>
-    <Compile Include="Black.cs" />
-    <Compile Include="ClientTit.cs" />
-    <Compile Include="Common.cs" />
+    <Compile Include="Core\Tieba\Black.cs" />
+    <Compile Include="Core\Tieba\ClientTit.cs" />
+    <Compile Include="Tool\Common.cs" />
     <Compile Include="Conf.cs" />
-    <Compile Include="content.cs">
+    <Compile Include="Core\Forms\content.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="content.Designer.cs">
+    <Compile Include="Core\Forms\content.Designer.cs">
       <DependentUpon>content.cs</DependentUpon>
     </Compile>
-    <Compile Include="ContentType.cs" />
-    <Compile Include="frBlock.cs">
+    <Compile Include="Core\Class\ContentType.cs" />
+    <Compile Include="Core\Forms\frBlock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frBlock.Designer.cs">
+    <Compile Include="Core\Forms\frBlock.Designer.cs">
       <DependentUpon>frBlock.cs</DependentUpon>
     </Compile>
-    <Compile Include="ID.cs" />
-    <Compile Include="imghash.cs" />
-    <Compile Include="Imgtest.cs">
+    <Compile Include="Core\Tieba\ID.cs" />
+    <Compile Include="Core\Libs\imghash.cs" />
+    <Compile Include="Core\Forms\Imgtest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Imgtest.Designer.cs">
+    <Compile Include="Core\Forms\Imgtest.Designer.cs">
       <DependentUpon>Imgtest.cs</DependentUpon>
     </Compile>
-    <Compile Include="imgweb.cs">
+    <Compile Include="Core\Forms\imgweb.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="imgweb.Designer.cs">
+    <Compile Include="Core\Forms\imgweb.Designer.cs">
       <DependentUpon>imgweb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lcid.cs" />
-    <Compile Include="Log.cs" />
-    <Compile Include="TaskForm.cs">
+    <Compile Include="Core\Tieba\Lcid.cs" />
+    <Compile Include="Core\Class\Log.cs" />
+    <Compile Include="Core\Forms\TaskForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TaskForm.Designer.cs">
+    <Compile Include="Core\Forms\TaskForm.Designer.cs">
       <DependentUpon>TaskForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestForm.cs">
+    <Compile Include="Core\Forms\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestForm.Designer.cs">
+    <Compile Include="Core\Forms\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HttpArry.cs" />
-    <Compile Include="Mode.cs" />
+    <Compile Include="Tool\HttpArry.cs" />
+    <Compile Include="Core\Class\Mode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Task.cs" />
-    <Compile Include="TbInfo.cs" />
-    <Compile Include="Title.cs" />
-    <Compile Include="Transformation.cs" />
-    <Compile Include="User.cs" />
-    <EmbeddedResource Include="Bduss.resx">
+    <Compile Include="Core\Tieba\Task.cs" />
+    <Compile Include="Core\Tieba\TbInfo.cs" />
+    <Compile Include="Core\Tieba\Title.cs" />
+    <Compile Include="Core\Libs\Transformation.cs" />
+    <Compile Include="Core\Class\User.cs" />
+    <EmbeddedResource Include="Core\Forms\Bduss.resx">
       <DependentUpon>Bduss.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="content.resx">
+    <EmbeddedResource Include="Core\Forms\content.resx">
       <DependentUpon>content.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frBlock.resx">
+    <EmbeddedResource Include="Core\Forms\frBlock.resx">
       <DependentUpon>frBlock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Imgtest.resx">
+    <EmbeddedResource Include="Core\Forms\Imgtest.resx">
       <DependentUpon>Imgtest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="imgweb.resx">
+    <EmbeddedResource Include="Core\Forms\imgweb.resx">
       <DependentUpon>imgweb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TaskForm.resx">
+    <EmbeddedResource Include="Core\Forms\TaskForm.resx">
       <DependentUpon>TaskForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestForm.resx">
+    <EmbeddedResource Include="Core\Forms\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -151,6 +151,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

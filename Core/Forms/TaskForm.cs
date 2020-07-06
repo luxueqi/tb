@@ -1225,12 +1225,20 @@ namespace Tieba
 
         private void 删除选中ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (listView3.SelectedItems.Count == 0)
+            {
+                return;
+            }
 
             button13_Click(null, null);
         }
 
         private void 修改选中ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (listView3.SelectedItems.Count==0)
+            {
+                return;
+            }
             contentForm cf = new contentForm();
 
             cf.index = listView3.SelectedIndices[0];

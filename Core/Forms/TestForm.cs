@@ -35,6 +35,8 @@ namespace Tieba
             
             string par = textBox1.Text.Trim();
 
+            bool boolck = checkBox1.Checked;
+
             Regex rg = new Regex(par);
 
             if (radioButton1.Checked)
@@ -103,22 +105,47 @@ namespace Tieba
                             ClientTit title = new ClientTit(tidpn[0],pn);
                             textBox4.Clear();
                             textBox4.AppendText("匹配情况如下：\r\n\r\n");
-                            int i = 0;
-                            foreach (string item in title.Content)
+                            string tmp = "",tmpcon="";
+                            for (int i = 0,leng=title.Uids.Count; i < leng; i++)
                             {
-
-                                i++;
-                                if (rg.IsMatch(item))
+                                tmp = "{0}-未匹配-{1}-{2}";
+                               
+                                if (boolck)
                                 {
-
-                                    textBox4.AppendText(i + ":" + item + "\r\n\r\n");
+                                    tmpcon = title.Authors[i].Replace("昵称:", "");
                                 }
                                 else
                                 {
-                                    textBox4.AppendText(i + "->未匹配->" + item + "\r\n\r\n");
+                                    tmpcon = title.Content[i];
                                 }
-
+                                if (par!=""&&rg.IsMatch(tmpcon))
+                                {
+                                    tmp = "{0}-匹配-{1}-{2}";
+                                   
+                                }
+                                
+                                textBox4.AppendText(String.Format(tmp, i + 1, title.Authors[i], title.Content[i])+"\r\n\r\n");
+                                //else
+                                //{
+                                //    textBox4.AppendText((i+1) + "->->" + title.Content[i] + "\r\n\r\n");
+                                //}
                             }
+                            //int i = 0;
+                            //foreach (string item in title.Content)
+                            //{
+
+                            //    i++;
+                            //    if (rg.IsMatch(item))
+                            //    {
+
+                            //        textBox4.AppendText(i + ":" + item + "\r\n\r\n");
+                            //    }
+                            //    else
+                            //    {
+                            //        textBox4.AppendText(i + "->未匹配->" + item + "\r\n\r\n");
+                            //    }
+
+                            //}
                         }
                         catch (Exception ee )
                         {
