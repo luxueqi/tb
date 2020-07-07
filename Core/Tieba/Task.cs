@@ -11,6 +11,8 @@ namespace Tieba
     public delegate void ListCallback(Log log);
     class Task
     {
+
+        public static bool detilinfo=true;
       
         private Thread th;
 
@@ -832,16 +834,24 @@ namespace Tieba
                       
                         if (listpid.Contains(restit.Pids[i]))
                         {
-                             txtCallback(Thread.CurrentThread.Name +"--"+iflagCount+ "-->跳过扫描pid:" + restit.Pids[i] + "-->" + "作者:" + restit.Authors[i] + "-->内容:" + (tconten.Length > 27 ? tconten.Substring(0, 27) + "......" : tconten), Color.Green);
-                             continue;
+                            if (Task.detilinfo)
+                            {
+                                txtCallback(Thread.CurrentThread.Name + "--" + iflagCount + "-->跳过扫描pid:" + restit.Pids[i] + "-->" + "作者:" + restit.Authors[i] + "-->内容:" + (tconten.Length > 27 ? tconten.Substring(0, 27) + "......" : tconten), Color.Green);
+
+                            }
+                            continue;
                         }
 
 
 
-                        txtCallback(Thread.CurrentThread.Name + "--" + iflagCount + "-->正在扫描pid:" + restit.Pids[i] + "-->" + "作者:" + restit.Authors[i] + "-->内容:" + (tconten.Length > 27 ? tconten.Substring(0, 27) + "......" : tconten), Color.Black);
+                       if(Task.detilinfo) txtCallback(Thread.CurrentThread.Name + "--" + iflagCount + "-->正在扫描pid:" + restit.Pids[i] + "-->" + "作者:" + restit.Authors[i] + "-->内容:" + (tconten.Length > 27 ? tconten.Substring(0, 27) + "......" : tconten), Color.Black);
 
 
-                        if (whiteblackMethod(restit.Authors[i].Replace("昵称:", ""), 'w' ,out outpikey)) { txtCallback("跳过-->白名单-" + restit.Authors[i], Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
+                        if (whiteblackMethod(restit.Authors[i].Replace("昵称:", ""), 'w' ,out outpikey))
+                        {
+                            if (Task.detilinfo) txtCallback("跳过-->白名单-" + restit.Authors[i], Color.Blue); templistpid.Add(restit.Pids[i]);
+                            continue;
+                        }
                               
             
 
@@ -871,7 +881,7 @@ namespace Tieba
                                 ctconwitebool = whiteblackMethod(tconten, 'c',out outpikey);
                             }
 
-                            if (ctconwitebool) { txtCallback("跳过-->信任内容-" + outpikey, Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
+                            if (ctconwitebool) { if (Task.detilinfo) txtCallback("跳过-->信任内容-" + outpikey, Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
 
                             
                             string flev = restit.Level[i] == "" ? "0" : restit.Level[i];
@@ -879,7 +889,7 @@ namespace Tieba
                             if (mode.islevel && int.Parse(flev) > mode.level)
                             {
                                 templistpid.Add(restit.Pids[i]);
-                                txtCallback("跳过-->该用户等级为" + restit.Level[i] + ",大于设定等级" + mode.level, Color.Black);
+                                if (Task.detilinfo) txtCallback("跳过-->该用户等级为" + restit.Level[i] + ",大于设定等级" + mode.level, Color.Black);
                                 continue;
                             }
 

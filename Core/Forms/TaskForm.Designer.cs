@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
@@ -115,6 +116,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -161,7 +163,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -199,11 +200,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(746, 309);
+            this.tabControl1.Size = new System.Drawing.Size(743, 308);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBox6);
             this.tabPage1.Controls.Add(this.comboBox4);
             this.tabPage1.Controls.Add(this.linkLabel6);
             this.tabPage1.Controls.Add(this.linkLabel4);
@@ -214,10 +216,23 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(738, 283);
+            this.tabPage1.Size = new System.Drawing.Size(735, 282);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "操作";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Checked = true;
+            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox6.Location = new System.Drawing.Point(652, 32);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(72, 16);
+            this.checkBox6.TabIndex = 9;
+            this.checkBox6.Text = "详细信息";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
             // 
             // comboBox4
             // 
@@ -256,10 +271,10 @@
             this.richTextBox1.BackColor = System.Drawing.SystemColors.MenuBar;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 54);
+            this.richTextBox1.Location = new System.Drawing.Point(3, 53);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox1.Size = new System.Drawing.Size(732, 226);
+            this.richTextBox1.Size = new System.Drawing.Size(729, 226);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
@@ -305,7 +320,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(738, 283);
+            this.tabPage2.Size = new System.Drawing.Size(735, 282);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "设置";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -449,9 +464,9 @@
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(111, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(323, 12);
+            this.label1.Size = new System.Drawing.Size(311, 12);
             this.label1.TabIndex = 31;
-            this.label1.Text = "右键可执行相关修改，手动确认只限关键词,黑名单直接删封";
+            this.label1.Text = "右键可执行相关修改，手动确认只限关键词,黑名单直接删";
             // 
             // button13
             // 
@@ -980,7 +995,7 @@
             this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(738, 283);
+            this.tabPage3.Size = new System.Drawing.Size(952, 282);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "日志";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1076,7 +1091,7 @@
             this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(738, 246);
+            this.listView1.Size = new System.Drawing.Size(952, 246);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -1122,6 +1137,11 @@
             this.columnHeader8.Text = "Fid";
             this.columnHeader8.Width = 40;
             // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "uid";
+            this.columnHeader18.Width = 62;
+            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1144,7 +1164,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(738, 283);
+            this.tabPage4.Size = new System.Drawing.Size(952, 282);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ID信息";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1154,9 +1174,9 @@
             this.groupBox7.Controls.Add(this.linkLabel5);
             this.groupBox7.Controls.Add(this.listView2);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox7.Location = new System.Drawing.Point(338, 3);
+            this.groupBox7.Location = new System.Drawing.Point(552, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(397, 277);
+            this.groupBox7.Size = new System.Drawing.Size(397, 276);
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "关注贴吧";
@@ -1186,7 +1206,7 @@
             this.listView2.Location = new System.Drawing.Point(3, 17);
             this.listView2.MultiSelect = false;
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(391, 257);
+            this.listView2.Size = new System.Drawing.Size(391, 256);
             this.listView2.TabIndex = 1;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -1352,7 +1372,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(738, 283);
+            this.tabPage5.Size = new System.Drawing.Size(952, 282);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "批量";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1620,18 +1640,14 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // columnHeader18
-            // 
-            this.columnHeader18.Text = "uid";
-            this.columnHeader18.Width = 62;
-            // 
             // TaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(746, 309);
+            this.ClientSize = new System.Drawing.Size(743, 308);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "TaskForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1815,5 +1831,6 @@
         private System.Windows.Forms.CheckBox cklz;
         private System.Windows.Forms.CheckBox ckintro;
         private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.CheckBox checkBox6;
     }
 }

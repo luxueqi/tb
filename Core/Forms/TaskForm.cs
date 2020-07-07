@@ -1372,6 +1372,16 @@ namespace Tieba
             }
         }
 
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            Task.detilinfo = checkBox6.Checked;
+        }
+
+        //private void groupBox3_Enter(object sender, EventArgs e)
+        //{
+
+        //}
+
 
 
 
