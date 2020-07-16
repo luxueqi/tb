@@ -32,7 +32,7 @@ namespace Tieba
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             string par = textBox1.Text.Trim();
 
             bool boolck = checkBox1.Checked;
@@ -45,7 +45,7 @@ namespace Tieba
 
                 if (rg.IsMatch(con))
                 {
-                    MessageBox.Show("该内容可匹配:"+rg.Match(con).Value, "提示");
+                    MessageBox.Show("该内容可匹配:" + rg.Match(con).Value, "提示");
                 }
                 else
                 {
@@ -67,9 +67,9 @@ namespace Tieba
                             if (rg.IsMatch(item))
                             {
                                 i++;
-                                textBox4.AppendText(i+":"+item + "\r\n\r\n");
+                                textBox4.AppendText(i + ":" + item + "\r\n\r\n");
                             }
-                          
+
                         }
 
                         button1.Enabled = true;
@@ -80,8 +80,8 @@ namespace Tieba
                 }
                 catch (Exception ee)
                 {
-                    
-                    textBox4.AppendText(ee.Message+"\r\n");
+
+                    textBox4.AppendText(ee.Message + "\r\n");
                 }
 
 
@@ -90,41 +90,43 @@ namespace Tieba
             {
                 //try
                 //{
-                    Thread th = new Thread(new ThreadStart(delegate
+                Thread th = new Thread(new ThreadStart(delegate
+                {
+                    try
                     {
-                        try
-                        {
                             //Title title = new Title(textBox5.Text.Trim());
                             string[] tidpn = textBox5.Text.Trim().Split(':');
-                            int pn = 1;
-                            if (tidpn.Length==2)
-                            {
-                               
-                                pn = int.Parse(tidpn[1]);
-                            }
-                            ClientTit title = new ClientTit(tidpn[0],pn);
-                            textBox4.Clear();
-                            textBox4.AppendText("匹配情况如下：\r\n\r\n");
-                            string tmpcon ="";
-                            for (int i = 0,leng=title.Uids.Count; i < leng; i++)
-                            {
-                               // tmp = "{0}-未匹配-{1}-{2}";
-                               
-                                if (boolck)
-                                {
-                                    tmpcon = title.Authors[i].Replace("昵称:", "");
-                                }
-                                else
-                                {
-                                    tmpcon = title.Content[i];
-                                }
+                        int pn = 1;
+                        if (tidpn.Length == 2)
+                        {
 
-                                if (par==""|| rg.IsMatch(tmpcon))
-                                {
-                                   // tmpcon = ;
+                            pn = int.Parse(tidpn[1]);
+                        }
+                        ClientTit title = new ClientTit(tidpn[0], pn);
+
+                        textBox4.Clear();
+                        textBox4.AppendText("匹配情况如下：\r\n\r\n");
+
+                        string tmpcon = "";
+                        for (int i = 0, leng = title.Uids.Count; i < leng; i++)
+                        {
+                                // tmp = "{0}-未匹配-{1}-{2}";
+
+                                if (boolck)
+                            {
+                                tmpcon = title.Authors[i].Replace("昵称:", "");
+                            }
+                            else
+                            {
+                                tmpcon = title.Content[i];
+                            }
+
+                            if (par == "" || rg.IsMatch(tmpcon))
+                            {
+                                    // tmpcon = ;
                                     textBox4.AppendText(String.Format("{0}-{1}-{2}", i + 1, title.Authors[i], title.Content[i]) + "\r\n\r\n");
-                              
-                                }
+
+                            }
 
                                 //else
                                 //{
@@ -148,18 +150,18 @@ namespace Tieba
 
                             //}
                         }
-                        catch (Exception ee )
-                        {
+                    catch (Exception ee)
+                    {
 
-                            textBox4.AppendText(ee.Message + "\r\n");
-                        }
-                       
+                        textBox4.AppendText(ee.Message + "\r\n");
+                    }
 
-                        button1.Enabled = true;
-                    }));
-                    th.IsBackground = true;
-                    th.Start();
-                    button1.Enabled = false;
+
+                    button1.Enabled = true;
+                }));
+                th.IsBackground = true;
+                th.Start();
+                button1.Enabled = false;
                 //}
                 //catch (Exception ee)
                 //{

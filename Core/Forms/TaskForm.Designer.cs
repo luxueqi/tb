@@ -79,15 +79,15 @@
             this.cklz = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.ckblackname = new System.Windows.Forms.CheckBox();
-            this.ispostnum = new System.Windows.Forms.CheckBox();
+            this.ckpostnum = new System.Windows.Forms.CheckBox();
             this.txtpostnum = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.istbage = new System.Windows.Forms.CheckBox();
+            this.cktbage = new System.Windows.Forms.CheckBox();
             this.txtage = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtPn = new System.Windows.Forms.TextBox();
+            this.txtpn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtReason = new System.Windows.Forms.TextBox();
+            this.txtreason = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.cklevel = new System.Windows.Forms.CheckBox();
@@ -117,8 +117,6 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
@@ -174,7 +172,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.contextMenuStrip2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -688,15 +685,15 @@
             this.groupBox1.Controls.Add(this.cklz);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.ckblackname);
-            this.groupBox1.Controls.Add(this.ispostnum);
+            this.groupBox1.Controls.Add(this.ckpostnum);
             this.groupBox1.Controls.Add(this.txtpostnum);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.istbage);
+            this.groupBox1.Controls.Add(this.cktbage);
             this.groupBox1.Controls.Add(this.txtage);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txtPn);
+            this.groupBox1.Controls.Add(this.txtpn);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtReason);
+            this.groupBox1.Controls.Add(this.txtreason);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.linkLabel2);
             this.groupBox1.Controls.Add(this.cklevel);
@@ -754,17 +751,17 @@
             this.ckblackname.Text = "拉黑";
             this.ckblackname.UseVisualStyleBackColor = true;
             // 
-            // ispostnum
+            // ckpostnum
             // 
-            this.ispostnum.AutoSize = true;
-            this.ispostnum.ForeColor = System.Drawing.Color.MediumBlue;
-            this.ispostnum.Location = new System.Drawing.Point(137, 183);
-            this.ispostnum.Name = "ispostnum";
-            this.ispostnum.Size = new System.Drawing.Size(72, 16);
-            this.ispostnum.TabIndex = 23;
-            this.ispostnum.Text = "发帖数量";
-            this.ispostnum.UseVisualStyleBackColor = true;
-            this.ispostnum.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.ckpostnum.AutoSize = true;
+            this.ckpostnum.ForeColor = System.Drawing.Color.MediumBlue;
+            this.ckpostnum.Location = new System.Drawing.Point(137, 183);
+            this.ckpostnum.Name = "ckpostnum";
+            this.ckpostnum.Size = new System.Drawing.Size(72, 16);
+            this.ckpostnum.TabIndex = 23;
+            this.ckpostnum.Text = "发帖数量";
+            this.ckpostnum.UseVisualStyleBackColor = true;
+            this.ckpostnum.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // txtpostnum
             // 
@@ -790,17 +787,17 @@
             this.label8.TabIndex = 21;
             this.label8.Text = "发帖数量";
             // 
-            // istbage
+            // cktbage
             // 
-            this.istbage.AutoSize = true;
-            this.istbage.ForeColor = System.Drawing.Color.MediumBlue;
-            this.istbage.Location = new System.Drawing.Point(137, 150);
-            this.istbage.Name = "istbage";
-            this.istbage.Size = new System.Drawing.Size(72, 16);
-            this.istbage.TabIndex = 20;
-            this.istbage.Text = "启用吧龄";
-            this.istbage.UseVisualStyleBackColor = true;
-            this.istbage.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.cktbage.AutoSize = true;
+            this.cktbage.ForeColor = System.Drawing.Color.MediumBlue;
+            this.cktbage.Location = new System.Drawing.Point(137, 150);
+            this.cktbage.Name = "cktbage";
+            this.cktbage.Size = new System.Drawing.Size(72, 16);
+            this.cktbage.TabIndex = 20;
+            this.cktbage.Text = "启用吧龄";
+            this.cktbage.UseVisualStyleBackColor = true;
+            this.cktbage.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // txtage
             // 
@@ -826,19 +823,19 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "限制吧龄";
             // 
-            // txtPn
+            // txtpn
             // 
-            this.txtPn.ImeMode = System.Windows.Forms.ImeMode.Alpha;
-            this.txtPn.Location = new System.Drawing.Point(215, 58);
-            this.txtPn.MaxLength = 20;
-            this.txtPn.Name = "txtPn";
-            this.txtPn.ShortcutsEnabled = false;
-            this.txtPn.Size = new System.Drawing.Size(42, 21);
-            this.txtPn.TabIndex = 17;
-            this.txtPn.Text = "1";
-            this.txtPn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPn.TextChanged += new System.EventHandler(this.txtPn_TextChanged);
-            this.txtPn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNumber);
+            this.txtpn.ImeMode = System.Windows.Forms.ImeMode.Alpha;
+            this.txtpn.Location = new System.Drawing.Point(215, 58);
+            this.txtpn.MaxLength = 20;
+            this.txtpn.Name = "txtpn";
+            this.txtpn.ShortcutsEnabled = false;
+            this.txtpn.Size = new System.Drawing.Size(42, 21);
+            this.txtpn.TabIndex = 17;
+            this.txtpn.Text = "1";
+            this.txtpn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtpn.TextChanged += new System.EventHandler(this.txtPn_TextChanged);
+            this.txtpn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textNumber);
             // 
             // label7
             // 
@@ -850,13 +847,13 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "第1和最后";
             // 
-            // txtReason
+            // txtreason
             // 
-            this.txtReason.Location = new System.Drawing.Point(69, 85);
-            this.txtReason.Name = "txtReason";
-            this.txtReason.Size = new System.Drawing.Size(206, 21);
-            this.txtReason.TabIndex = 15;
-            this.txtReason.Text = "封禁";
+            this.txtreason.Location = new System.Drawing.Point(69, 85);
+            this.txtreason.Name = "txtreason";
+            this.txtreason.Size = new System.Drawing.Size(206, 21);
+            this.txtreason.TabIndex = 15;
+            this.txtreason.Text = "封禁";
             // 
             // label6
             // 
@@ -995,7 +992,7 @@
             this.tabPage3.Controls.Add(this.listView1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(952, 282);
+            this.tabPage3.Size = new System.Drawing.Size(735, 282);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "日志";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1086,12 +1083,11 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader18});
-            this.listView1.ContextMenuStrip = this.contextMenuStrip2;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(952, 246);
+            this.listView1.Size = new System.Drawing.Size(735, 246);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -1142,20 +1138,6 @@
             this.columnHeader18.Text = "uid";
             this.columnHeader18.Width = 62;
             // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(125, 26);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
-            this.toolStripMenuItem1.Text = "查看选中";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.groupBox7);
@@ -1164,7 +1146,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(952, 282);
+            this.tabPage4.Size = new System.Drawing.Size(735, 282);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "ID信息";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1174,7 +1156,7 @@
             this.groupBox7.Controls.Add(this.linkLabel5);
             this.groupBox7.Controls.Add(this.listView2);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox7.Location = new System.Drawing.Point(552, 3);
+            this.groupBox7.Location = new System.Drawing.Point(335, 3);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(397, 276);
             this.groupBox7.TabIndex = 4;
@@ -1372,7 +1354,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(952, 282);
+            this.tabPage5.Size = new System.Drawing.Size(735, 282);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "批量";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1672,7 +1654,6 @@
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.contextMenuStrip2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -1718,7 +1699,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.TextBox txtReason;
+        private System.Windows.Forms.TextBox txtreason;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ListView listView1;
@@ -1735,7 +1716,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox txtPn;
+        private System.Windows.Forms.TextBox txtpn;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.TabPage tabPage4;
@@ -1761,10 +1742,10 @@
         private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.LinkLabel linkLabel6;
-        private System.Windows.Forms.CheckBox ispostnum;
+        private System.Windows.Forms.CheckBox ckpostnum;
         private System.Windows.Forms.TextBox txtpostnum;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox istbage;
+        private System.Windows.Forms.CheckBox cktbage;
         private System.Windows.Forms.TextBox txtage;
         private System.Windows.Forms.Label label9;
         //private System.Windows.Forms.Button button11;
@@ -1820,8 +1801,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabel8;
         private System.Windows.Forms.LinkLabel linkLabel9;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.TextBox textBox3;

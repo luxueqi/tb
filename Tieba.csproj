@@ -106,12 +106,6 @@
     <Compile Include="Core\Forms\Imgtest.Designer.cs">
       <DependentUpon>Imgtest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Forms\imgweb.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Core\Forms\imgweb.Designer.cs">
-      <DependentUpon>imgweb.cs</DependentUpon>
-    </Compile>
     <Compile Include="Core\Tieba\Lcid.cs" />
     <Compile Include="Core\Class\Log.cs" />
     <Compile Include="Core\Forms\TaskForm.cs">
@@ -149,9 +143,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Forms\Imgtest.resx">
       <DependentUpon>Imgtest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\Forms\imgweb.resx">
-      <DependentUpon>imgweb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Forms\TaskForm.resx">
       <DependentUpon>TaskForm.cs</DependentUpon>

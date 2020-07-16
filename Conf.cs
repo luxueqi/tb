@@ -8,7 +8,7 @@
 
         public const string UPDATE_URL = "http://luxueqi.sinaapp.com";
 
-        public const string strtime = "20200708";
+        public const string strtime = "20200717";
 
 
     }

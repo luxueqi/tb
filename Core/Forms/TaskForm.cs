@@ -193,13 +193,13 @@ namespace Tieba
             txtscday.Text = mode.sctime.ToString();
             //txtwhite.Text = mode.white.Replace("\n", "\r\n");
             //txtkeys.Text = mode.keys.Replace("\n","\r\n");
-            txtReason.Text = mode.reason;
+            txtreason.Text = mode.reason;
             ckmode.Text = mode.mode;
-            txtPn.Text = mode.pn.ToString();
+            txtpn.Text = mode.pn.ToString();
             txtage.Text = mode.tbage.ToString();
             txtpostnum.Text = mode.postnum.ToString();
-            istbage.Checked = mode.istbage;
-            ispostnum.Checked = mode.ispostnum;
+            cktbage.Checked = mode.istbage;
+            ckpostnum.Checked = mode.ispostnum;
             ckimg.Checked = mode.isimghash;
             ckblackname.Checked = mode.isblackname;
             ckdct.Checked = mode.isimgdct;
@@ -297,38 +297,61 @@ namespace Tieba
         private Mode setMode()
         {
             Mode mode = new Mode();
-            mode.setValue("isdel", ckdel.Checked);
-            mode.setValue("isintro", ckintro.Checked);
-            mode.setValue("isblock", ckblock.Checked);
-            mode.setValue("isblackname", ckblackname.Checked);
-            mode.setValue("istbage", istbage.Checked);
-            mode.setValue("ispostnum", ispostnum.Checked);
-            mode.setValue("islz", cklz.Checked);
-            // mode.setValue("isblack", ckblack.Checked);
-            mode.setValue("islevel", cklevel.Checked);
-            //mode.setValue("islevel", cklevel.Checked);
-            mode.setValue("isimghash", ckimg.Checked);
-            mode.setValue("isimgdct", ckdct.Checked);
-            mode.setValue("blockday", int.Parse(txtblockday.Text));
-            mode.setValue("level", int.Parse(txtlevel.Text));
-            mode.setValue("sctime", int.Parse(txtscday.Text));
-            mode.setValue("postnum", int.Parse(txtpostnum.Text));
+            mode.isdel = ckdel.Checked;
+            mode.isintro = ckintro.Checked;
+            mode.isblock = ckblock.Checked;
+            mode.isblackname = ckblackname.Checked;
+            mode.istbage = cktbage.Checked;
+            mode.ispostnum = ckpostnum.Checked;
+            mode.islz = cklz.Checked;
+            mode.islevel = cklevel.Checked;
+            mode.isimghash = ckimg.Checked;
+            mode.isimgdct = ckdct.Checked;
+            mode.blockday = int.Parse(txtblockday.Text);
+            mode.level = int.Parse(txtlevel.Text);
 
-            mode.setValue("pn", int.Parse(txtPn.Text));
-            mode.setValue("tbage", double.Parse(txtage.Text));
-            mode.setValue("mode", ckmode.Text);
+            //mode.setValue("isdel", ckdel.Checked);
+            //mode.setValue("isintro", ckintro.Checked);
+            //mode.setValue("isblock", ckblock.Checked);
+            //mode.setValue("isblackname", ckblackname.Checked);
+            //mode.setValue("istbage", istbage.Checked);
+            //mode.setValue("ispostnum", ispostnum.Checked);
+            //mode.setValue("islz", cklz.Checked);
+            //// mode.setValue("isblack", ckblack.Checked);
+            //mode.setValue("islevel", cklevel.Checked);
+            ////mode.setValue("islevel", cklevel.Checked);
+            //mode.setValue("isimghash", ckimg.Checked);
+            //mode.setValue("isimgdct", ckdct.Checked);
+            //mode.setValue("blockday", int.Parse(txtblockday.Text));
+            //mode.setValue("level", int.Parse(txtlevel.Text));
+
+            mode.sctime = int.Parse(txtscday.Text);
+            mode.postnum = int.Parse(txtpostnum.Text);
+            mode.pn = int.Parse(txtpn.Text);
+            mode.tbage = double.Parse(txtage.Text);
+            mode.mode = ckmode.Text;
+            mode.mangertb = mangertb.Text;
+            mode.reason = txtreason.Text;
+
+            //mode.setValue("sctime", int.Parse(txtscday.Text));
+            //mode.setValue("postnum", int.Parse(txtpostnum.Text));
+            //mode.setValue("pn", int.Parse(txtPn.Text));
+            //mode.setValue("tbage", double.Parse(txtage.Text));
+            //mode.setValue("mode", ckmode.Text);
             // mode.setValue("blacks", txtblack.Text);
             // mode.setValue("keys", txtkeys.Text);
-            mode.setValue("mangertb", mangertb.Text);
-            mode.setValue("reason", txtReason.Text);
+            //mode.setValue("mangertb", mangertb.Text);
+            //mode.setValue("reason", txtReason.Text);
             //mode.setValue("ishimg", ckhimg.Checked);
 
             if (mode.isimghash && File.Exists("pz\\hash.txt"))
             {
-                mode.setValue("localimghash", File.ReadAllLines("pz\\hash.txt"));
+                mode.localimghash = File.ReadAllLines("pz\\hash.txt");
+               // mode.setValue("localimghash", File.ReadAllLines("pz\\hash.txt"));
 
             }
-            mode.setValue("hashdistance", (int)numericUpDown2.Value);
+            mode.hashdistance = (int)numericUpDown2.Value;
+          //  mode.setValue("hashdistance", (int)numericUpDown2.Value);
 
             getContentType(out mode.cttxtwhites, out mode.cttxtblacks, out mode.ctrkeys, out mode.cttkeys, out mode.cttxtconwhites);
 
@@ -608,7 +631,7 @@ namespace Tieba
                                         string res = "";
                                         if (bt.Text == "封删选中")
                                         {
-                                            res = Common.Block(item.SubItems[1].Text.StartsWith("昵称:") ? "" : item.SubItems[1].Text, item.SubItems[8].Text, int.Parse(txtblockday.Text.Trim()), txtReason.Text);
+                                            res = Common.Block(item.SubItems[1].Text.StartsWith("昵称:") ? "" : item.SubItems[1].Text, item.SubItems[8].Text, int.Parse(txtblockday.Text.Trim()), txtreason.Text);
                                             // ShowInfo("执行删封禁选中:" + res, Color.Red);
                                         }
                                         string tidpid = item.SubItems[3].Text;
@@ -678,9 +701,9 @@ namespace Tieba
 
         private void txtPn_TextChanged(object sender, EventArgs e)
         {
-            int pn = int.Parse(txtPn.Text.Trim());
+            int pn = int.Parse(txtpn.Text.Trim());
             pn = pn <= 1 ? 1 : pn;
-            txtPn.Text = pn.ToString();
+            txtpn.Text = pn.ToString();
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -834,7 +857,7 @@ namespace Tieba
         {
             if (ckmode.Text == "简单模式")
             {
-                txtPn.Enabled = false;
+                txtpn.Enabled = false;
 
                 //txtftday.Enabled = false;
 
@@ -850,7 +873,7 @@ namespace Tieba
             }
             else
             {
-                txtPn.Enabled = true;
+                txtpn.Enabled = true;
 
                 //txtftday.Enabled = true;
 
@@ -887,7 +910,7 @@ namespace Tieba
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (istbage.Checked)
+            if (cktbage.Checked)
             {
                 txtage.Enabled = true;
             }
@@ -900,7 +923,7 @@ namespace Tieba
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
-            if (ispostnum.Checked)
+            if (ckpostnum.Checked)
             {
                 txtpostnum.Enabled = true;
             }
@@ -1317,7 +1340,7 @@ namespace Tieba
             }
             fr.tbname = textBox2.Text.Trim();
             fr.day = int.Parse(txtblockday.Text.Trim());
-            fr.breson = txtReason.Text.Trim();
+            fr.breson = txtreason.Text.Trim();
             if (fr.tbname == "")
             {
                 MessageBox.Show("吧名不能为空");
@@ -1326,23 +1349,23 @@ namespace Tieba
             fr.Show();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string html = listView1.SelectedItems[0].SubItems[2].Text;
-                html = html.Substring(html.IndexOf(">") + 1);
-                imgweb im = new imgweb();
-                im.Text = "作者：" + listView1.SelectedItems[0].SubItems[1].Text;
-                im.html = html;
-                im.ShowDialog();
-            }
-            catch (Exception)
-            {
+        //private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string html = listView1.SelectedItems[0].SubItems[2].Text;
+        //        html = html.Substring(html.IndexOf(">") + 1);
+        //        imgweb im = new imgweb();
+        //        im.Text = "作者：" + listView1.SelectedItems[0].SubItems[1].Text;
+        //        im.html = html;
+        //        im.ShowDialog();
+        //    }
+        //    catch (Exception)
+        //    {
 
 
-            }
-        }
+        //    }
+        //}
 
 
 

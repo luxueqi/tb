@@ -133,46 +133,46 @@ namespace Tieba
 
 
 
-        public void setValue(string setk,object setv)
-        {
-            switch (setk)
-            {
-                case "localimghash": localimghash = (string[])setv; break;
-                case "hashdistance": hashdistance = (int)setv; break;
-                case "isdel": isdel=(bool)setv; break;
-                case "isblock": isblock = (bool)setv; break;
-                case "isblackname": isblackname = (bool)setv; break;
-                case "isintro": isintro = (bool)setv; break;
-                case "islz": islz = (bool)setv; break;
-                case "istbage": istbage = (bool)setv; break;
-                case "ispostnum": ispostnum = (bool)setv; break;
-                case "iszz": iszz = (bool)setv; break;
-                //case "isblack": isblack = (bool)setv; break;
-                case "islevel": islevel = (bool)setv; break;
-              //  case "isftday": isftday = (bool)setv; break;
-                case "isimghash": isimghash = (bool)setv; break;
-               // case "ishimg": ishimg = (bool)setv; break;
-                case "isimgdct": isimgdct = (bool)setv; break;
-                case "blockday": blockday = (int)setv; break;
-                case "level": level = (int)setv; break;
-                //case "ftday": ftday = (int)setv; break;
-                case "sctime": sctime = (int)setv; break;
-                case "postnum": postnum = (int)setv; break;
-                case "pn": pn= (int)setv; break;
-                case "tbage": tbage = (double)setv; break;
-                case "mode":  mode = setv.ToString(); break;
-                //case "blacks":  blacks = setv.ToString(); break;
-               // case "keys":  keys= setv.ToString(); break;
-                case "mangertb":  mangertb= setv.ToString(); break;
-                case "reason": reason= setv.ToString(); break;
-              //  case "white":white= setv.ToString(); break;
-                default:
-                    throw new Exception("不存在该变量"+setk);
+        //public void setValue(string setk,object setv)
+        //{
+        //    switch (setk)
+        //    {
+        //        case "localimghash": localimghash = (string[])setv; break;
+        //        case "hashdistance": hashdistance = (int)setv; break;
+        //        case "isdel": isdel=(bool)setv; break;
+        //        case "isblock": isblock = (bool)setv; break;
+        //        case "isblackname": isblackname = (bool)setv; break;
+        //        case "isintro": isintro = (bool)setv; break;
+        //        case "islz": islz = (bool)setv; break;
+        //        case "istbage": istbage = (bool)setv; break;
+        //        case "ispostnum": ispostnum = (bool)setv; break;
+        //        case "iszz": iszz = (bool)setv; break;
+        //        //case "isblack": isblack = (bool)setv; break;
+        //        case "islevel": islevel = (bool)setv; break;
+        //      //  case "isftday": isftday = (bool)setv; break;
+        //        case "isimghash": isimghash = (bool)setv; break;
+        //       // case "ishimg": ishimg = (bool)setv; break;
+        //        case "isimgdct": isimgdct = (bool)setv; break;
+        //        case "blockday": blockday = (int)setv; break;
+        //        case "level": level = (int)setv; break;
+        //        //case "ftday": ftday = (int)setv; break;
+        //        case "sctime": sctime = (int)setv; break;
+        //        case "postnum": postnum = (int)setv; break;
+        //        case "pn": pn= (int)setv; break;
+        //        case "tbage": tbage = (double)setv; break;
+        //        case "mode":  mode = setv.ToString(); break;
+        //        //case "blacks":  blacks = setv.ToString(); break;
+        //       // case "keys":  keys= setv.ToString(); break;
+        //        case "mangertb":  mangertb= setv.ToString(); break;
+        //        case "reason": reason= setv.ToString(); break;
+        //      //  case "white":white= setv.ToString(); break;
+        //        default:
+        //            throw new Exception("不存在该变量"+setk);
                     
 
-            }
+        //    }
         
-        }
+        //}
 
 
 

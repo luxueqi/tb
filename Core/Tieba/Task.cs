@@ -416,7 +416,7 @@ namespace Tieba
 
             imgname = "";
             string urlhash = "";
-            Regex rg = new Regex(@"http://imgsrc\.baidu\.com/forum/.*?\.jpg");
+            Regex rg = new Regex(@"http://tiebapic\.baidu\.com/forum/.*?\.jpg");
             if (rg.IsMatch(content))
             {
                 string urlimg = rg.Match(content).Value;
@@ -884,6 +884,8 @@ namespace Tieba
                             if (ctconwitebool) { if (Task.detilinfo) txtCallback("跳过-->信任内容-" + outpikey, Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
 
                             
+
+
                             string flev = restit.Level[i] == "" ? "0" : restit.Level[i];
 
                             if (mode.islevel && int.Parse(flev) > mode.level)

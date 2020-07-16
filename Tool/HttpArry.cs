@@ -20,7 +20,7 @@ namespace BaiduHelper
         {
             List<string> ls = new List<string>();
             int  l = 0, r = 0;
-            while (t.IndexOf(t1, i) > 0)
+            while (t.IndexOf(t1, i) >=0)
             {
                 l = t.IndexOf(t1,i) + t1.Length;
                 r = t.IndexOf(t2, l);
