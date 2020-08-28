@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using BaiduHelper;
 using System.Text.RegularExpressions;
@@ -90,7 +89,7 @@ namespace Tieba
             }
             //tb.1.f893aca6.D8OahOVX4XlaFPmxWIDtCQ
             string por = HttpHelper.Jq(res, "portrait\":\"", "\"");
-            this.image= "https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + por;
+            this.image= "http://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + por;
             this.switchImageTime =por.Length==36?"": Common.UnixTimeToStr(long.Parse(por.Substring(39)));
             this.age = HttpHelper.Jq(res, "tb_age\":\"", "\"");
             this.postNum = HttpHelper.Jq(res, "post_num\":", ",");

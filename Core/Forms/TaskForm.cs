@@ -1411,7 +1411,7 @@ namespace Tieba
         {
             if (listView1.SelectedItems.Count>0)
             {
-                textBox5.Text ="作者:"+ listView1.SelectedItems[0].SubItems[1].Text + "\r\n" + listView1.SelectedItems[0].SubItems[2].Text;
+                textBox5.Text ="作者:"+ listView1.SelectedItems[0].SubItems[1].Text+"  uid:"+ listView1.SelectedItems[0].SubItems[8].Text + "\r\n" + listView1.SelectedItems[0].SubItems[2].Text;
             }
         }
 
