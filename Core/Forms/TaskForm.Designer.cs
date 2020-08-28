@@ -100,6 +100,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel7 = new System.Windows.Forms.LinkLabel();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -118,14 +119,6 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.labAssistant = new System.Windows.Forms.Label();
             this.labManger = new System.Windows.Forms.Label();
@@ -161,6 +154,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -173,7 +167,6 @@
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -982,6 +975,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.textBox5);
             this.tabPage3.Controls.Add(this.label17);
             this.tabPage3.Controls.Add(this.button9);
             this.tabPage3.Controls.Add(this.button7);
@@ -996,6 +990,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "日志";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(3, 168);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox5.Size = new System.Drawing.Size(729, 74);
+            this.textBox5.TabIndex = 33;
             // 
             // label17
             // 
@@ -1087,10 +1090,11 @@
             this.listView1.FullRowSelect = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(735, 246);
+            this.listView1.Size = new System.Drawing.Size(735, 162);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
             // columnHeader1
@@ -1140,7 +1144,6 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.groupBox7);
             this.tabPage4.Controls.Add(this.groupBox6);
             this.tabPage4.Controls.Add(this.groupBox5);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -1151,76 +1154,9 @@
             this.tabPage4.Text = "ID信息";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.linkLabel5);
-            this.groupBox7.Controls.Add(this.listView2);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox7.Location = new System.Drawing.Point(335, 3);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(397, 276);
-            this.groupBox7.TabIndex = 4;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "关注贴吧";
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(326, 2);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(53, 12);
-            this.linkLabel5.TabIndex = 2;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "获取关注";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
-            // 
-            // listView2
-            // 
-            this.listView2.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13});
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.FullRowSelect = true;
-            this.listView2.Location = new System.Drawing.Point(3, 17);
-            this.listView2.MultiSelect = false;
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(391, 256);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            this.listView2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView2_MouseDoubleClick);
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "序号";
-            this.columnHeader9.Width = 40;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "贴吧";
-            this.columnHeader10.Width = 110;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "等级";
-            this.columnHeader11.Width = 40;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "黑名单";
-            this.columnHeader12.Width = 50;
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "入吧时间";
-            this.columnHeader13.Width = 139;
-            // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.labAssistant);
             this.groupBox6.Controls.Add(this.labManger);
             this.groupBox6.Controls.Add(this.labPrivate);
@@ -1229,9 +1165,9 @@
             this.groupBox6.Controls.Add(this.labUid);
             this.groupBox6.Controls.Add(this.labSwitchImTime);
             this.groupBox6.Controls.Add(this.pictureBox1);
-            this.groupBox6.Location = new System.Drawing.Point(8, 55);
+            this.groupBox6.Location = new System.Drawing.Point(137, 54);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(319, 225);
+            this.groupBox6.Size = new System.Drawing.Size(474, 222);
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "信息";
@@ -1240,7 +1176,7 @@
             // 
             this.labAssistant.AutoSize = true;
             this.labAssistant.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labAssistant.Location = new System.Drawing.Point(6, 182);
+            this.labAssistant.Location = new System.Drawing.Point(115, 187);
             this.labAssistant.Name = "labAssistant";
             this.labAssistant.Size = new System.Drawing.Size(47, 12);
             this.labAssistant.TabIndex = 19;
@@ -1250,7 +1186,7 @@
             // 
             this.labManger.AutoSize = true;
             this.labManger.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labManger.Location = new System.Drawing.Point(6, 140);
+            this.labManger.Location = new System.Drawing.Point(115, 145);
             this.labManger.Name = "labManger";
             this.labManger.Size = new System.Drawing.Size(35, 12);
             this.labManger.TabIndex = 18;
@@ -1270,7 +1206,7 @@
             // 
             this.labPostNum.AutoSize = true;
             this.labPostNum.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.labPostNum.Location = new System.Drawing.Point(187, 47);
+            this.labPostNum.Location = new System.Drawing.Point(251, 47);
             this.labPostNum.Name = "labPostNum";
             this.labPostNum.Size = new System.Drawing.Size(47, 12);
             this.labPostNum.TabIndex = 13;
@@ -1322,16 +1258,16 @@
             // 
             this.groupBox5.Controls.Add(this.button8);
             this.groupBox5.Controls.Add(this.textBox1);
-            this.groupBox5.Location = new System.Drawing.Point(6, 3);
+            this.groupBox5.Location = new System.Drawing.Point(135, 4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(321, 45);
+            this.groupBox5.Size = new System.Drawing.Size(476, 45);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ID";
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(242, 12);
+            this.button8.Location = new System.Drawing.Point(412, 11);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(58, 27);
             this.button8.TabIndex = 0;
@@ -1343,7 +1279,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(4, 15);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(232, 21);
+            this.textBox1.Size = new System.Drawing.Size(402, 21);
             this.textBox1.TabIndex = 1;
             // 
             // tabPage5
@@ -1622,6 +1558,16 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label23.Location = new System.Drawing.Point(251, 108);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(35, 12);
+            this.label23.TabIndex = 20;
+            this.label23.Text = "昵称:";
+            // 
             // TaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1655,8 +1601,6 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1732,14 +1676,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labAssistant;
         private System.Windows.Forms.Label labManger;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.LinkLabel linkLabel5;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private System.Windows.Forms.CheckBox ckpostnum;
@@ -1811,5 +1747,7 @@
         private System.Windows.Forms.CheckBox ckintro;
         private System.Windows.Forms.ColumnHeader columnHeader18;
         private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label23;
     }
 }

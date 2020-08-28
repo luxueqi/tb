@@ -726,7 +726,8 @@ namespace Tieba
                     return;
                 }
                 button8.Enabled = false;
-                idInfo = new ID(un);
+                bool isuid = un.StartsWith("uid:");
+                idInfo = new ID(un.Replace("uid:",""),isuid);
 
                 if (idInfo.error != string.Empty)
                 {
@@ -735,7 +736,7 @@ namespace Tieba
                     return;
                 }
 
-                listView2.Items.Clear();
+               // listView2.Items.Clear();
                 pictureBox1.ImageLocation = idInfo.image;
 
                 labAge.Text = "吧龄:" + idInfo.age;
@@ -750,6 +751,8 @@ namespace Tieba
 
                 labUid.Text = "UID:" + idInfo.uid;
 
+                label23.Text = "昵称:" + idInfo.nickname;
+
                 //labRegTime.Text = "注册时间:" + idInfo.regTime;
 
                 labSwitchImTime.Text = "头像更换:" + idInfo.switchImageTime;
@@ -763,73 +766,73 @@ namespace Tieba
             });
         }
 
-        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            listView2.Items.Clear();
-            if (textBox1.Text.Trim() == "") return;
-            linkLabel5.LinkVisited = true;
+        //private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //{
+        //    listView2.Items.Clear();
+        //    if (textBox1.Text.Trim() == "") return;
+        //    linkLabel5.LinkVisited = true;
 
-            ThreadPool.QueueUserWorkItem(o =>
-            {
+        //    ThreadPool.QueueUserWorkItem(o =>
+        //    {
 
-                if (idInfo == null)
-                {
-                    idInfo = new ID(textBox1.Text.Trim());
-                }
-                linkLabel5.Enabled = false;
-                List<Accention> lisAcc = idInfo.GetLikeTb();
-                if (idInfo.error != "")
-                {
-                    MessageBox.Show("获取错误:" + idInfo.error, "提示");
-                    linkLabel5.Enabled = true;
-                    return;
-                }
+        //        if (idInfo == null)
+        //        {
+        //            idInfo = new ID(textBox1.Text.Trim());
+        //        }
+        //        linkLabel5.Enabled = false;
+        //        List<Accention> lisAcc = idInfo.GetLikeTb();
+        //        if (idInfo.error != "")
+        //        {
+        //            MessageBox.Show("获取错误:" + idInfo.error, "提示");
+        //            linkLabel5.Enabled = true;
+        //            return;
+        //        }
 
-                foreach (Accention acc in lisAcc)
-                {
-                    ShowListLike(acc);
-                }
-                MessageBox.Show("获取完成", "提示");
-                linkLabel5.Enabled = true;
-            });
-        }
+        //        foreach (Accention acc in lisAcc)
+        //        {
+        //            ShowListLike(acc);
+        //        }
+        //        MessageBox.Show("获取完成", "提示");
+        //        linkLabel5.Enabled = true;
+        //    });
+        //}
 
-        private void ShowListLike(Accention acc)
-        {
+        //private void ShowListLike(Accention acc)
+        //{
 
-            Action<int> ac = (x) =>
-            {
+        //    Action<int> ac = (x) =>
+        //    {
 
-                ListViewItem lv = new ListViewItem();
-                lv.Text = (listView2.Items.Count + 1).ToString();
-                lv.SubItems.Add(acc.tbname);
-                lv.SubItems.Add(acc.level);
-                lv.SubItems.Add(acc.black);
-                lv.SubItems.Add(acc.intime);
-                    // lock (this)
-                    //{
-                    listView2.Items.Add(lv);
-                    //   }
-
-
-                };
-            Invoke(ac, 0);
+        //        ListViewItem lv = new ListViewItem();
+        //        lv.Text = (listView2.Items.Count + 1).ToString();
+        //        lv.SubItems.Add(acc.tbname);
+        //        lv.SubItems.Add(acc.level);
+        //        lv.SubItems.Add(acc.black);
+        //        lv.SubItems.Add(acc.intime);
+        //            // lock (this)
+        //            //{
+        //            listView2.Items.Add(lv);
+        //            //   }
 
 
-        }
-
-        private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            try
-            {
-                Process.Start(Conf.HTTP_URL +"/f?kw=" + listView2.SelectedItems[0].SubItems[1].Text);
-            }
-            catch (Exception)
-            {
+        //        };
+        //    Invoke(ac, 0);
 
 
-            }
-        }
+        //}
+
+        //private void listView2_MouseDoubleClick(object sender, MouseEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Process.Start(Conf.HTTP_URL +"/f?kw=" + listView2.SelectedItems[0].SubItems[1].Text);
+        //    }
+        //    catch (Exception)
+        //    {
+
+
+        //    }
+        //}
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -849,7 +852,9 @@ namespace Tieba
         {
             if (listView1.SelectedItems.Count > 0)
             {
-                textBox1.Text = listView1.SelectedItems[0].SubItems[1].Text;
+                string un = listView1.SelectedItems[0].SubItems[1].Text;
+
+                textBox1.Text = un.StartsWith("昵称:")?"uid:"+ listView1.SelectedItems[0].SubItems[8].Text:un;
             }
         }
 
@@ -1399,6 +1404,18 @@ namespace Tieba
         {
             Task.detilinfo = checkBox6.Checked;
         }
+
+       
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count>0)
+            {
+                textBox5.Text ="作者:"+ listView1.SelectedItems[0].SubItems[1].Text + "\r\n" + listView1.SelectedItems[0].SubItems[2].Text;
+            }
+        }
+
+
 
         //private void groupBox3_Enter(object sender, EventArgs e)
         //{

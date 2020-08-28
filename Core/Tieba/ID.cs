@@ -6,142 +6,209 @@ using System.Text.RegularExpressions;
 using System.Web;
 namespace Tieba
 {
-   public class ID
+    public class ID
     {
-       public string un;
+        public string un;
 
-       public string uid;
+        public string nickname;
 
-       public string age;
+        public string uid;
 
-       private List<Accention>  acction=new List<Accention>();
+        public string age;
 
-       public string postNum;
+        // private List<Accention>  acction=new List<Accention>();
 
-       //public string regTime;
+        public string postNum;
 
-       public bool isprivate;
+        //public string regTime;
 
-       //public string email;
+        public bool isprivate;
 
-       //public string phone;
+        //public string email;
 
-       public string image;
+        //public string phone;
 
-       public string switchImageTime;
+        public string image;
 
-       public string manger;
+        public string switchImageTime;
 
-       public string assist;
+        public string manger;
 
-       public string error;
+        public string assist;
 
-       public ID() { }
+        public string error;
 
-       public ID(string un)
-       {
-
-           this.un = un;
-           error = "";
-           GetIdInfo();
-       
-       }
+        public ID() { }
 
 
-       private void GetIdInfo()
-       {
+        private void un2info()
+        {
+            string url = "https://tieba.baidu.com/home/get/panel?ie=utf-8&un=" + un;
 
-           try
-           {
-               string url =Conf.HTTP_URL+ "/home/get/panel?ie=utf-8&un=" + un;
+            string res = HttpHelper.HttpGet(url, Encoding.UTF8);
 
-               string res =HttpHelper.HttpGet(url, Encoding.UTF8);
+            if (res.Contains("\"no\":1130023"))
+            {
+                this.error = "该用户不存在";
+                return;
+            }
 
-               if (res.Contains("\"no\":1130023"))
-               {
-                   this.error = "该用户不存在";
-                   return;
-               }
+            uid = new Regex(@"""id"":([^,]+)").Match(res).Groups[1].Value;
 
-               uid = new Regex(@"""id"":([^,]+)").Match(res).Groups[1].Value;
+            this.nickname =Regex.Unescape( HttpHelper.Jq(res, "name_show\":\"", "\""));
 
-               isprivate = res.Contains("is_private\":1");
+            isprivate = res.Contains("is_private\":1");
 
-               Match mc = new Regex(@"""portrait"":""([^""]+)"",""portrait_h"":""[^""]+"",""portrait_time"":([^,]+),""sex"":""\w+?"",""tb_age"":""?([^""]+)""?,""post_num"":""?([^,|""]+)").Match(res);
+            Match mc = new Regex(@"""portrait"":""([^""]+)"",""portrait_h"":""[^""]+"",""portrait_time"":([^,]+),""sex"":""\w+?"",""tb_age"":""?([^""]+)""?,""post_num"":""?([^,|""]+)").Match(res);
 
-               switchImageTime = mc.Groups[2].Value == "0" ? "" : Common.UnixTimeToStr(long.Parse(mc.Groups[2].Value));
+            switchImageTime = mc.Groups[2].Value == "0" ? "" : Common.UnixTimeToStr(long.Parse(mc.Groups[2].Value));
 
-               age =mc.Groups[3].Value;
+            age = mc.Groups[3].Value;
 
-               postNum =Regex.Unescape( mc.Groups[4].Value);
+            postNum = Regex.Unescape(mc.Groups[4].Value);
 
-               image = "http://himg.baidu.com/sys/portraitl/item/" + mc.Groups[1].Value+".jpg";
-
-               //string koupei = HttpHelper.HttpGet("http://koubei.baidu.com/home/" + uid, Encoding.UTF8);
-
-               //regTime =Common.UnixTimeToStr( long.Parse( HttpHelper.Jq(koupei, "regtime\":", ",")));
-
-               //email = HttpHelper.Jq(koupei, "secureemail\":\"", "\"");
-
-               //phone = HttpHelper.Jq(koupei, "securemobil\":\"", "\"");
-
-               
-               GetManger(@"forum_name"":""([^""]+)"",""forum_role"":""manager""");
-               GetManger(@"forum_name"":""([^""]+)"",""forum_role"":""assist""",1);
            
-           }
-           catch (Exception ee)
-           {
+            image = "http://himg.baidu.com/sys/portraitl/item/" + mc.Groups[1].Value + ".jpg";
 
-               this.error = ee.Message;
-           }
-       
-       
-       }
 
-       public List<Accention> GetLikeTb()
-       {
-           try
-           {
-               string res2 = HttpHelper.HttpGet(Conf.HTTP_URL+"/home/main/?ie=utf-8&un=" + un, Encoding.GetEncoding("GBK"));
+        }
 
-               MatchCollection mcs = new Regex(@"forum_name"":""([^""]+)"",""is_black"":(\d),""is_top"":\d,""in_time"":([^,]+),""level_id"":(\d{1,2}),").Matches(res2);
+        private void uid2info()
+        {
+            string data = "has_plist=1&is_owner=0&need_post_count=1&pn=1&rn=20&uid=" + uid;
 
-               foreach (Match item in mcs)
-               {
-                   acction.Add(new Accention(Regex.Unescape(item.Groups[1].Value), item.Groups[4].Value, item.Groups[2].Value, Common.UnixTimeToStr(long.Parse(item.Groups[3].Value))));
-               }
-           }
-           catch (Exception ee)
-           {
-               this.error = ee.Message;
-              
-           }
-          
+            data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");
 
-           return acction;
-       }
+            string res = HttpHelper.HttpPost(Conf.APP_URL + "/c/u/user/profile", data, null, null);
 
-       private void GetManger(string partten,int i=0)
-       {
-           error = "";
-           string re3 = Regex.Unescape(HttpHelper.HttpGet(Conf.HTTP_URL+"/pmc/tousu/getRole?manager_uname=" + HttpUtility.UrlEncode(HttpUtility.UrlEncode(un)), Encoding.UTF8, Common.user.cookie));
+            this.nickname =Regex.Unescape( HttpHelper.Jq(res, "name_show\":\"", "\""));
 
-           MatchCollection mcs = new Regex(partten).Matches(re3);
+            if (this.nickname==null)
+            {
+                this.error = "用户不存在";
+                return;
+            }
+            //tb.1.f893aca6.D8OahOVX4XlaFPmxWIDtCQ
+            string por = HttpHelper.Jq(res, "portrait\":\"", "\"");
+            this.image= "https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + por;
+            this.switchImageTime =por.Length==36?"": Common.UnixTimeToStr(long.Parse(por.Substring(39)));
+            this.age = HttpHelper.Jq(res, "tb_age\":\"", "\"");
+            this.postNum = HttpHelper.Jq(res, "post_num\":", ",");
+            
 
-           foreach (Match item in mcs)
-           {
-               if (i==0)
-               {
-                   manger += item.Groups[1].Value + " ";
-               }
-               else
-               {
-                   assist += item.Groups[1].Value + " ";
-               }
-               
-           }
-       }
+
+        }
+
+        public ID(string un, bool isuid = false)
+        {
+
+
+            error = "";
+
+            try
+            {
+                if (isuid)
+                {
+                    this.uid = un;
+                    uid2info();
+                }
+                else
+                {
+                    this.un = un;
+                    un2info();
+                }
+                GetManger();
+
+            }
+            catch (Exception ee)
+            {
+
+                this.error = ee.Message;
+            }
+
+
+        }
+
+
+        // private void GetIdInfo()
+        //{
+
+        //    try
+        //    {
+        //        //string koupei = HttpHelper.HttpGet("http://koubei.baidu.com/home/" + uid, Encoding.UTF8);
+
+        //        //regTime =Common.UnixTimeToStr( long.Parse( HttpHelper.Jq(koupei, "regtime\":", ",")));
+
+        //        //email = HttpHelper.Jq(koupei, "secureemail\":\"", "\"");
+
+        //        //phone = HttpHelper.Jq(koupei, "securemobil\":\"", "\"");
+
+
+        //       // GetManger(@"forum_name"":""([^""]+)"",""forum_role"":""manager""");
+        //        GetManger();
+
+        //    }
+        //    catch (Exception ee)
+        //    {
+
+        //        this.error = ee.Message;
+        //    }
+
+
+        //}
+
+        //public List<Accention> GetLikeTb()
+        //{
+        //    try
+        //    {
+        //        string res2 = HttpHelper.HttpGet(Conf.HTTP_URL+"/home/main/?ie=utf-8&un=" + un, Encoding.GetEncoding("GBK"));
+
+        //        MatchCollection mcs = new Regex(@"forum_name"":""([^""]+)"",""is_black"":(\d),""is_top"":\d,""in_time"":([^,]+),""level_id"":(\d{1,2}),").Matches(res2);
+
+        //        foreach (Match item in mcs)
+        //        {
+        //            acction.Add(new Accention(Regex.Unescape(item.Groups[1].Value), item.Groups[4].Value, item.Groups[2].Value, Common.UnixTimeToStr(long.Parse(item.Groups[3].Value))));
+        //        }
+        //    }
+        //    catch (Exception ee)
+        //    {
+        //        this.error = ee.Message;
+
+        //    }
+
+
+        //    return acction;
+        //}
+
+        private void GetManger()
+        {
+            error = "";
+            string re3 = Regex.Unescape(HttpHelper.HttpGet(Conf.HTTP_URL + "/pmc/tousu/getRole?manager_uname=" + HttpUtility.UrlEncode(HttpUtility.UrlEncode(un)), Encoding.UTF8, Common.user.cookie));
+
+            MatchCollection mcs = new Regex(@"forum_name"":""([^""]+)"",""forum_role"":""manager""").Matches(re3);
+
+            foreach (Match item in mcs)
+            {
+                //if (i==0)
+                //{
+                manger += item.Groups[1].Value + " ";
+                //}
+                //else
+                //{
+                //    assist += item.Groups[1].Value + " ";
+                //}
+
+            }
+            mcs = new Regex(@"forum_name"":""([^""]+)"",""forum_role"":""assist""").Matches(re3);
+
+            foreach (Match item in mcs)
+            {
+
+                assist += item.Groups[1].Value + " ";
+
+
+            }
+        }
     }
 
 }

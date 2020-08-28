@@ -20,7 +20,9 @@ namespace Tieba
        
         private void button1_Click(object sender, EventArgs e)
         {
-           // Common.members(1, "陆雪琪");
+            // Common.members(1, "陆雪琪");
+
+            //ID idl = new ID("1314527");
 
              string bduss = textBox1.Text.Trim();
 

@@ -288,7 +288,8 @@ namespace Tieba
                             {
                                 
                             }*/
-                            if (ncikname!=""&& ageNumMethod(info.Authors[i]))
+                            
+                            if (ageNumMethod(info.Uids[i]))
                             {
                                 templisttid.Add(info.Tids[i]);
                                 txtCallback(log.type + "--跳过,吧龄或发贴数不符合", Color.Red);
@@ -472,7 +473,7 @@ namespace Tieba
             ID id = null;
             if (mode.ispostnum)
             {
-                id = new ID(unq);
+                id = new ID(unq,true);
 
                 if (id.error != "")
                 {
@@ -482,17 +483,17 @@ namespace Tieba
                 else
                 {
                     double postnumq = 0;
-                    if (id.postNum.Contains("万"))
-                    {
-                        id.postNum = id.postNum.Replace("万", "");
+                    //if (id.postNum.Contains("万"))
+                    //{
+                    //    id.postNum = id.postNum.Replace("万", "");
 
-                        postnumq = double.Parse(id.postNum) * 10000;
+                    //    postnumq = double.Parse(id.postNum) * 10000;
 
-                    }
-                    else
-                    {
+                    //}
+                    //else
+                    //{
                         postnumq = double.Parse(id.postNum);
-                    }
+                  //  }
 
                     if (mode.postnum <= postnumq)
                     {
@@ -508,7 +509,7 @@ namespace Tieba
                 if (id == null)
                 {
 
-                    id = new ID(unq);
+                    id = new ID(unq,true);
                 }
 
 
@@ -957,7 +958,7 @@ namespace Tieba
                                
                             }*/
                             // flagB = true;
-                            if (!flagB&&nickname!=""&&ageNumMethod(nickname))
+                            if (!flagB&&ageNumMethod(restit.Uids[i]))
                             {
                                 templistpid.Add(restit.Pids[i]);
                                 txtCallback(log.type+"--跳过,吧龄或发贴数不符合", Color.Red);
