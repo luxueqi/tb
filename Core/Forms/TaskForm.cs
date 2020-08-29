@@ -753,9 +753,16 @@ namespace Tieba
 
                 label23.Text = "昵称:" + idInfo.nickname;
 
+                label17.Text = "用户名:" + idInfo.un;
+
                 //labRegTime.Text = "注册时间:" + idInfo.regTime;
 
                 labSwitchImTime.Text = "头像更换:" + idInfo.switchImageTime;
+
+                if(!string.IsNullOrEmpty(idInfo.un))
+                {
+                    idInfo.GetManger();
+                }  
 
                 labAssistant.Text = "小吧主:" + idInfo.assist;
 

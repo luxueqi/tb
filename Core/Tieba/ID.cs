@@ -88,6 +88,7 @@ namespace Tieba
                 return;
             }
             //tb.1.f893aca6.D8OahOVX4XlaFPmxWIDtCQ
+            this.un=HttpHelper.Jq(res, "\"name\":\"","\"");
             string por = HttpHelper.Jq(res, "portrait\":\"", "\"");
             this.image= "http://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + por;
             this.switchImageTime =por.Length==36?"": Common.UnixTimeToStr(long.Parse(por.Substring(39)));
@@ -116,7 +117,7 @@ namespace Tieba
                     this.un = un;
                     un2info();
                 }
-                GetManger();
+              //  GetManger();
 
             }
             catch (Exception ee)
@@ -179,7 +180,7 @@ namespace Tieba
         //    return acction;
         //}
 
-        private void GetManger()
+        public void GetManger()
         {
             error = "";
             string re3 = Regex.Unescape(HttpHelper.HttpGet(Conf.HTTP_URL + "/pmc/tousu/getRole?manager_uname=" + HttpUtility.UrlEncode(HttpUtility.UrlEncode(un)), Encoding.UTF8, Common.user.cookie));
