@@ -88,7 +88,7 @@ namespace Tieba
                 return;
             }
             //tb.1.f893aca6.D8OahOVX4XlaFPmxWIDtCQ
-            this.un=HttpHelper.Jq(res, "\"name\":\"","\"");
+            this.un=Regex.Unescape( HttpHelper.Jq(res, "\"name\":\"","\""));
             string por = HttpHelper.Jq(res, "portrait\":\"", "\"");
             this.image= "http://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + por;
             this.switchImageTime =por.Length==36?"": Common.UnixTimeToStr(long.Parse(por.Substring(39)));

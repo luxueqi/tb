@@ -6,9 +6,9 @@
 
         public const string HTTP_URL = "http://tieba.baidu.com";
 
-        public const string UPDATE_URL = "http://luxueqi.sinaapp.com";
+        public const string UPDATE_URL = "http://snowed.applinzi.com";
 
-        public const string strtime = "202008291";
+        public const string strtime = "20200912";
 
 
     }
