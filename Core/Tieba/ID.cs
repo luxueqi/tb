@@ -21,11 +21,12 @@ namespace Tieba
 
         //public string regTime;
 
-        public bool isprivate;
+        // public bool isprivate;
 
         //public string email;
 
         //public string phone;
+        public string idinfo;
 
         public string image;
 
@@ -39,7 +40,7 @@ namespace Tieba
 
         public ID() { }
 
-
+        /*
         private void un2info()
         {
             string url = "https://tieba.baidu.com/home/get/panel?ie=utf-8&un=" + un;
@@ -70,7 +71,7 @@ namespace Tieba
             image = "http://himg.baidu.com/sys/portraitl/item/" + mc.Groups[1].Value + ".jpg";
 
 
-        }
+        }*/
 
         private void uid2info()
         {
@@ -89,6 +90,7 @@ namespace Tieba
             }
             //tb.1.f893aca6.D8OahOVX4XlaFPmxWIDtCQ
             this.un=Regex.Unescape( HttpHelper.Jq(res, "\"name\":\"","\""));
+            this.idinfo= Regex.Unescape(HttpHelper.Jq(res, "\"intro\":\"", "\""));
             string por = HttpHelper.Jq(res, "portrait\":\"", "\"");
             this.image= "http://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + por;
             this.switchImageTime =por.Length==36?"": Common.UnixTimeToStr(long.Parse(por.Substring(39)));
@@ -110,13 +112,27 @@ namespace Tieba
                 if (isuid)
                 {
                     this.uid = un;
-                    uid2info();
+                   // uid2info();
                 }
                 else
                 {
                     this.un = un;
-                    un2info();
+
+                    string url = "https://tieba.baidu.com/home/get/panel?ie=utf-8&un=" + un;
+
+                    string res = HttpHelper.HttpGet(url, Encoding.UTF8);
+
+                    if (res.Contains("\"no\":1130023"))
+                    {
+                        this.error = "该用户不存在";
+                        return;
+                    }
+
+                    this.uid = new Regex(@"""id"":([^,]+)").Match(res).Groups[1].Value;
+                    //un2info();
                 }
+
+                uid2info();
               //  GetManger();
 
             }

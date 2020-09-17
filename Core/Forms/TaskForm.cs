@@ -747,7 +747,8 @@ namespace Tieba
 
                 labPostNum.Text = "发帖量:" + idInfo.postNum;
 
-                labPrivate.Text = "隐藏动态:" + (idInfo.isprivate ? "是" : "否");
+                //  labPrivate.Text = "隐藏动态:" + (idInfo.isprivate ? "是" : "否");
+                textBox6.Text = idInfo.idinfo;
 
                 labUid.Text = "UID:" + idInfo.uid;
 

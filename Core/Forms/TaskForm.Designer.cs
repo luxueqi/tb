@@ -155,6 +155,7 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -1146,6 +1147,7 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.textBox6);
             this.groupBox6.Controls.Add(this.label17);
             this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.labAssistant);
@@ -1209,9 +1211,9 @@
             this.labPrivate.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.labPrivate.Location = new System.Drawing.Point(115, 108);
             this.labPrivate.Name = "labPrivate";
-            this.labPrivate.Size = new System.Drawing.Size(59, 12);
+            this.labPrivate.Size = new System.Drawing.Size(35, 12);
             this.labPrivate.TabIndex = 17;
-            this.labPrivate.Text = "隐藏动态:";
+            this.labPrivate.Text = "简介:";
             // 
             // labPostNum
             // 
@@ -1569,6 +1571,14 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(156, 105);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(312, 21);
+            this.textBox6.TabIndex = 22;
+            // 
             // TaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1750,5 +1760,6 @@
         private System.Windows.Forms.Label labUid;
         private System.Windows.Forms.Label labSwitchImTime;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
