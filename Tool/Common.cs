@@ -282,6 +282,7 @@ namespace Tieba
 
         public static string uidtointro(string uid)
         {
+          
             string data = "has_plist=1&is_owner=0&need_post_count=1&pn=1&rn=20&uid=" + uid;
 
             data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");

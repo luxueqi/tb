@@ -112,7 +112,7 @@ namespace Tieba
                         {
                                 // tmp = "{0}-未匹配-{1}-{2}";
 
-                                if (boolck)
+                            if (boolck)
                             {
                                 tmpcon = title.Authors[i].Replace("昵称:", "");
                             }
@@ -124,7 +124,7 @@ namespace Tieba
                             if (par == "" || rg.IsMatch(tmpcon))
                             {
                                     // tmpcon = ;
-                                    textBox4.AppendText(String.Format("{0}-{1}-{2}", i + 1, title.Authors[i], title.Content[i]) + "\r\n\r\n");
+                                textBox4.AppendText(String.Format("{0}-{1}-{2}", i + 1, title.Authors[i], title.Content[i]) + "\r\n\r\n");
 
                             }
 

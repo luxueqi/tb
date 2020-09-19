@@ -819,6 +819,7 @@ namespace Tieba
                     maxpn = restit.maxPn;
                 }
                 //进入帖子
+              
                 for (int i = 0; i < restit.Authors.Count; i++)
                 {
                    

@@ -53,7 +53,7 @@ namespace Tieba
             title = Regex.Unescape(title);
             maxPn = int.Parse(HttpHelper.Jq(res, "\"total_page\":\"", "\""));
 
-            MatchCollection mcs = new Regex(@"""id"":""([^""]+)"",""title"".+?content"":\[(.+?)\],""lbs_info"".+?author"":\{""id"":""([^""]+)"",""name"":""([^""]*)"",""name_show"":""([^""]+)"".+?level_id"":""([^""]+)""").Matches(res);
+            MatchCollection mcs = new Regex(@"""id"":""([^""]+)"",""title"".+?content"":\[(.*?)\],""lbs_info"".+?author"":\{""id"":""([^""]+)"",""name"":""([^""]*)"",""name_show"":""([^""]+)"".+?level_id"":""([^""]+)""").Matches(res);
 
             for (int i = 0; i < mcs.Count; i++)
             {
