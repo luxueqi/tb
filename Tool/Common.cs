@@ -121,7 +121,7 @@ namespace Tieba
             {
                 fid = Fid;
             }
-            string postdata = "day="+day+"&fid="+fid+"&tbs="+user.tbs+"&ie=gbk&user_name[]=&nick_name[]=&pid[]=1&portrait[]="+portrait+"&reason="+reason;
+            string postdata = "day="+day+"&fid="+fid+"&tbs="+user.tbs+ "&ie=gbk&user_name[]=&nick_name[]=&pid[]=1&portrait[]=" + portrait+"&reason="+reason;
 
             string res = Regex.Unescape(HttpHelper.HttpPost(Conf.HTTP_URL + "/pmc/blockid", postdata, user.cookie, null));
 

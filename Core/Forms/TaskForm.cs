@@ -153,7 +153,7 @@ namespace Tieba
 
                 mangertb.SelectedIndex = 0;
 
-                ckmode.SelectedIndex = 0;
+                ckmode.SelectedIndex =1;
 
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
@@ -196,9 +196,9 @@ namespace Tieba
             txtreason.Text = mode.reason;
             ckmode.Text = mode.mode;
             txtpn.Text = mode.pn.ToString();
-            txtage.Text = mode.tbage.ToString();
+            //txtage.Text = mode.tbage.ToString();
             txtpostnum.Text = mode.postnum.ToString();
-            cktbage.Checked = mode.istbage;
+            //cktbage.Checked = mode.istbage;
             ckpostnum.Checked = mode.ispostnum;
             ckimg.Checked = mode.isimghash;
             ckblackname.Checked = mode.isblackname;
@@ -301,7 +301,7 @@ namespace Tieba
             mode.isintro = ckintro.Checked;
             mode.isblock = ckblock.Checked;
             mode.isblackname = ckblackname.Checked;
-            mode.istbage = cktbage.Checked;
+           // mode.istbage = cktbage.Checked;
             mode.ispostnum = ckpostnum.Checked;
             mode.islz = cklz.Checked;
             mode.islevel = cklevel.Checked;
@@ -328,7 +328,7 @@ namespace Tieba
             mode.sctime = int.Parse(txtscday.Text);
             mode.postnum = int.Parse(txtpostnum.Text);
             mode.pn = int.Parse(txtpn.Text);
-            mode.tbage = double.Parse(txtage.Text);
+            //mode.tbage = double.Parse(txtage.Text);
             mode.mode = ckmode.Text;
             mode.mangertb = mangertb.Text;
             mode.reason = txtreason.Text;
@@ -701,9 +701,18 @@ namespace Tieba
 
         private void txtPn_TextChanged(object sender, EventArgs e)
         {
-            int pn = int.Parse(txtpn.Text.Trim());
-            pn = pn <= 1 ? 1 : pn;
-            txtpn.Text = pn.ToString();
+            try
+            {
+                int pn = int.Parse(txtpn.Text.Trim());
+                pn = pn <= 1 ? 1 : pn;
+                txtpn.Text = pn.ToString();
+            }
+            catch (Exception)
+            {
+
+               
+            }
+           
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -921,17 +930,17 @@ namespace Tieba
 
         //}
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cktbage.Checked)
-            {
-                txtage.Enabled = true;
-            }
-            else
-            {
-                txtage.Enabled = false;
-            }
-        }
+        //private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (cktbage.Checked)
+        //    {
+        //        txtage.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        txtage.Enabled = false;
+        //    }
+        //}
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -946,15 +955,15 @@ namespace Tieba
             }
         }
 
-        private void txtage_TextChanged(object sender, EventArgs e)
-        {
-            double res = 0;
-            if (!double.TryParse(txtage.Text.Trim(), out res))
-            {
+        //private void txtage_TextChanged(object sender, EventArgs e)
+        //{
+        //    double res = 0;
+        //    if (!double.TryParse(txtage.Text.Trim(), out res))
+        //    {
 
-                txtage.Text = "1";
-            }
-        }
+        //        txtage.Text = "1";
+        //    }
+        //}
 
         //private void button10_Click(object sender, EventArgs e)
         //{
@@ -1353,7 +1362,7 @@ namespace Tieba
             }
             fr.tbname = textBox2.Text.Trim();
             fr.day = int.Parse(txtblockday.Text.Trim());
-            fr.breson = txtreason.Text.Trim();
+            fr.breson =String.IsNullOrWhiteSpace(txtreason.Text.Trim())?"xh" : txtreason.Text.Trim(); ;
             if (fr.tbname == "")
             {
                 MessageBox.Show("吧名不能为空");

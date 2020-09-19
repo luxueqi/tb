@@ -46,7 +46,7 @@ namespace Tieba
             catch (Exception ee)
             {
 
-                MessageBox.Show(ee.Message.Replace("luxueqi","").Replace("sinaapp.com",""));
+                MessageBox.Show(ee.Message.Replace("applinzi.com", ""));
             }
             
             

@@ -504,29 +504,29 @@ namespace Tieba
             }
 
 
-            if (mode.istbage)
-            {
-                if (id == null)
-                {
+            //if (mode.istbage)
+            //{
+            //    if (id == null)
+            //    {
 
-                    id = new ID(unq,true);
-                }
+            //        id = new ID(unq,true);
+            //    }
 
 
-                if (id.error != "")
-                {
-                    txtCallback("跳过-->id获取错误-" + id.error, Color.Black);
-                    return true;
-                }
-                else
-                {
-                    if (mode.tbage <= double.Parse(id.age))
-                    {
-                        txtCallback("跳过-->大于设定吧龄-" + id.age, Color.Black);
-                        return true;
-                    }
-                }
-            }
+            //    if (id.error != "")
+            //    {
+            //        txtCallback("跳过-->id获取错误-" + id.error, Color.Black);
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        if (mode.tbage <= double.Parse(id.age))
+            //        {
+            //            txtCallback("跳过-->大于设定吧龄-" + id.age, Color.Black);
+            //            return true;
+            //        }
+            //    }
+            //}
 
             return false;
         }

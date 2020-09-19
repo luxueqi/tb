@@ -77,14 +77,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ckintro = new System.Windows.Forms.CheckBox();
             this.cklz = new System.Windows.Forms.CheckBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.ckblackname = new System.Windows.Forms.CheckBox();
             this.ckpostnum = new System.Windows.Forms.CheckBox();
             this.txtpostnum = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.cktbage = new System.Windows.Forms.CheckBox();
-            this.txtage = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtpn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtreason = new System.Windows.Forms.TextBox();
@@ -119,6 +115,7 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.labAssistant = new System.Windows.Forms.Label();
@@ -155,7 +152,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -677,14 +673,10 @@
             // 
             this.groupBox1.Controls.Add(this.ckintro);
             this.groupBox1.Controls.Add(this.cklz);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.ckblackname);
             this.groupBox1.Controls.Add(this.ckpostnum);
             this.groupBox1.Controls.Add(this.txtpostnum);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.cktbage);
-            this.groupBox1.Controls.Add(this.txtage);
-            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtpn);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtreason);
@@ -725,15 +717,6 @@
             this.cklz.TabIndex = 27;
             this.cklz.Text = "违规用户=楼主(删主题)";
             this.cklz.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(213, 168);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(29, 12);
-            this.label13.TabIndex = 26;
-            this.label13.Text = "(年)";
             // 
             // ckblackname
             // 
@@ -780,42 +763,6 @@
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 21;
             this.label8.Text = "发帖数量";
-            // 
-            // cktbage
-            // 
-            this.cktbage.AutoSize = true;
-            this.cktbage.ForeColor = System.Drawing.Color.MediumBlue;
-            this.cktbage.Location = new System.Drawing.Point(137, 166);
-            this.cktbage.Name = "cktbage";
-            this.cktbage.Size = new System.Drawing.Size(72, 16);
-            this.cktbage.TabIndex = 20;
-            this.cktbage.Text = "启用吧龄";
-            this.cktbage.UseVisualStyleBackColor = true;
-            this.cktbage.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
-            // txtage
-            // 
-            this.txtage.Enabled = false;
-            this.txtage.ImeMode = System.Windows.Forms.ImeMode.Alpha;
-            this.txtage.Location = new System.Drawing.Point(79, 164);
-            this.txtage.MaxLength = 4;
-            this.txtage.Name = "txtage";
-            this.txtage.ShortcutsEnabled = false;
-            this.txtage.Size = new System.Drawing.Size(42, 21);
-            this.txtage.TabIndex = 19;
-            this.txtage.Text = "0.8";
-            this.txtage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtage.TextChanged += new System.EventHandler(this.txtage_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label9.Location = new System.Drawing.Point(20, 167);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 12);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "限制吧龄";
             // 
             // txtpn
             // 
@@ -875,7 +822,7 @@
             this.cklevel.Checked = true;
             this.cklevel.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cklevel.ForeColor = System.Drawing.Color.MediumBlue;
-            this.cklevel.Location = new System.Drawing.Point(137, 131);
+            this.cklevel.Location = new System.Drawing.Point(137, 146);
             this.cklevel.Name = "cklevel";
             this.cklevel.Size = new System.Drawing.Size(72, 16);
             this.cklevel.TabIndex = 8;
@@ -886,7 +833,7 @@
             // txtlevel
             // 
             this.txtlevel.ImeMode = System.Windows.Forms.ImeMode.Alpha;
-            this.txtlevel.Location = new System.Drawing.Point(79, 129);
+            this.txtlevel.Location = new System.Drawing.Point(79, 144);
             this.txtlevel.MaxLength = 2;
             this.txtlevel.Name = "txtlevel";
             this.txtlevel.ShortcutsEnabled = false;
@@ -901,7 +848,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label3.Location = new System.Drawing.Point(20, 132);
+            this.label3.Location = new System.Drawing.Point(20, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 6;
@@ -1164,6 +1111,14 @@
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "信息";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(156, 105);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(312, 21);
+            this.textBox6.TabIndex = 22;
             // 
             // label17
             // 
@@ -1571,14 +1526,6 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(156, 105);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(312, 21);
-            this.textBox6.TabIndex = 22;
-            // 
             // TaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1683,12 +1630,8 @@
         private System.Windows.Forms.CheckBox ckpostnum;
         private System.Windows.Forms.TextBox txtpostnum;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox cktbage;
-        private System.Windows.Forms.TextBox txtage;
-        private System.Windows.Forms.Label label9;
         //private System.Windows.Forms.Button button11;
         private System.Windows.Forms.CheckBox ckblackname;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.NumericUpDown numericUpDown4;

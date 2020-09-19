@@ -12,7 +12,7 @@ namespace Tieba
 
         public bool isblackname{ set; get; }
 
-        public bool istbage{ set; get; }
+       // public bool istbage{ set; get; }
 
         public bool ispostnum { set; get; }
 
