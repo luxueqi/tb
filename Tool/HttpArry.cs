@@ -130,9 +130,9 @@ namespace BaiduHelper
                 }
 
                 req.KeepAlive = false;                       //防止链接中断无响应
-                req.ProtocolVersion = HttpVersion.Version10;
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
-             req.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
+              //req.ProtocolVersion = HttpVersion.Version10;
+                ServicePointManager.SecurityProtocol =  SecurityProtocolType.Ssl3;
+                req.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
                 req.AllowAutoRedirect = false;
                 res = (HttpWebResponse)req.GetResponse();
                 //res.GetResponseStream().ReadTimeout = 3000;
@@ -209,8 +209,8 @@ namespace BaiduHelper
             req.Proxy = pro;
             req.Timeout = 9000;
             req.KeepAlive = false;                       //防止链接中断无响应
-            req.ProtocolVersion = HttpVersion.Version10;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
+          //eq.ProtocolVersion = HttpVersion.Version10;
+           // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
             req.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
