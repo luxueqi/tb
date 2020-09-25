@@ -11,18 +11,12 @@ namespace Tieba
     class Common
     {
         public static User user;
-        public static int ConTime(string time,DateTime dt2)
+        public static double ConTime(string time, DateTime dt2)
         {
             //  DateTime dt = Convert.ToDateTime(long.Parse(time));
 
             DateTime st = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            DateTime dt = st.AddSeconds(long.Parse(time));
-
-            TimeSpan ts = dt.Subtract(dt2);// DateTime.UtcNow.Subtract(dt);
-
-            return ts.Seconds;
-
-           // return (int)Math.Round(ts.TotalMinutes);
+            return st.AddSeconds(long.Parse(time)).Subtract(dt2).TotalSeconds;
 
         }
         public static string Kw;
@@ -44,7 +38,7 @@ namespace Tieba
         public static string[] MangerTb()
         {
 
-            string res = HttpHelper.HttpGet(Conf.HTTP_URL+"/pmc/tousu/getRole?manager_uname=" + user.un, Encoding.UTF8, user.cookie);
+            string res = HttpHelper.HttpGet(Conf.HTTP_URL + "/pmc/tousu/getRole?manager_uname=" + user.un, Encoding.UTF8, user.cookie);
 
             return HttpHelper.P_jq(Regex.Unescape(res), "forum_name\":\"", "\"");
 
@@ -80,7 +74,7 @@ namespace Tieba
             return default(T);
         }
 
-        public static string Block(string blockname,string uid_portrait, int day, string reason, string kw = "", string fid = "")
+        public static string Block(string blockname, string uid_portrait, int day, string reason, string kw = "", string fid = "")
         {
             if (kw == "" && fid == "")
             {
@@ -88,7 +82,7 @@ namespace Tieba
                 fid = Fid;
             }
             string portrait = "";
-            if(string.IsNullOrEmpty(blockname))
+            if (string.IsNullOrEmpty(blockname))
             {
                 if (new Regex(@"^\d{1,}$").IsMatch(uid_portrait))
                 {
@@ -97,41 +91,42 @@ namespace Tieba
                 else if (new Regex(@"^p:[0-9a-f]{8,}$").IsMatch(uid_portrait))
                 {
                     portrait = uid_portrait.Substring(2);
-                   
-                }else
+
+                }
+                else
                 {
                     throw new Exception("请输入一个合法的uid or portrait");
                 }
-               
+
             }
-            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&day=" + day + "&fid=" + fid + "&ntn=banid&portrait="+portrait+"&post_id=1&reason=" + reason + "&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=1";
+            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&day=" + day + "&fid=" + fid + "&ntn=banid&portrait=" + portrait + "&post_id=1&reason=" + reason + "&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=1";
 
             postdata = postdata + "&sign=" + HttpHelper.GetMD5HashFromFile(postdata.Replace("&", "") + "tiebaclient!!!");
 
-            string res = Regex.Unescape(HttpHelper.HttpPost(Conf.APP_URL+"/c/c/bawu/commitprison", postdata, user.cookie, null));
+            string res = Regex.Unescape(HttpHelper.HttpPost(Conf.APP_URL + "/c/c/bawu/commitprison", postdata, user.cookie, null));
 
             if (res.Contains("error_code\":\"0\"") && res.Contains("\"un\":\""))
             {
                 return "封禁成功";
             }
-            return "失败: "+HttpHelper.Jq(res, "error_msg\":\"", "\"");
+            return "失败: " + HttpHelper.Jq(res, "error_msg\":\"", "\"");
         }
 
         public static string wyblock(string portrait, int day, string reason, string fid = "")
         {
-            if ( fid == "")
+            if (fid == "")
             {
                 fid = Fid;
             }
-            string postdata = "day="+day+"&fid="+fid+"&tbs="+user.tbs+ "&ie=gbk&user_name[]=&nick_name[]=&pid[]=1&portrait[]=" + portrait+"&reason="+reason;
+            string postdata = "day=" + day + "&fid=" + fid + "&tbs=" + user.tbs + "&ie=gbk&user_name[]=&nick_name[]=&pid[]=1&portrait[]=" + portrait + "&reason=" + reason;
 
             string res = Regex.Unescape(HttpHelper.HttpPost(Conf.HTTP_URL + "/pmc/blockid", postdata, user.cookie, null));
 
-            if(res.Contains("errno\":0,"))
+            if (res.Contains("errno\":0,"))
             {
                 return "封禁成功";
             }
-           
+
 
             return "失败: " + HttpHelper.Jq(res, "errmsg\":\"", "\"");
         }
@@ -139,7 +134,7 @@ namespace Tieba
         public static string uid2portrait(string uid)
         {
             string portra = "";
-            string uidi =long.Parse(uid).ToString("x").PadLeft(8, '0');
+            string uidi = long.Parse(uid).ToString("x").PadLeft(8, '0');
             for (int i = 6; i >= 0; i -= 2)
             {
                 portra += uidi.Substring(i, 2);
@@ -170,7 +165,7 @@ namespace Tieba
             }
             string postdata = "ie=utf-8&fid=" + fid + "&tbs=" + user.tbs + "&tid=" + tids + "&kw=" + kw + "&isBan=0";
 
-            string res = HttpHelper.HttpPost(Conf.HTTP_URL+"/f/commit/thread/batchDelete", postdata, user.cookie, null);
+            string res = HttpHelper.HttpPost(Conf.HTTP_URL + "/f/commit/thread/batchDelete", postdata, user.cookie, null);
             res = HttpHelper.Jq(res, "err_code\":", ",");
             if (res == "0")
             {
@@ -197,7 +192,7 @@ namespace Tieba
             }
             string postdata = "fid=" + fid + "&tbs=" + user.tbs + "&ie=utf-8&is_finf=false&is_vipdel=0&kw=" + kw + "&pid=" + pid + "&tid=" + tid + "&commit_fr=pb";
 
-            string res = HttpHelper.HttpPost(Conf.HTTP_URL+"/f/commit/post/delete", postdata, user.cookie, null);
+            string res = HttpHelper.HttpPost(Conf.HTTP_URL + "/f/commit/post/delete", postdata, user.cookie, null);
             res = HttpHelper.Jq(res, "err_code\":", ",");
             if (res == "0")
             {
@@ -265,7 +260,7 @@ namespace Tieba
 
             string postData = "tbs=" + user.tbs + "&usn=" + name + "&ie=gbk&fid=" + fid + "&fname=" + kw;
 
-            string result = HttpHelper.HttpPost(Conf.HTTP_URL+"/f/like/commit/black/add", postData, user.cookie, null);
+            string result = HttpHelper.HttpPost(Conf.HTTP_URL + "/f/like/commit/black/add", postData, user.cookie, null);
             if (result.Length > 4)
             {
                 result = HttpHelper.Jq(result, "\"no\":", ",");
@@ -284,12 +279,12 @@ namespace Tieba
 
         public static string uidtointro(string uid)
         {
-          
+
             string data = "has_plist=1&is_owner=0&need_post_count=1&pn=1&rn=20&uid=" + uid;
 
             data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");
 
-            string res = HttpHelper.HttpPost(Conf.APP_URL+"/c/u/user/profile", data, null, null);
+            string res = HttpHelper.HttpPost(Conf.APP_URL + "/c/u/user/profile", data, null, null);
 
             return Regex.Unescape(HttpHelper.Jq(res, "\"intro\":\"", "\""));
         }
@@ -297,7 +292,7 @@ namespace Tieba
         public static List<Pluser> members(int page, string kw)
         {
             //http://tieba.baidu.com/bawu2/platform/listMemberInfo?word=%E9%99%86%E9%9B%AA%E7%90%AA&ie=utf-8
-            string url =Conf.HTTP_URL+ "/bawu2/platform/listMemberInfo?ie=utf-8&word=" + kw + "&pn=" + page;
+            string url = Conf.HTTP_URL + "/bawu2/platform/listMemberInfo?ie=utf-8&word=" + kw + "&pn=" + page;
 
             string res = HttpHelper.HttpGet(url, Encoding.GetEncoding("GBK"), null, false, true);
 
@@ -322,11 +317,11 @@ namespace Tieba
         {
             //List<string[]> listc = new List<string[]>();
 
-            string data = "_client_id=wappc_1568832181855_350&_client_type=2&_client_version=5.2.2&_phone_imei=fbce298035372371ff25decc0951c03&from=tieba&kw=" + kw+"&pn=1&q_type=2&rn=30&with_group=1";
+            string data = "_client_id=wappc_1568832181855_350&_client_type=2&_client_version=5.2.2&_phone_imei=fbce298035372371ff25decc0951c03&from=tieba&kw=" + kw + "&pn=1&q_type=2&rn=30&with_group=1";
 
             data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");
 
-            string res = HttpHelper.HttpPost(Conf.APP_URL+"/c/f/frs/page", data, null, null);
+            string res = HttpHelper.HttpPost(Conf.APP_URL + "/c/f/frs/page", data, null, null);
 
             return res;
         }

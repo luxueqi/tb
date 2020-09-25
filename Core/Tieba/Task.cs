@@ -885,7 +885,9 @@ namespace Tieba
 
                             if (ctconwitebool) { if (Task.detilinfo) txtCallback("跳过-->信任内容-" + outpikey, Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
 
-                            if (mode.istime && Common.ConTime(restit.Times[i], mode.dt) < 0) ;
+                           
+
+                            if (mode.istime && Common.ConTime(restit.Times[i], mode.dt) < 0) 
                             {
                                 templistpid.Add(restit.Pids[i]);
                                 if (Task.detilinfo) txtCallback("跳过-->该回复时间为" + Common.UnixTimeToStr(long.Parse(restit.Times[i])) + ",小于设定时间" + mode.dt.ToString("yyyy-MM-dd HH:mm:ss"),Color.Blue);
