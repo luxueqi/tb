@@ -885,7 +885,12 @@ namespace Tieba
 
                             if (ctconwitebool) { if (Task.detilinfo) txtCallback("跳过-->信任内容-" + outpikey, Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
 
-                            
+                            if (mode.istime && Common.ConTime(restit.Times[i], mode.dt) < 0) ;
+                            {
+                                templistpid.Add(restit.Pids[i]);
+                                if (Task.detilinfo) txtCallback("跳过-->该回复时间为" + Common.UnixTimeToStr(long.Parse(restit.Times[i])) + ",小于设定时间" + mode.dt.ToString("yyyy-MM-dd HH:mm:ss"),Color.Blue);
+                                continue;
+                            }
 
 
                             string flev = restit.Level[i] == "" ? "0" : restit.Level[i];
@@ -893,7 +898,7 @@ namespace Tieba
                             if (mode.islevel && int.Parse(flev) > mode.level)
                             {
                                 templistpid.Add(restit.Pids[i]);
-                                if (Task.detilinfo) txtCallback("跳过-->该用户等级为" + restit.Level[i] + ",大于设定等级" + mode.level, Color.Black);
+                                if (Task.detilinfo) txtCallback("跳过-->该用户等级为" + restit.Level[i] + ",大于设定等级" + mode.level, Color.Blue);
                                 continue;
                             }
 

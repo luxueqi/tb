@@ -14,7 +14,7 @@ namespace Tieba
 
         public List<string> lcid = new List<string>();
 
-       // public List<string> ltime = new List<string>();
+        public List<string> ltime = new List<string>();
 
         public List<string> lcontent = new List<string>();
 
@@ -51,8 +51,8 @@ namespace Tieba
                 html = Regex.Replace(html, "<a.*?href=[^>]+?>([^<]+?)</a>", "$1", RegexOptions.IgnoreCase);
                 // html = Regex.Replace(html, @"<img.*?src=\\""?(.*?)\\""?[^>]+?>", "$1", RegexOptions.IgnoreCase);
 
-                //  Regex rg = new Regex(@"post_id"":""(\d{1,12})"",""comment_id"":""(\d{1,12})"",""username"":""([^""]*)"",""user_id"":([^,]+),""now_time"":[^,]+,""content"":""(.*?)"",");
-              Regex rg=  new Regex(@"post_id"":(\d{1,12}),""content"":""(.*?)"",""username"":""([^""]*)"",""now_time"":[^,]+,""user_id"":([^,]+),.+?""comment_id"":(\d{1,12})");
+                // 6945808321 Regex rg = new Regex(@"post_id"":""(\d{1,12})"",""comment_id"":""(\d{1,12})"",""username"":""([^""]*)"",""user_id"":([^,]+),""now_time"":[^,]+,""content"":""(.*?)"",");
+                Regex rg =  new Regex(@"post_id"":(\d{1,12}),""content"":""(.*?)"",""username"":""([^""]*)"",""now_time"":([^,]+),""user_id"":([^,]+),.+?""comment_id"":(\d{1,12})");
                 //http://tb.himg.baidu.com/sys/portrait/item/
 
                 // lhimg.AddRange(HttpHelper.P_jq(html, "\"portrait\":\"", "\""));
@@ -65,16 +65,16 @@ namespace Tieba
                     if (un == "")
                     {
                         
-                       un = "昵称:"+new Regex(String.Format("\"{0}\":.*?\"user_nickname\":\"([^ \"]+)\"", item.Groups[4].Value)).Match(html).Groups[1].Value;
+                       un = "昵称:"+new Regex(String.Format("\"{0}\":.*?\"user_nickname\":\"([^ \"]+)\"", item.Groups[5].Value)).Match(html).Groups[1].Value;
 
                     }
                     lun.Add(Regex.Unescape( un));
                     llevel.Add("0");
-                    lcid.Add(item.Groups[5].Value);
-                    luid.Add(item.Groups[4].Value);
+                    lcid.Add(item.Groups[6].Value);
+                    luid.Add(item.Groups[5].Value);
                     //string par = "portrait\":\"([^\"]+)\",\"nickname\":\""+ item.Groups[3].Value.Replace("\\","\\\\");
                    //lhimg.Add("http://tb.himg.baidu.com/sys/portrait/item/"+new Regex("portrait\":\"([^\"]+?)\",\"nickname\":\"" + item.Groups[3].Value.Replace("\\u","\\\\u")).Match(html).Groups[1].Value);
-                   // ltime.Add(GetTime(item.Groups[4].Value).Replace('/','-'));
+                   ltime.Add(item.Groups[4].Value);
                    // string ssss = item.Groups[5].Value;
                     lcontent.Add(Regex.Unescape(item.Groups[2].Value));
 

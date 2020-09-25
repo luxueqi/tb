@@ -152,6 +152,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -671,6 +673,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox7);
+            this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.ckintro);
             this.groupBox1.Controls.Add(this.cklz);
             this.groupBox1.Controls.Add(this.ckblackname);
@@ -732,7 +736,7 @@
             // 
             this.ckpostnum.AutoSize = true;
             this.ckpostnum.ForeColor = System.Drawing.Color.MediumBlue;
-            this.ckpostnum.Location = new System.Drawing.Point(137, 199);
+            this.ckpostnum.Location = new System.Drawing.Point(137, 166);
             this.ckpostnum.Name = "ckpostnum";
             this.ckpostnum.Size = new System.Drawing.Size(72, 16);
             this.ckpostnum.TabIndex = 23;
@@ -744,7 +748,7 @@
             // 
             this.txtpostnum.Enabled = false;
             this.txtpostnum.ImeMode = System.Windows.Forms.ImeMode.Alpha;
-            this.txtpostnum.Location = new System.Drawing.Point(79, 197);
+            this.txtpostnum.Location = new System.Drawing.Point(79, 164);
             this.txtpostnum.MaxLength = 100;
             this.txtpostnum.Name = "txtpostnum";
             this.txtpostnum.ShortcutsEnabled = false;
@@ -758,7 +762,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label8.Location = new System.Drawing.Point(20, 200);
+            this.label8.Location = new System.Drawing.Point(20, 167);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 21;
@@ -822,7 +826,7 @@
             this.cklevel.Checked = true;
             this.cklevel.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cklevel.ForeColor = System.Drawing.Color.MediumBlue;
-            this.cklevel.Location = new System.Drawing.Point(137, 146);
+            this.cklevel.Location = new System.Drawing.Point(137, 128);
             this.cklevel.Name = "cklevel";
             this.cklevel.Size = new System.Drawing.Size(72, 16);
             this.cklevel.TabIndex = 8;
@@ -833,7 +837,7 @@
             // txtlevel
             // 
             this.txtlevel.ImeMode = System.Windows.Forms.ImeMode.Alpha;
-            this.txtlevel.Location = new System.Drawing.Point(79, 144);
+            this.txtlevel.Location = new System.Drawing.Point(79, 126);
             this.txtlevel.MaxLength = 2;
             this.txtlevel.Name = "txtlevel";
             this.txtlevel.ShortcutsEnabled = false;
@@ -848,7 +852,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.MediumBlue;
-            this.label3.Location = new System.Drawing.Point(20, 147);
+            this.label3.Location = new System.Drawing.Point(20, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 6;
@@ -1526,6 +1530,25 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(22, 191);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(154, 21);
+            this.dateTimePicker1.TabIndex = 29;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.ForeColor = System.Drawing.Color.MediumBlue;
+            this.checkBox7.Location = new System.Drawing.Point(191, 191);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(72, 16);
+            this.checkBox7.TabIndex = 30;
+            this.checkBox7.Text = "启用时间";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
             // TaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1704,5 +1727,7 @@
         private System.Windows.Forms.Label labSwitchImTime;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.CheckBox checkBox7;
     }
 }

@@ -13,7 +13,7 @@ namespace Tieba
 
         public List<string> Content = new List<string>();
 
-        // public List<string> Times = new List<string>();
+        public List<string> Times = new List<string>();
 
         public List<string> Authors = new List<string>();
 
@@ -53,16 +53,17 @@ namespace Tieba
             title = Regex.Unescape(title);
             maxPn = int.Parse(HttpHelper.Jq(res, "\"total_page\":\"", "\""));
 
-            MatchCollection mcs = new Regex(@"""id"":""([^""]+)"",""title"".+?content"":\[(.*?)\],""lbs_info"".+?author"":\{""id"":""([^""]+)"",""name"":""([^""]*)"",""name_show"":""([^""]+)"".+?level_id"":""([^""]+)""").Matches(res);
+            MatchCollection mcs = new Regex(@"""id"":""([^""]+)"",""title"".+?""time"":""(\d+)"",""content"":\[(.*?)\],""lbs_info"".+?author"":\{""id"":""([^""]+)"",""name"":""([^""]*)"",""name_show"":""([^""]+)"".+?level_id"":""([^""]+)""").Matches(res);
 
             for (int i = 0; i < mcs.Count; i++)
             {
                 Pids.Add(mcs[i].Groups[1].Value);
-                Content.Add(Regex.Unescape(mcs[i].Groups[2].Value));
-                Uids.Add(mcs[i].Groups[3].Value);
-                Authors.Add(Regex.Unescape(mcs[i].Groups[4].Value == "" ? "昵称:" + mcs[i].Groups[5].Value : mcs[i].Groups[4].Value));
+                Times.Add(mcs[i].Groups[2].Value);
+                Content.Add(Regex.Unescape(mcs[i].Groups[3].Value));
+                Uids.Add(mcs[i].Groups[4].Value);
+                Authors.Add(Regex.Unescape(mcs[i].Groups[5].Value == "" ? "昵称:" + mcs[i].Groups[6].Value : mcs[i].Groups[5].Value));
                 // Himgs.Add("https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + mcs[i].Groups[5].Value);
-                Level.Add(mcs[i].Groups[6].Value);
+                Level.Add(mcs[i].Groups[7].Value);
 
             }
 
@@ -96,7 +97,7 @@ namespace Tieba
                     Content.AddRange(lcid.lcontent);
                     Authors.AddRange(lcid.lun);
                     Pids.AddRange(lcid.lcid);
-                    //Times.AddRange(lcid.ltime);
+                    Times.AddRange(lcid.ltime);
                     Level.AddRange(lcid.llevel);
                     //Himgs.AddRange(lcid.lhimg);
                     Uids.AddRange(lcid.luid);

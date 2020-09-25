@@ -124,7 +124,7 @@ namespace Tieba
                             if (par == "" || rg.IsMatch(tmpcon))
                             {
                                     // tmpcon = ;
-                                textBox4.AppendText(String.Format("{0}-{1}-{2}", i + 1, title.Authors[i], title.Content[i]) + "\r\n\r\n");
+                                textBox4.AppendText(String.Format("{0}-{1}-{2}-{3}", i + 1, title.Authors[i], title.Content[i], Common.UnixTimeToStr(long.Parse(title.Times[i]))) +"\r\n\r\n");
 
                             }
 

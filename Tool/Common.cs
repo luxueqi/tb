@@ -11,16 +11,18 @@ namespace Tieba
     class Common
     {
         public static User user;
-        public static int ConTime(string time)
+        public static int ConTime(string time,DateTime dt2)
         {
+            //  DateTime dt = Convert.ToDateTime(long.Parse(time));
 
-            DateTime dt = Convert.ToDateTime(time);
+            DateTime st = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            DateTime dt = st.AddSeconds(long.Parse(time));
 
-            TimeSpan ts = DateTime.UtcNow.Subtract(dt);
+            TimeSpan ts = dt.Subtract(dt2);// DateTime.UtcNow.Subtract(dt);
 
+            return ts.Seconds;
 
-
-            return (int)Math.Round(ts.TotalMinutes);
+           // return (int)Math.Round(ts.TotalMinutes);
 
         }
         public static string Kw;

@@ -160,6 +160,8 @@ namespace Tieba
                 comboBox3.SelectedIndex = 1;
 
                 comboBox4.SelectedIndex = 0;
+
+                dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             }
             catch (Exception ee)
             {
@@ -206,6 +208,14 @@ namespace Tieba
             //ckhimg.Checked = mode.ishimg;
             cklz.Checked = mode.islz;
             ckintro.Checked = mode.isintro;
+
+            checkBox7.Checked = mode.istime;
+
+           
+           dateTimePicker1.Value = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds>=0?mode.dt:DateTime.UtcNow;
+            
+
+           
         }
         private void textNumber(object sender, KeyPressEventArgs e)
         {
@@ -286,7 +296,7 @@ namespace Tieba
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Mode mode = setMode();
-
+          
             saveContentType();
 
             Common.Serialize<Mode>(mode, Application.StartupPath + "\\pz\\peizhi.xml");
@@ -297,6 +307,8 @@ namespace Tieba
         private Mode setMode()
         {
             Mode mode = new Mode();
+            mode.istime = checkBox7.Checked;
+            mode.dt = dateTimePicker1.Value;
             mode.isdel = ckdel.Checked;
             mode.isintro = ckintro.Checked;
             mode.isblock = ckblock.Checked;
@@ -889,6 +901,10 @@ namespace Tieba
 
                 ckintro.Enabled = false;
 
+                dateTimePicker1.Enabled = false;
+
+                checkBox7.Enabled = false;
+
                 //ckftday.Enabled = false;
 
                 //ckimg.Enabled = false;
@@ -904,7 +920,9 @@ namespace Tieba
                 cklevel.Enabled = true;
 
                 ckintro.Enabled = true;
+                dateTimePicker1.Enabled = true;
 
+                checkBox7.Enabled = true;
                 //ckftday.Enabled = true;
 
                 // ckimg.Enabled = true

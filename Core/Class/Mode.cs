@@ -12,7 +12,9 @@ namespace Tieba
 
         public bool isblackname{ set; get; }
 
-       // public bool istbage{ set; get; }
+        public bool istime { set; get; }
+
+        // public bool istbage{ set; get; }
 
         public bool ispostnum { set; get; }
 
@@ -49,6 +51,8 @@ namespace Tieba
         public double tbage = 0;
 
         public string mode = "";
+
+        public DateTime dt;
 
        // public string blacks = "";
 

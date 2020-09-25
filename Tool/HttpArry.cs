@@ -130,8 +130,12 @@ namespace BaiduHelper
                 }
 
                 req.KeepAlive = false;                       //防止链接中断无响应
-              //req.ProtocolVersion = HttpVersion.Version10;
-                ServicePointManager.SecurityProtocol =  SecurityProtocolType.Ssl3;
+                                                             //req.ProtocolVersion = HttpVersion.Version10;
+                if (url.StartsWith("https"))
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+                }
+                
                 req.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
                 req.AllowAutoRedirect = false;
                 res = (HttpWebResponse)req.GetResponse();
