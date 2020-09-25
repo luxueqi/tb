@@ -12,7 +12,7 @@ namespace Tieba
     class Task
     {
 
-        public static bool detilinfo=true;
+        public static bool detilinfo=false;
       
         private Thread th;
 
