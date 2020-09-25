@@ -24,11 +24,11 @@ namespace Tieba
 
         public User user;
 
-
+        private string pzpath;
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
             writeList();
-            saveContentType();
+            //saveContentType();
             Application.ExitThread();
         }
         Task task;
@@ -103,12 +103,11 @@ namespace Tieba
         private void Form2_Load(object sender, EventArgs e)
         {
             // user = new User();
-            loaduser();
+           // loaduser();
             Init();
-
             Pz();
-            readList();
-            readContentType();
+            readListLog();
+           // readContentType();
             Black.txtCallback = new TxtCallback(ShowInfo);
             //Task.txtCallback = new TxtCallback(ShowInfo);
             //Task.listCallback = new ListCallback(ShowList);
@@ -116,18 +115,18 @@ namespace Tieba
             //Task.manua = new ManualResetEvent(true);
         }
 
-        private void loaduser()
-        {
+        //private void loaduser()
+        //{
 
-            if (Directory.Exists("User"))
-            {
-                comboBox4.Items.Clear();
-                comboBox4.Items.Add("切换用户");
-                comboBox4.Items.AddRange(Directory.GetFiles("User"));
-                comboBox4.Items.Remove("User\\user.xml");
-            }
+        //    if (Directory.Exists("User"))
+        //    {
+        //        comboBox4.Items.Clear();
+        //        comboBox4.Items.Add("切换用户");
+        //        comboBox4.Items.AddRange(Directory.GetFiles("User"));
+        //       // comboBox4.Items.Remove("User\\user.xml");
+        //    }
 
-        }
+        //}
 
 
         private void Init()
@@ -147,19 +146,21 @@ namespace Tieba
                 }
                 this.Text = "当前登陆账号:" + user.un;
 
+                pzpath= Application.StartupPath + "\\User\\" + user.un + "\\";
+
                 mangertb.Items.Clear();
 
                 mangertb.Items.AddRange(tb);
 
                 mangertb.SelectedIndex = 0;
 
-                ckmode.SelectedIndex =1;
+              //  ckmode.SelectedIndex =1;
 
                 comboBox1.SelectedIndex = 0;
                 comboBox2.SelectedIndex = 0;
                 comboBox3.SelectedIndex = 1;
 
-                comboBox4.SelectedIndex = 0;
+               // comboBox4.SelectedIndex = 0;
 
                 dateTimePicker1.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             }
@@ -176,46 +177,57 @@ namespace Tieba
 
         private void Pz()
         {
-            Mode mode = new Mode();
-            if (File.Exists(Application.StartupPath + "\\pz\\peizhi.xml"))
+            string path =pzpath+"pz.xml" ;
+            if (File.Exists(path))
             {
-                mode = Common.DeSerialize<Mode>(Application.StartupPath + "\\pz\\peizhi.xml");
+                Mode mode = new Mode();
+                mode = Common.DeSerialize<Mode>(path);
+                ckdel.Checked = mode.isdel;
+                ckblock.Checked = mode.isblock;
+                //ckshou.Checked = mode.isshou;
+                // ckzz.Checked = mode.iszz;
+                //ckblack.Checked = mode.isblack;
+                txtblockday.Text = mode.blockday.ToString();
+                cklevel.Checked = mode.islevel;
+                txtlevel.Text = mode.level.ToString();
+                //txtftday.Text = mode.ftday.ToString();
+                //ckftday.Checked = mode.isftday;
+                txtscday.Text = mode.sctime.ToString();
+                //txtwhite.Text = mode.white.Replace("\n", "\r\n");
+                //txtkeys.Text = mode.keys.Replace("\n","\r\n");
+                txtreason.Text = mode.reason;
+                // ckmode.Text = mode.mode;
+                txtpn.Text = mode.pn.ToString();
+                //txtage.Text = mode.tbage.ToString();
+                txtpostnum.Text = mode.postnum.ToString();
+                //cktbage.Checked = mode.istbage;
+                ckpostnum.Checked = mode.ispostnum;
+                ckimg.Checked = mode.isimghash;
+                ckblackname.Checked = mode.isblackname;
+                ckdct.Checked = mode.isimgdct;
+                //ckhimg.Checked = mode.ishimg;
+                cklz.Checked = mode.islz;
+                ckintro.Checked = mode.isintro;
+
+                checkBox7.Checked = mode.istime;
+
+                // int ss = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds;
+                dateTimePicker1.Value = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds > 0 ? mode.dt : DateTime.UtcNow;
+
+                List<ContentType> typelog = new List<ContentType>();
+
+                typelog.AddRange(mode.ctrkeys);
+                typelog.AddRange(mode.cttkeys);
+                typelog.AddRange(mode.cttxtblacks);
+                typelog.AddRange(mode.cttxtconwhites);
+                typelog.AddRange(mode.cttxtwhites);
+
+                readContentType(ref typelog);
             }
-            //txtblack.Text = mode.blacks.Replace("\n", "\r\n");
-            ckdel.Checked = mode.isdel;
-            ckblock.Checked = mode.isblock;
-            //ckshou.Checked = mode.isshou;
-            // ckzz.Checked = mode.iszz;
-            //ckblack.Checked = mode.isblack;
-            txtblockday.Text = mode.blockday.ToString();
-            cklevel.Checked = mode.islevel;
-            txtlevel.Text = mode.level.ToString();
-            //txtftday.Text = mode.ftday.ToString();
-            //ckftday.Checked = mode.isftday;
-            txtscday.Text = mode.sctime.ToString();
-            //txtwhite.Text = mode.white.Replace("\n", "\r\n");
-            //txtkeys.Text = mode.keys.Replace("\n","\r\n");
-            txtreason.Text = mode.reason;
-            ckmode.Text = mode.mode;
-            txtpn.Text = mode.pn.ToString();
-            //txtage.Text = mode.tbage.ToString();
-            txtpostnum.Text = mode.postnum.ToString();
-            //cktbage.Checked = mode.istbage;
-            ckpostnum.Checked = mode.ispostnum;
-            ckimg.Checked = mode.isimghash;
-            ckblackname.Checked = mode.isblackname;
-            ckdct.Checked = mode.isimgdct;
-            //ckhimg.Checked = mode.ishimg;
-            cklz.Checked = mode.islz;
-            ckintro.Checked = mode.isintro;
-
-            checkBox7.Checked = mode.istime;
-
-           // int ss = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds;
-           dateTimePicker1.Value = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds>0?mode.dt:DateTime.UtcNow;
             
-
            
+
+
         }
         private void textNumber(object sender, KeyPressEventArgs e)
         {
@@ -297,9 +309,9 @@ namespace Tieba
         {
             Mode mode = setMode();
           
-            saveContentType();
+            //saveContentType();
 
-            Common.Serialize<Mode>(mode, Application.StartupPath + "\\pz\\peizhi.xml");
+            Common.Serialize<Mode>(mode, pzpath + "pz.xml");
 
             MessageBox.Show("保存成功", "提示");
         }
@@ -341,7 +353,7 @@ namespace Tieba
             mode.postnum = int.Parse(txtpostnum.Text);
             mode.pn = int.Parse(txtpn.Text);
             //mode.tbage = double.Parse(txtage.Text);
-            mode.mode = ckmode.Text;
+            //mode.mode = ckmode.Text;
             mode.mangertb = mangertb.Text;
             mode.reason = txtreason.Text;
 
@@ -356,9 +368,9 @@ namespace Tieba
             //mode.setValue("reason", txtReason.Text);
             //mode.setValue("ishimg", ckhimg.Checked);
 
-            if (mode.isimghash && File.Exists("pz\\hash.txt"))
+            if (mode.isimghash && File.Exists(pzpath+"hash.txt"))
             {
-                mode.localimghash = File.ReadAllLines("pz\\hash.txt");
+                mode.localimghash = File.ReadAllLines(pzpath+"hash.txt");
                // mode.setValue("localimghash", File.ReadAllLines("pz\\hash.txt"));
 
             }
@@ -494,7 +506,7 @@ namespace Tieba
                     item.SubItems[7].Text,
                     item.SubItems[8].Text));
             }
-            Common.Serialize<List<Log>>(list, Application.StartupPath + "\\pz\\log.xml");
+            Common.Serialize<List<Log>>(list, pzpath + "log.xml");
             //string log = "";
             //foreach (ListViewItem item in listView1.Items)
             //{
@@ -510,11 +522,11 @@ namespace Tieba
 
         }
 
-        private void readList()
+        private void readListLog()
         {
-            if (File.Exists(Application.StartupPath + "\\pz\\log.xml"))
+            if (File.Exists(pzpath + "log.xml"))
             {
-                List<Log> logs = Common.readXml<List<Log>>("pz\\log");
+                List<Log> logs = Common.readXml<List<Log>>(pzpath+"log");
                 listView1.Items.Clear();
                 foreach (Log item in logs)
                 {
@@ -887,48 +899,48 @@ namespace Tieba
             }
         }
 
-        private void ckmode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ckmode.Text == "简单模式")
-            {
-                txtpn.Enabled = false;
+        //private void ckmode_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ckmode.Text == "简单模式")
+        //    {
+        //        txtpn.Enabled = false;
 
-                //txtftday.Enabled = false;
+        //        //txtftday.Enabled = false;
 
-                txtlevel.Enabled = false;
+        //        txtlevel.Enabled = false;
 
-                cklevel.Enabled = false;
+        //        cklevel.Enabled = false;
 
-                ckintro.Enabled = false;
+        //        ckintro.Enabled = false;
 
-                dateTimePicker1.Enabled = false;
+        //        dateTimePicker1.Enabled = false;
 
-                checkBox7.Enabled = false;
+        //        checkBox7.Enabled = false;
 
-                //ckftday.Enabled = false;
+        //        //ckftday.Enabled = false;
 
-                //ckimg.Enabled = false;
-            }
-            else
-            {
-                txtpn.Enabled = true;
+        //        //ckimg.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        txtpn.Enabled = true;
 
-                //txtftday.Enabled = true;
+        //        //txtftday.Enabled = true;
 
-                txtlevel.Enabled = true;
+        //        txtlevel.Enabled = true;
 
-                cklevel.Enabled = true;
+        //        cklevel.Enabled = true;
 
-                ckintro.Enabled = true;
-                dateTimePicker1.Enabled = true;
+        //        ckintro.Enabled = true;
+        //        dateTimePicker1.Enabled = true;
 
-                checkBox7.Enabled = true;
-                //ckftday.Enabled = true;
+        //        checkBox7.Enabled = true;
+        //        //ckftday.Enabled = true;
 
-                // ckimg.Enabled = true
-                ;
-            }
-        }
+        //        // ckimg.Enabled = true
+        //        ;
+        //    }
+        //}
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -999,9 +1011,9 @@ namespace Tieba
         private void button10_Click(object sender, EventArgs e)
         {
 
-            if (Directory.Exists("img"))
+            if (Directory.Exists(pzpath+"img"))
             {
-                string[] paths = Directory.GetFiles("img");
+                string[] paths = Directory.GetFiles(pzpath + "img");
                 imghash ih;
                 string strhash = "";
                 //btimg.Enabled = false;
@@ -1014,7 +1026,7 @@ namespace Tieba
                     strhash += name + ":" + ih.GetHash() + "\r\n";
                 }
 
-                File.WriteAllText("pz\\hash.txt", strhash);
+                File.WriteAllText(pzpath+"hash.txt", strhash);
                 //btimg.Enabled = true;
                 button10.Enabled = true;
 
@@ -1157,19 +1169,19 @@ namespace Tieba
                 switch (item.SubItems[1].Text)
                 {
                     case "白名单":
-                        listwhite.Add(new ContentType(item.SubItems[0].Text, iszztemp));
+                        listwhite.Add(new ContentType(item.SubItems[0].Text, iszztemp,false, "白名单"));
                         break;
                     case "黑名单":
-                        listblack.Add(new ContentType(item.SubItems[0].Text, iszztemp));
+                        listblack.Add(new ContentType(item.SubItems[0].Text, iszztemp, false, "黑名单"));
                         break;
                     case "回复关键词":
-                        listrkey.Add(new ContentType(item.SubItems[0].Text, iszztemp, isshoutemp));
+                        listrkey.Add(new ContentType(item.SubItems[0].Text, iszztemp, isshoutemp, "回复关键词"));
                         break;
                     case "标题关键词":
-                        listtkey.Add(new ContentType(item.SubItems[0].Text, iszztemp, isshoutemp));
+                        listtkey.Add(new ContentType(item.SubItems[0].Text, iszztemp, isshoutemp, "标题关键词"));
                         break;
                     case "信任内容":
-                        listcon.Add(new ContentType(item.SubItems[0].Text, iszztemp));
+                        listcon.Add(new ContentType(item.SubItems[0].Text, iszztemp,false, "信任内容"));
                         break;
                 }
             }
@@ -1177,32 +1189,32 @@ namespace Tieba
 
         }
 
-        private void saveContentType()
+        //private void saveContentType()
+        //{
+
+        //    List<ContentType> list = new List<ContentType>();
+        //    foreach (ListViewItem item in listView3.Items)
+        //    {
+        //        bool iszztemp = item.SubItems[2].Text == "是" ? true : false;
+
+        //        bool isshoutemp = item.SubItems[3].Text == "是" ? true : false;
+        //        list.Add(new ContentType(
+        //            item.SubItems[0].Text,
+        //            iszztemp,
+        //            isshoutemp,
+        //            item.SubItems[1].Text
+        //            ));
+        //    }
+        //    Common.Serialize<List<ContentType>>(list, Application.StartupPath + "\\pz\\typelog.xml");
+
+
+
+        //}
+        private void readContentType(ref List<ContentType> typelog)
         {
-
-            List<ContentType> list = new List<ContentType>();
-            foreach (ListViewItem item in listView3.Items)
-            {
-                bool iszztemp = item.SubItems[2].Text == "是" ? true : false;
-
-                bool isshoutemp = item.SubItems[3].Text == "是" ? true : false;
-                list.Add(new ContentType(
-                    item.SubItems[0].Text,
-                    iszztemp,
-                    isshoutemp,
-                    item.SubItems[1].Text
-                    ));
-            }
-            Common.Serialize<List<ContentType>>(list, Application.StartupPath + "\\pz\\typelog.xml");
-
-
-
-        }
-        private void readContentType()
-        {
-            if (File.Exists(Application.StartupPath + "\\pz\\typelog.xml"))
-            {
-                List<ContentType> typelog = Common.readXml<List<ContentType>>("pz\\typelog");
+            //if (File.Exists(Application.StartupPath + "\\pz\\typelog.xml"))
+            //{
+            //    List<ContentType> typelog = Common.readXml<List<ContentType>>("pz\\typelog");
                 listView3.Items.Clear();
                 foreach (ContentType item in typelog)
                 {
@@ -1219,7 +1231,7 @@ namespace Tieba
                     listView3.Items.Add(lv);
                 }
 
-            }
+            //}
 
 
         }
@@ -1409,23 +1421,23 @@ namespace Tieba
 
 
 
-        private void comboBox4_DropDownClosed(object sender, EventArgs e)
-        {
-            if (button1.Text != "启动")
-            {
-                MessageBox.Show("请先结束当前任务");
-            }
-            else if (comboBox4.Text != "切换用户")
-            {
-                if (DialogResult.Yes == MessageBox.Show("是否切换用户？", "提示", MessageBoxButtons.YesNo))
-                {
-                    user = Common.DeSerialize<User>(comboBox4.Text);
-                    Form2_Load(null, null);
-                }
+        //private void comboBox4_DropDownClosed(object sender, EventArgs e)
+        //{
+        //    if (button1.Text != "启动")
+        //    {
+        //        MessageBox.Show("请先结束当前任务");
+        //    }
+        //    else if (comboBox4.Text != "切换用户")
+        //    {
+        //        if (DialogResult.Yes == MessageBox.Show("是否切换用户？", "提示", MessageBoxButtons.YesNo))
+        //        {
+        //            user = Common.DeSerialize<User>(comboBox4.Text);
+        //            Form2_Load(null, null);
+        //        }
 
-            }
-            comboBox4.SelectedIndex = 0;
-        }
+        //    }
+        //    comboBox4.SelectedIndex = 0;
+        //}
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

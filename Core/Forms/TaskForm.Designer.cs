@@ -32,7 +32,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -70,11 +69,11 @@
             this.修改选中ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除选中ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ckmode = new System.Windows.Forms.ComboBox();
             this.txtscday = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.ckintro = new System.Windows.Forms.CheckBox();
             this.cklz = new System.Windows.Forms.CheckBox();
             this.ckblackname = new System.Windows.Forms.CheckBox();
@@ -152,8 +151,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -162,7 +159,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -195,7 +191,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.checkBox6);
-            this.tabPage1.Controls.Add(this.comboBox4);
             this.tabPage1.Controls.Add(this.linkLabel6);
             this.tabPage1.Controls.Add(this.linkLabel4);
             this.tabPage1.Controls.Add(this.richTextBox1);
@@ -213,25 +208,13 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Checked = true;
-            this.checkBox6.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox6.Location = new System.Drawing.Point(652, 32);
+            this.checkBox6.Location = new System.Drawing.Point(657, 6);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(72, 16);
             this.checkBox6.TabIndex = 9;
             this.checkBox6.Text = "详细信息";
             this.checkBox6.UseVisualStyleBackColor = true;
             this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(633, 6);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(97, 20);
-            this.comboBox4.TabIndex = 8;
-            this.comboBox4.DropDownClosed += new System.EventHandler(this.comboBox4_DropDownClosed);
             // 
             // linkLabel6
             // 
@@ -302,10 +285,7 @@
             // 
             this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Controls.Add(this.linkLabel1);
-            this.tabPage2.Controls.Add(this.linkLabel7);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -316,16 +296,21 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.txtscday);
             this.groupBox8.Controls.Add(this.ckdct);
+            this.groupBox8.Controls.Add(this.label5);
+            this.groupBox8.Controls.Add(this.linkLabel1);
             this.groupBox8.Controls.Add(this.numericUpDown2);
+            this.groupBox8.Controls.Add(this.linkLabel7);
             this.groupBox8.Controls.Add(this.label11);
             this.groupBox8.Controls.Add(this.ckimg);
             this.groupBox8.Controls.Add(this.button10);
             this.groupBox8.Controls.Add(this.numericUpDown1);
             this.groupBox8.Controls.Add(this.label10);
-            this.groupBox8.Location = new System.Drawing.Point(290, 255);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox8.Location = new System.Drawing.Point(3, 257);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(440, 41);
+            this.groupBox8.Size = new System.Drawing.Size(729, 41);
             this.groupBox8.TabIndex = 6;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "附加设置";
@@ -333,7 +318,7 @@
             // ckdct
             // 
             this.ckdct.AutoSize = true;
-            this.ckdct.Location = new System.Drawing.Point(227, 14);
+            this.ckdct.Location = new System.Drawing.Point(363, 17);
             this.ckdct.Name = "ckdct";
             this.ckdct.Size = new System.Drawing.Size(42, 16);
             this.ckdct.TabIndex = 11;
@@ -342,7 +327,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(330, 12);
+            this.numericUpDown2.Location = new System.Drawing.Point(466, 15);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             10,
             0,
@@ -361,7 +346,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(289, 16);
+            this.label11.Location = new System.Drawing.Point(425, 19);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 12);
             this.label11.TabIndex = 9;
@@ -370,7 +355,7 @@
             // ckimg
             // 
             this.ckimg.AutoSize = true;
-            this.ckimg.Location = new System.Drawing.Point(138, 14);
+            this.ckimg.Location = new System.Drawing.Point(274, 17);
             this.ckimg.Name = "ckimg";
             this.ckimg.Size = new System.Drawing.Size(72, 16);
             this.ckimg.TabIndex = 0;
@@ -380,7 +365,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(378, 11);
+            this.button10.Location = new System.Drawing.Point(514, 14);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(56, 23);
             this.button10.TabIndex = 8;
@@ -431,7 +416,7 @@
             this.groupBox3.Controls.Add(this.listView3);
             this.groupBox3.Location = new System.Drawing.Point(290, 7);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(440, 230);
+            this.groupBox3.Size = new System.Drawing.Size(440, 244);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "内容设置";
@@ -628,34 +613,9 @@
             this.清空ToolStripMenuItem.Text = "清空";
             this.清空ToolStripMenuItem.Click += new System.EventHandler(this.清空ToolStripMenuItem_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.ckmode);
-            this.groupBox2.Controls.Add(this.txtscday);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(6, 246);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 50);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "设置2";
-            // 
-            // ckmode
-            // 
-            this.ckmode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ckmode.FormattingEnabled = true;
-            this.ckmode.Items.AddRange(new object[] {
-            "简单模式",
-            "复杂模式"});
-            this.ckmode.Location = new System.Drawing.Point(152, 21);
-            this.ckmode.Name = "ckmode";
-            this.ckmode.Size = new System.Drawing.Size(105, 20);
-            this.ckmode.TabIndex = 3;
-            this.ckmode.SelectedIndexChanged += new System.EventHandler(this.ckmode_SelectedIndexChanged);
-            // 
             // txtscday
             // 
-            this.txtscday.Location = new System.Drawing.Point(64, 20);
+            this.txtscday.Location = new System.Drawing.Point(194, 14);
             this.txtscday.Name = "txtscday";
             this.txtscday.Size = new System.Drawing.Size(59, 21);
             this.txtscday.TabIndex = 1;
@@ -665,7 +625,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 23);
+            this.label5.Location = new System.Drawing.Point(135, 17);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 0;
@@ -695,10 +655,29 @@
             this.groupBox1.Controls.Add(this.ckdel);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 234);
+            this.groupBox1.Size = new System.Drawing.Size(278, 245);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "设置1";
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.ForeColor = System.Drawing.Color.MediumBlue;
+            this.checkBox7.Location = new System.Drawing.Point(191, 191);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(72, 16);
+            this.checkBox7.TabIndex = 30;
+            this.checkBox7.Text = "启用时间";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(22, 191);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(154, 21);
+            this.dateTimePicker1.TabIndex = 29;
             // 
             // ckintro
             // 
@@ -906,7 +885,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(426, 240);
+            this.linkLabel1.Location = new System.Drawing.Point(579, 19);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(53, 12);
             this.linkLabel1.TabIndex = 4;
@@ -917,7 +896,7 @@
             // linkLabel7
             // 
             this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Location = new System.Drawing.Point(515, 240);
+            this.linkLabel7.Location = new System.Drawing.Point(668, 19);
             this.linkLabel7.Name = "linkLabel7";
             this.linkLabel7.Size = new System.Drawing.Size(53, 12);
             this.linkLabel7.TabIndex = 5;
@@ -1530,25 +1509,6 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(22, 191);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(154, 21);
-            this.dateTimePicker1.TabIndex = 29;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.ForeColor = System.Drawing.Color.MediumBlue;
-            this.checkBox7.Location = new System.Drawing.Point(191, 191);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(72, 16);
-            this.checkBox7.TabIndex = 30;
-            this.checkBox7.Text = "启用时间";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
             // TaskForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1567,7 +1527,6 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -1575,8 +1534,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -1617,8 +1574,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox cklevel;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox ckmode;
         private System.Windows.Forms.TextBox txtscday;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
@@ -1709,7 +1664,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.CheckBox cklz;
         private System.Windows.Forms.CheckBox ckintro;
         private System.Windows.Forms.ColumnHeader columnHeader18;

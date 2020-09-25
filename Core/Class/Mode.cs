@@ -48,9 +48,9 @@ namespace Tieba
 
         public int pn = 1;
 
-        public double tbage = 0;
+       // public double tbage = 0;
 
-        public string mode = "";
+       // public string mode = "";
 
         public DateTime dt;
 

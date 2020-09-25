@@ -50,7 +50,7 @@ namespace Tieba
             try
             {
                 XmlSerializer formatter = new XmlSerializer(typeof(T));
-                StreamWriter sw = new StreamWriter(filePath, false, Encoding.UTF8);
+                StreamWriter sw = new StreamWriter(filePath,false, Encoding.UTF8);
                 formatter.Serialize(sw, o);
                 sw.Flush();
                 sw.Close();
@@ -147,9 +147,9 @@ namespace Tieba
         {
 
             T ut = default(T);
-            if (File.Exists(Application.StartupPath + "\\" + xml + ".xml"))
+            if (File.Exists( xml + ".xml"))
             {
-                ut = Common.DeSerialize<T>(Application.StartupPath + "\\" + xml + ".xml");
+                ut = Common.DeSerialize<T>( xml + ".xml");
             }
             return ut;
         }

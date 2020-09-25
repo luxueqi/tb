@@ -17,21 +17,16 @@ namespace Tieba
         {
             InitializeComponent();
         }
-       
+
         private void button1_Click(object sender, EventArgs e)
         {
-            // Common.members(1, "陆雪琪");
-
-            //ID idl = new ID("1314527");
-
-             string bduss = textBox1.Text.Trim();
-
-           // bduss = bduss.Replace("BDUSS=", "").Replace(";", "");
 
 
-             if (bduss.Contains("BDUSS="))
+            string bduss = textBox1.Text.Trim();
+
+            if (bduss.Contains("BDUSS="))
             {
-               // bduss = "BDUSS="+bduss;
+                // bduss = "BDUSS="+bduss;
                 try
                 {
                     User user = new User();
@@ -49,28 +44,28 @@ namespace Tieba
 
                         fr2.Text = "当前登陆账号:" + user.un;
 
-                        user.tbs=HttpHelper.Tbs(bduss);
-                      //  user= new User(un, "", bduss,);
+                        user.tbs = HttpHelper.Tbs(bduss);
+                        //  user= new User(un, "", bduss,);
+
+                        fr2.user = user;
+
+
+                        string userpath = Application.StartupPath + "\\User\\" + user.un;
+
+                        if (!Directory.Exists(userpath))
+                        {
+                            Directory.CreateDirectory(userpath);
+                        }
+
                        
-                        fr2.user =user;
-
-                        string path = Application.StartupPath + "\\User\\user.xml";
-                        if (!File.Exists(path))
-                        {
-                            Common.Serialize<User>(user, path);
-                        }
-                        else 
-                        {
-                            Common.Serialize<User>(user, Application.StartupPath + "\\User\\" + user.un + ".xml");
-                        }
-
+                        Common.Serialize<User>(user, userpath + "\\user.xml");
                         this.Hide();
 
-                         fr2.ShowDialog();
+                        fr2.ShowDialog();
 
-                        
 
-                       
+
+
                     }
                 }
                 catch (Exception ee)
@@ -78,12 +73,12 @@ namespace Tieba
 
                     MessageBox.Show(ee.Message, "提示");
                 }
-                
+
 
             }
             else
             {
-                MessageBox.Show("请输入正确的BDUSS","提示");
+                MessageBox.Show("请输入正确的BDUSS", "提示");
                 textBox1.Clear();
             }
         }
@@ -92,33 +87,30 @@ namespace Tieba
         {
             Application.ExitThread();
         }
-     
+
         private void Bduss_Load(object sender, EventArgs e)
         {
-            //ClientTit ct = new ClientTit("5057461848",2);
-            // MessageBox.Show(Common.uid2portrait("1042496"));
-           // new TbInfo("凡雪");
-            try
-            {
-                User us1 = Common.readXml<User>("User\\user");
-                textBox1.Text = us1.cookie;
-                this.Text = "当前账号:" + us1.un;
-
-            }
-            catch (Exception)
-            {
-                
-               
-            }
-              
-           
             
+                string[] unfiles = Directory.GetDirectories("User");
+               
+                comboBox4.Items.AddRange(unfiles);
+               
+
+
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             getBDUSS bd = new getBDUSS();
             bd.ShowDialog();
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            User us1 = Common.readXml<User>(comboBox4.Text+"\\user");
+            textBox1.Text = us1.cookie;
+            this.Text = "当前账号:" + us1.un;
         }
 
 

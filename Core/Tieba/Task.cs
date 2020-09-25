@@ -93,28 +93,28 @@ namespace Tieba
        
        }
         
-        private void ThreadEasey()
-        {
+        //private void ThreadEasey()
+        //{
             
-                th = new Thread(new ThreadStart(delegate
-                {
+        //        th = new Thread(new ThreadStart(delegate
+        //        {
                    
-                    while (true)
-                    {
-                        EaseMode();
-                        txtCallback("等待" + mode.sctime + "s", Color.Red);
-                        Thread.Sleep(mode.sctime * 1000);
+        //            while (true)
+        //            {
+        //                EaseMode();
+        //                txtCallback("等待" + mode.sctime + "s", Color.Red);
+        //                Thread.Sleep(mode.sctime * 1000);
 
 
-                    }
-                }));
+        //            }
+        //        }));
 
-                th.IsBackground = true;
+        //        th.IsBackground = true;
 
-                th.Start();
+        //        th.Start();
             
             
-        }
+        //}
 
        
         private void ThreadFuZa()
@@ -188,14 +188,14 @@ namespace Tieba
 
         public void startThread()
         {
-            if (mode.mode == "简单模式")
-            {
-                ThreadEasey();
-            }
-            else if (mode.mode == "复杂模式")
-            {
+            //if (mode.mode == "简单模式")
+            //{
+            //    ThreadEasey();
+            //}
+            //else if (mode.mode == "复杂模式")
+            //{
                 ThreadFuZa();
-            }
+            //}
         
         }
 
@@ -221,6 +221,7 @@ namespace Tieba
         {
             manua.Set();
         }
+        /*
         private void EaseMode()
         {
 
@@ -278,16 +279,16 @@ namespace Tieba
                             txtCallback(log.type, Color.Red);
                             log.uid = info.Uids[i];
                             string ncikname = info.Authors[i].StartsWith("昵称:")?"": info.Authors[i];
-                            /*if (blackFlag)
-                            {
+                            //if (blackFlag)
+                            //{
 
-                                log.result = Common.Delete(tid) + "-->" + Common.Block(ncikname,info.Uids[i], 10, mode.reason);
+                            //    log.result = Common.Delete(tid) + "-->" + Common.Block(ncikname,info.Uids[i], 10, mode.reason);
 
-                            }
-                            else
-                            {
+                            //}
+                            //else
+                            //{
                                 
-                            }*/
+                            //}
                             
                             if (ageNumMethod(info.Uids[i]))
                             {
@@ -377,7 +378,7 @@ namespace Tieba
                 }
             }
 
-        }
+        }*/
 
 
         private void FuZaMode(object start)

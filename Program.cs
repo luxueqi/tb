@@ -20,15 +20,15 @@ namespace Tieba
                 {
                     Directory.CreateDirectory("User");
                 }
-                if (!Directory.Exists("pz"))
-                {
-                    Directory.CreateDirectory("pz");
-                }
+                //if (!Directory.Exists("pz"))
+                //{
+                //    Directory.CreateDirectory("pz");
+                //}
 
-                if (!Directory.Exists("img"))
-                {
-                    Directory.CreateDirectory("img");
-                }
+                //if (!Directory.Exists("img"))
+                //{
+                //    Directory.CreateDirectory("img");
+                //}
                 string res = HttpHelper.HttpGet(Conf.UPDATE_URL+"/tb.php", System.Text.Encoding.UTF8);
                 if (res != Conf.strtime)
                 {
