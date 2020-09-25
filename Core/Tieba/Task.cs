@@ -532,20 +532,20 @@ namespace Tieba
             return false;
         }
 
-        private bool whiteblackMethod(string unq,char m,out string pikey,string uid="null")
+        private bool whiteblackMethod(ref List<ContentType> listtemp,string unq,char m,out string pikey,string uid="null")
         {
-            List<ContentType> listtemp = new List<ContentType>();
+           // List<ContentType> listtemp = new List<ContentType>();
             pikey = "";
-            switch (m)
-            {
-                case 'w': listtemp = mode.cttxtwhites; break;
-                case 'b': listtemp = mode.cttxtblacks; ; break;
-                case 'r': listtemp = mode.ctrkeys; break;
-                case 't': listtemp = mode.cttkeys; break;
-                case 'c': listtemp = mode.cttxtconwhites; break;
-                default:
-                    throw new Exception("没有该项目");
-            }
+            //switch (m)
+            //{
+            //    case 'w': listtemp = mode.cttxtwhites; break;
+            //    case 'b': listtemp = mode.cttxtblacks; ; break;
+            //    case 'r': listtemp = mode.ctrkeys; break;
+            //    case 't': listtemp = mode.cttkeys; break;
+            //    case 'c': listtemp = mode.cttxtconwhites; break;
+            //    default:
+            //        throw new Exception("没有该项目");
+            //}
 
             foreach (ContentType item in listtemp)
             {
@@ -850,7 +850,7 @@ namespace Tieba
                        if(Task.detilinfo) txtCallback(Thread.CurrentThread.Name + "--" + iflagCount + "-->正在扫描pid:" + restit.Pids[i] + "-->" + "作者:" + restit.Authors[i] + "-->内容:" + (tconten.Length > 27 ? tconten.Substring(0, 27) + "......" : tconten), Color.Black);
 
 
-                        if (whiteblackMethod(restit.Authors[i].Replace("昵称:", ""), 'w' ,out outpikey))
+                        if (whiteblackMethod(ref mode.ctwhitenames,restit.Authors[i].Replace("昵称:", ""), 'w' ,out outpikey))
                         {
                             if (Task.detilinfo) txtCallback("跳过-->白名单-" + restit.Authors[i], Color.Blue); templistpid.Add(restit.Pids[i]);
                             continue;
@@ -860,7 +860,7 @@ namespace Tieba
 
                         //if (mode.isblack)
                         //{
-                        flagB = whiteblackMethod(restit.Authors[i].Replace("昵称:",""), 'b',out outpikey);
+                        flagB = whiteblackMethod(ref mode.ctblacknames,restit.Authors[i].Replace("昵称:",""), 'b',out outpikey);
 
                             if (flagB)
                             {
@@ -876,12 +876,12 @@ namespace Tieba
                             bool ctconwitebool = false;
                             if (i==0)
                             {
-                                ctconwitebool = whiteblackMethod(restit.title.Trim(), 'c' ,out outpikey) || whiteblackMethod(tconten, 'c',out outpikey);
+                                ctconwitebool = whiteblackMethod(ref mode.ctwhitecontents,restit.title.Trim(), 'c' ,out outpikey) || whiteblackMethod(ref mode.ctwhitecontents,tconten, 'c',out outpikey);
                                
                             }
                             else
                             {
-                                ctconwitebool = whiteblackMethod(tconten, 'c',out outpikey);
+                                ctconwitebool = whiteblackMethod(ref mode.ctwhitecontents,tconten, 'c',out outpikey);
                             }
 
                             if (ctconwitebool) { if (Task.detilinfo) txtCallback("跳过-->信任内容-" + outpikey, Color.Blue); templistpid.Add(restit.Pids[i]); continue; }
@@ -924,11 +924,11 @@ namespace Tieba
                                 bool valuesFlag = false;
                                 if (i == 0)
                                 {
-                                    valuesFlag = whiteblackMethod(restit.title.Trim(), 't' ,out outpikey, restit.Uids[i]) || whiteblackMethod(tconten, 'r', out outpikey);
+                                    valuesFlag = whiteblackMethod(ref mode.cttitlekeys,restit.title.Trim(), 't' ,out outpikey, restit.Uids[i]) || whiteblackMethod(ref mode.ctreplaykeys,tconten, 'r', out outpikey);
                                 }
                                 else
                                 {
-                                    valuesFlag = whiteblackMethod(tconten, 'r' ,out outpikey, restit.Uids[i]);
+                                    valuesFlag = whiteblackMethod(ref mode.ctreplaykeys,tconten, 'r' ,out outpikey, restit.Uids[i]);
                                 }
 
                                 if (valuesFlag)

@@ -1,6 +1,6 @@
 ﻿namespace Tieba.Core.Forms
 {
-    partial class getBDUSS
+    partial class frmGetBduss
     {
         /// <summary>
         /// Required designer variable.

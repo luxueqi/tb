@@ -69,27 +69,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Class\Accention.cs" />
-    <Compile Include="Core\Forms\Bduss.cs">
+    <Compile Include="Core\Forms\frmBduss.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Forms\Bduss.Designer.cs">
-      <DependentUpon>Bduss.cs</DependentUpon>
+    <Compile Include="Core\Forms\frmBduss.Designer.cs">
+      <DependentUpon>frmBduss.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Forms\getBDUSS.cs">
+    <Compile Include="Core\Forms\frmGetBduss.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Forms\getBDUSS.Designer.cs">
-      <DependentUpon>getBDUSS.cs</DependentUpon>
+    <Compile Include="Core\Forms\frmGetBduss.Designer.cs">
+      <DependentUpon>frmGetBduss.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Tieba\Black.cs" />
     <Compile Include="Core\Tieba\ClientTit.cs" />
     <Compile Include="Tool\Common.cs" />
     <Compile Include="Conf.cs" />
-    <Compile Include="Core\Forms\content.cs">
+    <Compile Include="Core\Forms\frmContent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Forms\content.Designer.cs">
-      <DependentUpon>content.cs</DependentUpon>
+    <Compile Include="Core\Forms\frmContent.Designer.cs">
+      <DependentUpon>frmContent.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Class\ContentType.cs" />
     <Compile Include="Core\Forms\frBlock.cs">
@@ -100,25 +100,25 @@
     </Compile>
     <Compile Include="Core\Tieba\ID.cs" />
     <Compile Include="Core\Libs\imghash.cs" />
-    <Compile Include="Core\Forms\Imgtest.cs">
+    <Compile Include="Core\Forms\frmImgtest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Forms\Imgtest.Designer.cs">
-      <DependentUpon>Imgtest.cs</DependentUpon>
+    <Compile Include="Core\Forms\frmImgtest.Designer.cs">
+      <DependentUpon>frmImgtest.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Tieba\Lcid.cs" />
     <Compile Include="Core\Class\Log.cs" />
-    <Compile Include="Core\Forms\TaskForm.cs">
+    <Compile Include="Core\Forms\frmTaskForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Forms\TaskForm.Designer.cs">
-      <DependentUpon>TaskForm.cs</DependentUpon>
+    <Compile Include="Core\Forms\frmTaskForm.Designer.cs">
+      <DependentUpon>frmTaskForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Forms\TestForm.cs">
+    <Compile Include="Core\Forms\frmTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Forms\TestForm.Designer.cs">
-      <DependentUpon>TestForm.cs</DependentUpon>
+    <Compile Include="Core\Forms\frmTestForm.Designer.cs">
+      <DependentUpon>frmTestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tool\HttpArry.cs" />
     <Compile Include="Core\Class\Mode.cs" />
@@ -129,26 +129,26 @@
     <Compile Include="Core\Tieba\Title.cs" />
     <Compile Include="Core\Libs\Transformation.cs" />
     <Compile Include="Core\Class\User.cs" />
-    <EmbeddedResource Include="Core\Forms\Bduss.resx">
-      <DependentUpon>Bduss.cs</DependentUpon>
+    <EmbeddedResource Include="Core\Forms\frmBduss.resx">
+      <DependentUpon>frmBduss.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Core\Forms\content.resx">
-      <DependentUpon>content.cs</DependentUpon>
+    <EmbeddedResource Include="Core\Forms\frmContent.resx">
+      <DependentUpon>frmContent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Core\Forms\frBlock.resx">
       <DependentUpon>frBlock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Core\Forms\getBDUSS.resx">
-      <DependentUpon>getBDUSS.cs</DependentUpon>
+    <EmbeddedResource Include="Core\Forms\frmGetBduss.resx">
+      <DependentUpon>frmGetBduss.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Core\Forms\Imgtest.resx">
-      <DependentUpon>Imgtest.cs</DependentUpon>
+    <EmbeddedResource Include="Core\Forms\frmImgtest.resx">
+      <DependentUpon>frmImgtest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Core\Forms\TaskForm.resx">
-      <DependentUpon>TaskForm.cs</DependentUpon>
+    <EmbeddedResource Include="Core\Forms\frmTaskForm.resx">
+      <DependentUpon>frmTaskForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Core\Forms\TestForm.resx">
-      <DependentUpon>TestForm.cs</DependentUpon>
+    <EmbeddedResource Include="Core\Forms\frmTestForm.resx">
+      <DependentUpon>frmTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

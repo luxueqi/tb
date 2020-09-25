@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Tieba.Core.Forms
 {
-    public partial class getBDUSS : Form
+    public partial class frmGetBduss : Form
     {
-        public getBDUSS()
+        public frmGetBduss()
         {
             InitializeComponent();
         }

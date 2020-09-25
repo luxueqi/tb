@@ -43,7 +43,7 @@ namespace Tieba
                 Mode mode = setMode();
 
 
-                if (mode.ctrkeys.Count == 0 && mode.cttkeys.Count == 0 && mode.cttxtblacks.Count == 0 && mode.cttxtwhites.Count == 0 && mode.cttxtconwhites.Count == 0)
+                if (mode.ctreplaykeys.Count == 0 && mode.cttitlekeys.Count == 0 && mode.ctblacknames.Count == 0 && mode.ctwhitenames.Count == 0 && mode.ctwhitecontents.Count == 0)
                 {
                     MessageBox.Show("请设置扫描内容", "提示");
 
@@ -216,11 +216,11 @@ namespace Tieba
 
                 List<ContentType> typelog = new List<ContentType>();
 
-                typelog.AddRange(mode.ctrkeys);
-                typelog.AddRange(mode.cttkeys);
-                typelog.AddRange(mode.cttxtblacks);
-                typelog.AddRange(mode.cttxtconwhites);
-                typelog.AddRange(mode.cttxtwhites);
+                typelog.AddRange(mode.ctreplaykeys);
+                typelog.AddRange(mode.cttitlekeys);
+                typelog.AddRange(mode.ctblacknames);
+                typelog.AddRange(mode.ctwhitecontents);
+                typelog.AddRange(mode.ctwhitenames);
 
                 readContentType(ref typelog);
             }
@@ -377,7 +377,7 @@ namespace Tieba
             mode.hashdistance = (int)numericUpDown2.Value;
           //  mode.setValue("hashdistance", (int)numericUpDown2.Value);
 
-            getContentType(out mode.cttxtwhites, out mode.cttxtblacks, out mode.ctrkeys, out mode.cttkeys, out mode.cttxtconwhites);
+            getContentType(out mode.ctwhitenames, out mode.ctblacknames, out mode.ctreplaykeys, out mode.cttitlekeys, out mode.ctwhitecontents);
 
             //  mode.setValue("white", txtwhite.Text);
             //object[] obj = new object[] 

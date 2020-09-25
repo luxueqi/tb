@@ -57,7 +57,7 @@ namespace Tieba
                             Directory.CreateDirectory(userpath);
                         }
 
-                       
+
                         Common.Serialize<User>(user, userpath + "\\user.xml");
                         this.Hide();
 
@@ -90,11 +90,15 @@ namespace Tieba
 
         private void Bduss_Load(object sender, EventArgs e)
         {
-            
-                string[] unfiles = Directory.GetDirectories("User");
-               
-                comboBox4.Items.AddRange(unfiles);
-               
+
+            string[] unfiles = Directory.GetDirectories("User");
+
+            comboBox4.Items.AddRange(unfiles);
+
+            if (comboBox4.Items.Count > 0)
+            {
+                comboBox4.SelectedIndex = 0;
+            }
 
 
 
@@ -102,13 +106,13 @@ namespace Tieba
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            getBDUSS bd = new getBDUSS();
+            frmGetBduss bd = new frmGetBduss();
             bd.ShowDialog();
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            User us1 = Common.readXml<User>(comboBox4.Text+"\\user");
+            User us1 = Common.readXml<User>(comboBox4.Text + "\\user");
             textBox1.Text = us1.cookie;
             this.Text = "当前账号:" + us1.un;
         }

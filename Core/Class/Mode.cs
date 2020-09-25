@@ -62,15 +62,15 @@ namespace Tieba
 
         public string reason = "";
 
-        public List<ContentType> ctrkeys;
+        public List<ContentType> ctreplaykeys;
         
-        public List<ContentType> cttkeys;
+        public List<ContentType> cttitlekeys;
 
-        public List<ContentType> cttxtblacks;
+        public List<ContentType> ctblacknames;
 
-        public List<ContentType> cttxtwhites;
+        public List<ContentType> ctwhitenames;
 
-        public List<ContentType> cttxtconwhites;
+        public List<ContentType> ctwhitecontents;
 
         public int hashdistance;
 
