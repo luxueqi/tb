@@ -211,8 +211,8 @@ namespace Tieba
 
             checkBox7.Checked = mode.istime;
 
-           
-           dateTimePicker1.Value = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds>=0?mode.dt:DateTime.UtcNow;
+           // int ss = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds;
+           dateTimePicker1.Value = mode.dt.Subtract(dateTimePicker1.MinDate).Seconds>0?mode.dt:DateTime.UtcNow;
             
 
            
